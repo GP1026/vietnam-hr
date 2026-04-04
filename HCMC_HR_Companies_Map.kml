@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>胡志明市 HR 招聘公司地图</name>
+    <description>越南胡志明市主要HR/招聘公司位置，用于帮助中国企业招聘懂中文越南本地员工的调研。数据核实时间：2026年4月3日。</description>
+
+    <!-- 样式定义：蓝色 = 国际连锁，红色 = 越南本土 -->
+    <Style id="international">
+      <IconStyle>
+        <color>ffff5500</color>
+        <scale>1.2</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/ms/icons/blue-dot.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <color>ffff5500</color>
+      </LabelStyle>
+    </Style>
+
+    <Style id="local">
+      <IconStyle>
+        <color>ff0000ff</color>
+        <scale>1.2</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/ms/icons/red-dot.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <color>ff0000ff</color>
+      </LabelStyle>
+    </Style>
+
+    <!-- ===== 第1郡 District 1 ===== -->
+    <Folder>
+      <name>第1郡 District 1 — 核心商务区</name>
+
+      <Placemark>
+        <name>① JAC Recruitment Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（英国JAC Group）<br/>
+          <b>地址：</b>19/F, Doji Tower, 81-83-83B-85 Ham Nghi Street, Sai Gon Ward, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 3821 7730<br/>
+          <b>邮箱：</b>hochiminhcity@jac-recruitment.vn<br/>
+          <b>官网：</b><a href="https://www.jac-recruitment.vn">jac-recruitment.vn</a><br/>
+          <b>特点：</b>多语言人才（含中文岗位）专长
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>106.70384,10.77280,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>② Robert Walters Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（英国Robert Walters Group）<br/>
+          <b>地址：</b>L9 &amp; L3, The Metropolitan, 235 Dong Khoi Street, Saigon Ward, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 3520 7900<br/>
+          <b>传真：</b>+84 28 3520 7901<br/>
+          <b>邮箱：</b>hochiminh@robertwalters.com.vn<br/>
+          <b>官网：</b><a href="https://www.robertwalters.com.vn">robertwalters.com.vn</a><br/>
+          <b>特点：</b>中高端专业人才招聘
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>106.70420,10.77790,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑤ ManpowerGroup Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（美国ManpowerGroup）<br/>
+          <b>地址：</b>16/F, Sailing Tower, 111A Pasteur Street, Sai Gon Ward, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 3911 0950<br/>
+          <b>邮箱：</b>inquiry@manpower.com.vn<br/>
+          <b>官网：</b><a href="https://www.manpower.com.vn">manpower.com.vn</a><br/>
+          <b>特点：</b>综合人力资源，白领蓝领均覆盖
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>106.69520,10.77620,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑥ PERSOLKELLY Vietnam（含CGP次办公室）</name>
+        <description><![CDATA[
+          <b>— PERSOLKELLY Vietnam —</b><br/>
+          <b>类型：</b>国际连锁（日本PERSOL集团）<br/>
+          <b>地址：</b>18/F, SONATUS Building, 15 Le Thanh Ton Street, Saigon Ward, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 7303 9100<br/>
+          <b>邮箱：</b>info.vn@persolapac.com<br/>
+          <b>官网：</b><a href="https://persolvietnam.com">persolvietnam.com</a><br/>
+          <br/>
+          <b>— CGP Vietnam（次办公室）—</b><br/>
+          <b>地址：</b>5/F, Sonatus Building, 15 Le Thanh Ton Street, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 7100 0600<br/>
+          <b>邮箱：</b>vietnam@cornerstoneglobalpartners.com<br/>
+          <b>官网：</b><a href="https://www.cgpvietnam.com">cgpvietnam.com</a>
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>106.70010,10.77820,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑦ Talentnet Corporation【越南本土最大HR】</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（越南最大本土HR咨询公司）<br/>
+          <b>地址：</b>6/F, Star Building, 33 Mac Dinh Chi Street, Saigon Ward, District 1, HCMC<br/>
+          <b>电话：</b>+84 28 6291 4188<br/>
+          <b>传真：</b>+84 28 6291 4088<br/>
+          <b>邮箱：</b>contact-hcm@talentnetgroup.com<br/>
+          <b>官网：</b><a href="https://www.talentnetgroup.com">talentnetgroup.com</a><br/>
+          <b>特点：</b>近20年本地经验，最深的越南人才网络
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>106.69900,10.78400,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== 第4郡 District 4 — E.Town Central 超级集群 ===== -->
+    <Folder>
+      <name>第4郡 District 4 — E.Town Central 超级集群（同一栋楼3家）</name>
+
+      <Placemark>
+        <name>③④⑧ E.Town Central【CGP + Adecco + Navigos 同楼！】</name>
+        <description><![CDATA[
+          <b>地址：</b>11 Doan Van Bo Street, Xom Chieu Ward, District 4, HCMC<br/>
+          <hr/>
+          <b>— ③ CGP Vietnam（主办公室）25/F —</b><br/>
+          电话：+84 28 7100 0600<br/>
+          邮箱：vietnam@cornerstoneglobalpartners.com<br/>
+          官网：<a href="https://www.cgpvietnam.com">cgpvietnam.com</a><br/>
+          <br/>
+          <b>— ④ Adecco Vietnam  14/F —</b><br/>
+          电话：+84 28 3636 5811<br/>
+          邮箱：vn.info@adecco.com<br/>
+          官网：<a href="https://www.adecco.com/en-vn">adecco.com/en-vn</a><br/>
+          <br/>
+          <b>— ⑧ Navigos Group / VietnamWorks / Navigos Search  20/F —</b><br/>
+          电话：+84 28 3925 5000 / 免费热线 1800 585826<br/>
+          邮箱（平台）：contact@vietnamworks.com<br/>
+          邮箱（猎头）：contact@navigossearch.com<br/>
+          官网：<a href="https://www.navigosgroup.com">navigosgroup.com</a><br/>
+          <hr/>
+          <b>💡 调研建议：</b>同一栋楼可一次拜访3家，效率最高！
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>106.69890,10.75670,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== 第3郡 District 3 ===== -->
+    <Folder>
+      <name>第3郡 District 3</name>
+
+      <Placemark>
+        <name>⑨ HR2B（Talent Recruitment JSC）</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土猎头（全称 Talent Recruitment JSC）<br/>
+          <b>地址：</b>1/F, Thien Son Building, 5 Nguyen Gia Thieu Street, Xuan Hoa Ward, District 3, HCMC<br/>
+          <b>电话：</b>+84 28 6288 3888<br/>
+          <b>传真：</b>+84 28 6288 3889<br/>
+          <b>邮箱（客户）：</b>contact@hr2b.com<br/>
+          <b>邮箱（简历）：</b>cv@hr2b.com<br/>
+          <b>官网：</b><a href="https://www.hr2b.com">hr2b.com</a><br/>
+          <b>其他分部：</b>河内、岘港
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>106.68450,10.78310,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+  </Document>
+</kml>
