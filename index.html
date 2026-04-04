@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>胡志明市 HR 公司调研报告</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; background: #f5f5f5; color: #333; }
+
+    /* 顶部横幅 */
+    .header {
+      background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #c0392b 100%);
+      color: white; padding: 32px 24px; text-align: center;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header .subtitle { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+    .flag { font-size: 24px; margin-right: 8px; }
+
+    /* 统计栏 */
+    .stats {
+      display: flex; gap: 0; background: #2c3e50; color: white;
+      flex-wrap: wrap;
+    }
+    .stat-item { flex: 1; min-width: 120px; padding: 16px; text-align: center; border-right: 1px solid #34495e; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 28px; font-weight: bold; color: #e74c3c; }
+    .stat-label { font-size: 11px; opacity: 0.8; margin-top: 4px; }
+
+    /* 主内容 */
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+    /* 区域标题 */
+    .section-title {
+      font-size: 18px; font-weight: bold; color: #2c3e50;
+      border-left: 4px solid #e74c3c; padding-left: 12px;
+      margin: 28px 0 16px;
+    }
+
+    /* 公司卡片 */
+    .companies-grid { display: flex; flex-direction: column; gap: 16px; }
+
+    .company-card {
+      background: white; border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden; transition: box-shadow 0.2s;
+    }
+    .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.14); }
+
+    .card-header {
+      padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .card-header.international { background: #ebf5fb; border-bottom: 3px solid #3498db; }
+    .card-header.local { background: #fef9e7; border-bottom: 3px solid #e74c3c; }
+
+    .company-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 15px; flex-shrink: 0;
+    }
+    .international .company-num { background: #3498db; color: white; }
+    .local .company-num { background: #e74c3c; color: white; }
+
+    .company-name { flex: 1; }
+    .company-name h2 { font-size: 17px; color: #2c3e50; }
+    .company-name .eng-name { font-size: 12px; color: #7f8c8d; margin-top: 2px; }
+
+    .company-badge {
+      padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;
+    }
+    .badge-intl { background: #d6eaf8; color: #2471a3; }
+    .badge-local { background: #fdebd0; color: #d35400; }
+    .badge-star { background: #d5f5e3; color: #1e8449; }
+
+    .card-body { padding: 16px 20px; }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px; margin-bottom: 12px;
+    }
+    .info-item { display: flex; gap: 8px; align-items: flex-start; }
+    .info-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .info-content { font-size: 13px; line-height: 1.5; }
+    .info-label { color: #7f8c8d; font-size: 11px; }
+    .info-value { color: #2c3e50; font-weight: 500; }
+    .info-value a { color: #2471a3; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+
+    .card-footer {
+      padding: 12px 20px; background: #f8f9fa;
+      border-top: 1px solid #ecf0f1;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 6px;
+      font-size: 12px; font-weight: bold; text-decoration: none;
+      transition: opacity 0.2s; cursor: pointer; border: none;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-map { background: #27ae60; color: white; }
+    .btn-web { background: #2471a3; color: white; }
+    .btn-email { background: #8e44ad; color: white; }
+
+    .feature-tag {
+      display: inline-block; padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; background: #eaecee; color: #555; margin: 2px;
+    }
+
+    .multiple-offices {
+      background: #fef9e7; border: 1px solid #f39c12; border-radius: 6px;
+      padding: 10px 14px; margin-top: 10px; font-size: 13px;
+    }
+    .multiple-offices strong { color: #d35400; }
+
+    /* 地图区位板块 */
+    .map-section {
+      background: white; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px;
+    }
+    .district-block {
+      border: 2px solid #bdc3c7; border-radius: 8px;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .district-title {
+      padding: 10px 16px; font-weight: bold; font-size: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .district-d1 .district-title { background: #d6eaf8; color: #1a5276; }
+    .district-d4 .district-title { background: #fdebd0; color: #7e5109; }
+    .district-d3 .district-title { background: #d5f5e3; color: #1e8449; }
+
+    .district-companies { padding: 12px 16px; }
+    .district-company-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px;
+    }
+    .district-company-item:last-child { border-bottom: none; }
+    .district-num { font-weight: bold; color: #e74c3c; width: 20px; }
+    .district-building { color: #7f8c8d; font-size: 12px; }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff3cd, #fff8e1);
+      border: 2px solid #f39c12; border-radius: 8px;
+      padding: 14px 18px; margin-bottom: 20px;
+      font-size: 14px; line-height: 1.7;
+    }
+    .highlight-box strong { color: #e74c3c; }
+
+    /* 调研建议 */
+    .schedule-card {
+      background: white; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px;
+    }
+    .day-item { display: flex; gap: 14px; margin-bottom: 14px; }
+    .day-badge {
+      width: 50px; height: 50px; border-radius: 8px;
+      background: #2c3e50; color: white;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      font-size: 11px; font-weight: bold;
+    }
+    .day-badge span { font-size: 18px; line-height: 1; }
+    .day-content h4 { font-size: 14px; color: #2c3e50; margin-bottom: 4px; }
+    .day-content p { font-size: 13px; color: #555; line-height: 1.6; }
+
+    /* 问卷模板 */
+    .question-list { counter-reset: q; }
+    .question-item {
+      counter-increment: q; padding: 10px 14px;
+      border-left: 3px solid #3498db; margin-bottom: 8px;
+      background: #f8fbff; border-radius: 0 6px 6px 0;
+      font-size: 13px; line-height: 1.6;
+    }
+    .question-item::before {
+      content: "Q" counter(q) ". ";
+      font-weight: bold; color: #2471a3;
+    }
+
+    /* 页脚 */
+    .footer {
+      background: #2c3e50; color: white; text-align: center;
+      padding: 20px; font-size: 12px; margin-top: 32px;
+    }
+    .footer a { color: #87ceeb; }
+
+    /* 打印样式 */
+    @media print {
+      .btn { display: none; }
+      .company-card { break-inside: avoid; }
+      body { background: white; }
+      .header { background: #c0392b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 顶部横幅 -->
+<div class="header">
+  <h1><span class="flag">🇻🇳</span>胡志明市 HR 招聘公司调研报告</h1>
+  <div class="subtitle">
+    业务方向：帮助中国企业招聘懂中文的越南本地员工<br>
+    数据核实时间：2026年4月3日 ｜ 所有信息来源于各公司官方网站
+  </div>
+</div>
+
+<!-- 统计栏 -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">收录公司</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">主要集聚郡区</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">官网核实</div></div>
+  <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">越南本土公司</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">国际连锁公司</div></div>
+</div>
+
+<div class="container">
+
+  <!-- 重要提示 -->
+  <div class="highlight-box" style="margin-top:20px;">
+    💡 <strong>调研效率提示：</strong>第4郡 E.Town Central（11 Doan Van Bo）一栋楼内有 <strong>CGP Vietnam（25楼）+ Adecco（14楼）+ Navigos Group（20楼）</strong> 三家公司，同一天可完成拜访，效率极高。建议优先安排此楼。
+  </div>
+
+  <!-- ==================== 公司列表 ==================== -->
+  <div class="section-title">公司完整联系信息</div>
+  <div class="companies-grid">
+
+    <!-- 01 JAC Recruitment -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">01</div>
+        <div class="company-name">
+          <h2>JAC Recruitment Vietnam</h2>
+          <div class="eng-name">JAC Group 旗下 · 英国</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">19/F, Doji Tower, 81-83-83B-85 Ham Nghi Street, Sai Gon Ward, <strong>District 1</strong></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话</div>
+              <div class="info-value">+84 28 3821 7730</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:hochiminhcity@jac-recruitment.vn">hochiminhcity@jac-recruitment.vn</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.jac-recruitment.vn" target="_blank">jac-recruitment.vn</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">多语言人才（含中文岗位）</span>
+          <span class="feature-tag">猎头 & 招聘</span>
+          <span class="feature-tag">1983年成立</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Doji+Tower+81+Ham+Nghi+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.jac-recruitment.vn" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:hochiminhcity@jac-recruitment.vn">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 02 Robert Walters -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">02</div>
+        <div class="company-name">
+          <h2>Robert Walters Vietnam</h2>
+          <div class="eng-name">Robert Walters Group 旗下 · 英国</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">Unit 1, L9 & Unit 4, L3, The Metropolitan, 235 Dong Khoi Street, Saigon Ward, <strong>District 1</strong></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话 / 传真</div>
+              <div class="info-value">+84 28 3520 7900 / Fax: +84 28 3520 7901</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:hochiminh@robertwalters.com.vn">hochiminh@robertwalters.com.vn</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.robertwalters.com.vn" target="_blank">robertwalters.com.vn</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">中高端专业人才</span>
+          <span class="feature-tag">在越南经营11年+</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=235+Dong+Khoi+Street+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.robertwalters.com.vn" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:hochiminh@robertwalters.com.vn">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 03 CGP Vietnam -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">03</div>
+        <div class="company-name">
+          <h2>CGP Vietnam</h2>
+          <div class="eng-name">Cornerstone Global Partners · 新加坡</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话（两址共用）</div>
+              <div class="info-value">+84 28 7100 0600</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:vietnam@cornerstoneglobalpartners.com">vietnam@cornerstoneglobalpartners.com</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.cgpvietnam.com" target="_blank">cgpvietnam.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="multiple-offices">
+          <strong>📌 主要办公室（District 4）：</strong>25/F, WeWork E.Town Central, 11 Doan Van Bo, Xom Chieu Ward, District 4, HCMC<br>
+          <strong>📌 次要办公室（District 1）：</strong>5/F, Sonatus Building, 15 Le Thanh Ton Street, Ben Nghe Ward, District 1, HCMC
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=E.Town+Central+11+Doan+Van+Bo+District+4+Ho+Chi+Minh+City" target="_blank">🗺️ 主办公室地图（D.4）</a>
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Sonatus+Building+15+Le+Thanh+Ton+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ 次办公室地图（D.1）</a>
+        <a class="btn btn-web" href="https://www.cgpvietnam.com" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:vietnam@cornerstoneglobalpartners.com">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 04 Adecco -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">04</div>
+        <div class="company-name">
+          <h2>Adecco Vietnam</h2>
+          <div class="eng-name">Adecco Group 旗下 · 瑞士（全球最大人力资源集团）</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">14/F, E.Town Central, 11 Doan Van Bo Street, Xom Chieu Ward, <strong>District 4</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话</div>
+              <div class="info-value">+84 28 3636 5811</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:vn.info@adecco.com">vn.info@adecco.com</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.adecco.com/en-vn" target="_blank">adecco.com/en-vn</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">招聘 & 薪资外包</span>
+          <span class="feature-tag">5000+月度薪资处理</span>
+          <span class="feature-tag">同楼：CGP & Navigos</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=E.Town+Central+11+Doan+Van+Bo+District+4+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.adecco.com/en-vn" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:vn.info@adecco.com">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 05 ManpowerGroup -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">05</div>
+        <div class="company-name">
+          <h2>ManpowerGroup Vietnam</h2>
+          <div class="eng-name">ManpowerGroup 旗下 · 美国（全球三大人力资源公司之一）</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">16/F, Sailing Tower, 111A Pasteur Street, Sai Gon Ward, <strong>District 1</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话</div>
+              <div class="info-value">+84 28 3911 0950</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:inquiry@manpower.com.vn">inquiry@manpower.com.vn</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.manpower.com.vn" target="_blank">manpower.com.vn</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">白领 + 蓝领均覆盖</span>
+          <span class="feature-tag">2008年进入越南</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Sailing+Tower+111A+Pasteur+Street+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.manpower.com.vn" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:inquiry@manpower.com.vn">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 06 PERSOLKELLY -->
+    <div class="company-card">
+      <div class="card-header international">
+        <div class="company-num">06</div>
+        <div class="company-name">
+          <h2>PERSOLKELLY Vietnam</h2>
+          <div class="eng-name">PERSOL Group 旗下 · 日本（前身 Kelly Services）</div>
+        </div>
+        <span class="company-badge badge-intl">国际连锁</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">18/F, SONATUS Building, 15 Le Thanh Ton Street, Saigon Ward, <strong>District 1</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话</div>
+              <div class="info-value">+84 28 7303 9100</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:info.vn@persolapac.com">info.vn@persolapac.com</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://persolvietnam.com" target="_blank">persolvietnam.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">亚太最大HR集团之一</span>
+          <span class="feature-tag">200+越南本地顾问</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=SONATUS+Building+15+Le+Thanh+Ton+Street+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://persolvietnam.com" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:info.vn@persolapac.com">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 07 Talentnet -->
+    <div class="company-card">
+      <div class="card-header local">
+        <div class="company-num">07</div>
+        <div class="company-name">
+          <h2>Talentnet Corporation</h2>
+          <div class="eng-name">越南本土最大HR咨询公司</div>
+        </div>
+        <span class="company-badge badge-star">🌟 越南本土龙头</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">6/F, Star Building, 33 Mac Dinh Chi Street, Saigon Ward, <strong>District 1</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话 / 传真</div>
+              <div class="info-value">+84 28 6291 4188 / Fax: +84 28 6291 4088</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱</div>
+              <div class="info-value"><a href="mailto:contact-hcm@talentnetgroup.com">contact-hcm@talentnetgroup.com</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.talentnetgroup.com" target="_blank">talentnetgroup.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="feature-tag">近20年越南本地经验</span>
+          <span class="feature-tag">最深本地人才网络</span>
+          <span class="feature-tag">薪资调研 + 猎头 + 培训</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Star+Building+33+Mac+Dinh+Chi+Street+District+1+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.talentnetgroup.com" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:contact-hcm@talentnetgroup.com">✉️ 发邮件</a>
+      </div>
+    </div>
+
+    <!-- 08 Navigos Group -->
+    <div class="company-card">
+      <div class="card-header local">
+        <div class="company-num">08</div>
+        <div class="company-name">
+          <h2>Navigos Group（含 VietnamWorks + Navigos Search）</h2>
+          <div class="eng-name">越南最大本土招聘集团，三品牌同址</div>
+        </div>
+        <span class="company-badge badge-star">🌟 越南本土龙头</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址（三品牌同楼）</div>
+              <div class="info-value">20/F, E.Town Central Building, 11 Doan Van Bo Street, Xom Chieu Ward, <strong>District 4</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话 / 免费热线</div>
+              <div class="info-value">+84 28 3925 5000 ／ 免费热线：1800 585826</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱（招聘平台）</div>
+              <div class="info-value"><a href="mailto:contact@vietnamworks.com">contact@vietnamworks.com</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱（猎头）</div>
+              <div class="info-value"><a href="mailto:contact@navigossearch.com">contact@navigossearch.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="multiple-offices" style="margin-top:10px">
+          <strong>三个品牌：</strong>
+          <a href="https://www.navigosgroup.com" target="_blank">navigosgroup.com</a>（集团）｜
+          <a href="https://www.vietnamworks.com" target="_blank">vietnamworks.com</a>（越南最大在线招聘平台，2002年成立）｜
+          <a href="https://navigossearch.com" target="_blank">navigossearch.com</a>（中高端猎头）
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=E.Town+Central+11+Doan+Van+Bo+District+4+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.navigosgroup.com" target="_blank">🌐 集团官网</a>
+        <a class="btn btn-email" href="mailto:contact@navigossearch.com">✉️ 猎头邮件</a>
+      </div>
+    </div>
+
+    <!-- 09 HR2B -->
+    <div class="company-card">
+      <div class="card-header local">
+        <div class="company-num">09</div>
+        <div class="company-name">
+          <h2>HR2B（Talent Recruitment JSC）</h2>
+          <div class="eng-name">越南本土猎头公司</div>
+        </div>
+        <span class="company-badge badge-local">越南本土</span>
+      </div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">胡志明市地址</div>
+              <div class="info-value">1/F, Thien Son Building, 5 Nguyen Gia Thieu Street, Xuan Hoa Ward, <strong>District 3</strong>, HCMC</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <div class="info-label">电话 / 传真</div>
+              <div class="info-value">+84 28 6288 3888 / Fax: +84 28 6288 3889</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-content">
+              <div class="info-label">邮箱（客户）/ 邮箱（简历）</div>
+              <div class="info-value">
+                <a href="mailto:contact@hr2b.com">contact@hr2b.com</a> ／
+                <a href="mailto:cv@hr2b.com">cv@hr2b.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-content">
+              <div class="info-label">官网</div>
+              <div class="info-value"><a href="https://www.hr2b.com" target="_blank">hr2b.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="multiple-offices" style="margin-top:10px">
+          <strong>其他城市：</strong>
+          河内：4/F, Viet Tower, 01 Thai Ha St, Dong Da ／ +84 24 3736 6843 ｜
+          岘港：3/F, Indochina Riverside Tower, 74 Bach Dang St ／ +84 236 366 4660
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Thien+Son+Building+5+Nguyen+Gia+Thieu+Street+District+3+Ho+Chi+Minh+City" target="_blank">🗺️ Google 地图</a>
+        <a class="btn btn-web" href="https://www.hr2b.com" target="_blank">🌐 官网</a>
+        <a class="btn btn-email" href="mailto:contact@hr2b.com">✉️ 发邮件</a>
+      </div>
+    </div>
+
+  </div><!-- /.companies-grid -->
+
+  <!-- ==================== 地图区位 ==================== -->
+  <div class="section-title">地图区位分布</div>
+  <div class="map-section">
+
+    <div class="district-block district-d4">
+      <div class="district-title">⭐ 第4郡 E.Town Central — 超级集群（同一栋楼3家，优先拜访！）</div>
+      <div class="district-companies">
+        <div class="district-company-item">
+          <div class="district-num">③</div>
+          <div>
+            <strong>CGP Vietnam</strong>
+            <span class="district-building">— 25/F, E.Town Central, 11 Doan Van Bo</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">④</div>
+          <div>
+            <strong>Adecco Vietnam</strong>
+            <span class="district-building">— 14/F, E.Town Central, 11 Doan Van Bo</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">⑧</div>
+          <div>
+            <strong>Navigos Group / VietnamWorks / Navigos Search</strong>
+            <span class="district-building">— 20/F, E.Town Central, 11 Doan Van Bo</span>
+          </div>
+        </div>
+        <div style="padding:8px 0 4px; text-align:center;">
+          <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=E.Town+Central+11+Doan+Van+Bo+District+4+Ho+Chi+Minh+City" target="_blank">🗺️ 在 Google Maps 查看此楼</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="district-block district-d1">
+      <div class="district-title">🏢 第1郡 District 1 — 核心商务区（5家分布于不同街道）</div>
+      <div class="district-companies">
+        <div class="district-company-item">
+          <div class="district-num">①</div>
+          <div>
+            <strong>JAC Recruitment</strong>
+            <span class="district-building">— Doji Tower 19F, Ham Nghi Street</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">②</div>
+          <div>
+            <strong>Robert Walters</strong>
+            <span class="district-building">— The Metropolitan, 235 Dong Khoi Street</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">⑤</div>
+          <div>
+            <strong>ManpowerGroup</strong>
+            <span class="district-building">— Sailing Tower 16F, 111A Pasteur Street</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">⑥</div>
+          <div>
+            <strong>PERSOLKELLY</strong>（含CGP次办公室）
+            <span class="district-building">— SONATUS Building 18F, 15 Le Thanh Ton Street</span>
+          </div>
+        </div>
+        <div class="district-company-item">
+          <div class="district-num">⑦</div>
+          <div>
+            <strong>Talentnet</strong>
+            <span class="district-building">— Star Building 6F, 33 Mac Dinh Chi Street</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="district-block district-d3">
+      <div class="district-title">🏠 第3郡 District 3 — D.1西侧邻郡</div>
+      <div class="district-companies">
+        <div class="district-company-item">
+          <div class="district-num">⑨</div>
+          <div>
+            <strong>HR2B</strong>
+            <span class="district-building">— Thien Son Building 1F, 5 Nguyen Gia Thieu Street</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f0f4f8; border-radius:8px; padding:14px; margin-top:14px; font-size:13px; line-height:1.7;">
+      <strong>📥 导入地图方法：</strong><br>
+      1. 打开 <a href="https://www.google.com/mymaps" target="_blank">Google My Maps</a><br>
+      2. 点击「创建新地图」→ 点击「导入」<br>
+      3. 上传同目录中的 <code>HCMC_HR_Companies_Map.kml</code> 文件<br>
+      4. 所有公司将自动标注在地图上（含联系方式注释）<br>
+      <em style="color:#999">注：KML 文件中坐标为近似值，已标注楼栋名称，Google Maps 可自动识别。</em>
+    </div>
+  </div>
+
+  <!-- ==================== 调研行程 ==================== -->
+  <div class="section-title">建议调研行程（2周）</div>
+
+  <div class="schedule-card">
+    <div class="day-item">
+      <div class="day-badge" style="background:#c0392b"><span>1-2</span>天</div>
+      <div class="day-content">
+        <h4>D.4 E.Town Central — 同楼3家</h4>
+        <p>④ Adecco（14F）→ ③ CGP Vietnam（25F）→ ⑧ Navigos Group/VietnamWorks/Navigos Search（20F）<br>
+        <em>提前预约，同一栋楼效率最高</em></p>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-badge" style="background:#27ae60"><span>3-4</span>天</div>
+      <div class="day-content">
+        <h4>D.1 重点本土公司</h4>
+        <p>⑦ Talentnet（Mac Dinh Chi）← 越南本土最大，重中之重<br>
+        ① JAC Recruitment（Ham Nghi）← 多语言人才专长<br>
+        ② Robert Walters（Dong Khoi）</p>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-badge" style="background:#2471a3"><span>5</span>天</div>
+      <div class="day-content">
+        <h4>D.1 其余国际公司</h4>
+        <p>⑥ PERSOLKELLY（Le Thanh Ton）→ ⑤ ManpowerGroup（Pasteur Street）</p>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-badge" style="background:#8e44ad"><span>6-7</span>天</div>
+      <div class="day-content">
+        <h4>D.3 本土猎头</h4>
+        <p>⑨ HR2B（Nguyen Gia Thieu）</p>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-badge" style="background:#f39c12"><span>8-9</span>天</div>
+      <div class="day-content">
+        <h4>华人社区田野调查</h4>
+        <p>第5郡 Cholon 堤岸华埠（华裔越南人聚居地）、第6郡、第11郡<br>
+        了解懂中文人才的社区分布与规模</p>
+      </div>
+    </div>
+    <div class="day-item">
+      <div class="day-badge" style="background:#2c3e50"><span>10</span>天</div>
+      <div class="day-content">
+        <h4>商会拜访</h4>
+        <p>越南中国商会（CCCG）— 了解中资企业HR需求，获取合作资源</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 拜访问卷 ==================== -->
+  <div class="section-title">拜访问卷模板</div>
+  <div class="schedule-card">
+    <p style="font-size:13px; color:#666; margin-bottom:12px;">以下问题建议每次拜访HR公司时提出，评估合作潜力：</p>
+    <div class="question-list">
+      <div class="question-item">贵公司是否有专门针对中文（普通话 / 广东话）的人才数据库？</div>
+      <div class="question-item">目前在服务的中资企业客户有多少家？主要来自哪些行业？</div>
+      <div class="question-item">过去1年内，帮中资企业招聘了多少懂中文的越南本地员工？</div>
+      <div class="question-item">贵公司顾问团队中有没有懂中文的越南顾问？</div>
+      <div class="question-item">在胡志明市，懂普通话的越南求职者大概有多少？主要集中在哪些行业？</div>
+      <div class="question-item">招聘"懂普通话的越南本地人"最大的难点是什么？</div>
+      <div class="question-item">这类候选人（初级 / 中级 / 高级）的薪资期望范围是多少？</div>
+      <div class="question-item">是否有意向以合作 / 渠道分成模式，配合我们服务中资企业的招聘需求？</div>
+      <div class="question-item">贵公司通常的招聘服务费结构是怎样的（年薪比例 / 固定费用）？</div>
+      <div class="question-item">是否愿意互相推荐客户，或在特定岗位上共享候选人资源？</div>
+    </div>
+  </div>
+
+</div><!-- /.container -->
+
+<!-- 页脚 -->
+<div class="footer">
+  <div>数据来源：各公司官方网站直接核实 ｜ 核实时间：2026年4月3日</div>
+  <div style="margin-top:6px; opacity:0.7">
+    建议抵越后通过电话再次确认地址。地图文件：<code>HCMC_HR_Companies_Map.kml</code>（导入 Google My Maps 使用）
+  </div>
+</div>
+
+</body>
+</html>
