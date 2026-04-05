@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>越南中文人才获客系统 Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; background: #f5f5f5; color: #333; }
+
+    /* 顶部横幅 */
+    .header {
+      background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #c0392b 100%);
+      color: white; padding: 32px 24px; text-align: center;
+    }
+    .header h1 { font-size: 26px; margin-bottom: 8px; }
+    .header .subtitle { font-size: 13px; opacity: 0.9; line-height: 1.8; }
+
+    /* 页面导航 */
+    .page-nav {
+      background: #1a252f; padding: 0 24px;
+      display: flex; gap: 0; overflow-x: auto;
+    }
+    .page-nav a {
+      color: #bdc3c7; text-decoration: none; padding: 12px 20px;
+      font-size: 13px; font-weight: bold; white-space: nowrap;
+      border-bottom: 3px solid transparent; transition: all 0.2s;
+    }
+    .page-nav a:hover { color: white; }
+    .page-nav a.active { color: white; border-bottom-color: #e74c3c; }
+
+    /* 统计栏 */
+    .stats {
+      display: flex; background: #2c3e50; color: white; flex-wrap: wrap;
+    }
+    .stat-item { flex: 1; min-width: 110px; padding: 16px; text-align: center; border-right: 1px solid #34495e; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 26px; font-weight: bold; color: #e74c3c; }
+    .stat-label { font-size: 11px; opacity: 0.8; margin-top: 4px; }
+
+    /* 主内容 */
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+    /* 区域标题 */
+    .section-title {
+      font-size: 18px; font-weight: bold; color: #2c3e50;
+      border-left: 4px solid #e74c3c; padding-left: 12px;
+      margin: 28px 0 16px;
+    }
+    .collapsible-section { margin-top: 0; }
+    .section-title.collapsible {
+      cursor: pointer; user-select: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .section-title.collapsible:hover { background: rgba(231,76,60,0.05); border-radius: 0 4px 4px 0; }
+    .toggle-arrow { font-size: 13px; color: #95a5a6; margin-left: 8px; flex-shrink: 0; }
+
+    /* 汇总表 */
+    .table-wrap { overflow-x: auto; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 780px; }
+    th { background: #2c3e50; color: white; padding: 11px 12px; text-align: left; font-weight: bold; font-size: 12px; white-space: nowrap; }
+    td { padding: 10px 12px; border-bottom: 1px solid #ecf0f1; vertical-align: top; line-height: 1.5; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8f9fa; }
+    .num-cell { color: #7f8c8d; font-weight: bold; text-align: center; }
+    td a { color: #2471a3; text-decoration: none; font-size: 12px; }
+    td a:hover { text-decoration: underline; }
+
+    /* 语言标签 */
+    .lang-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: bold; white-space: nowrap;
+    }
+    .lang-required { background: #fdebd0; color: #d35400; }
+    .lang-preferred { background: #d5f5e3; color: #1e8449; }
+
+    /* 渠道标签 */
+    .channel-badge {
+      display: inline-block; padding: 2px 7px; border-radius: 4px;
+      font-size: 11px; font-weight: bold; white-space: nowrap;
+    }
+    .channel-linkedin { background: #d6eaf8; color: #0077B5; }
+    .channel-upwork { background: #d5f5e3; color: #14a800; }
+    .channel-facebook { background: #fdebd0; color: #1877F2; }
+    .channel-eleduck { background: #e8daef; color: #7c3aed; }
+    .channel-zalo { background: #d6eaf8; color: #0068FF; }
+    .channel-telegram { background: #d6eaf8; color: #26A5E4; }
+    .channel-partner { background: #fce4ec; color: #c0392b; }
+
+    /* 公司类型标签（复用） */
+    .sector-badge {
+      display: inline-block; padding: 2px 7px; border-radius: 4px;
+      font-size: 11px; font-weight: bold; white-space: nowrap;
+    }
+    .sector-hcm { background: #fdebd0; color: #d35400; }
+    .sector-national { background: #d6eaf8; color: #1a5276; }
+    .sector-mixed { background: #eafaf1; color: #1e8449; }
+    .sector-north { background: #e8daef; color: #6c3483; }
+    .sector-special { background: #fef9e7; color: #7e5109; }
+    .sector-bilingual { background: #fce4ec; color: #880e4f; }
+    .sector-chinese { background: #fce4ec; color: #c0392b; }
+    .sector-english { background: #d5f5e3; color: #1e8449; }
+    .sector-trilingual { background: #e8daef; color: #6c3483; }
+
+    /* 岗位详情卡片（复用 job-card 样式） */
+    .job-card {
+      background: white; border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden; margin-bottom: 16px; transition: box-shadow 0.2s;
+    }
+    .job-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.14); }
+    .job-card-header {
+      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+      border-bottom: 3px solid #e74c3c; background: #fef9f9;
+    }
+    .job-num {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #e74c3c; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 14px; flex-shrink: 0;
+    }
+    .job-title-block { flex: 1; }
+    .job-title-block h3 { font-size: 16px; color: #2c3e50; }
+    .job-title-block .company-line { font-size: 12px; color: #7f8c8d; margin-top: 3px; }
+    .job-card-body { padding: 16px 20px; }
+    .job-info-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px; margin-bottom: 12px;
+    }
+    .job-info-item { display: flex; gap: 8px; align-items: flex-start; }
+    .info-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .info-content { font-size: 13px; line-height: 1.5; }
+    .info-label { color: #7f8c8d; font-size: 11px; }
+    .info-value { color: #2c3e50; font-weight: 500; }
+    .info-value a { color: #2471a3; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+    .job-card-footer {
+      padding: 10px 20px; background: #f8f9fa;
+      border-top: 1px solid #ecf0f1;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 12px; font-weight: bold; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: #e74c3c; color: white; }
+    .btn-secondary { background: #2471a3; color: white; }
+
+    /* 原文引用 */
+    .lead-quote {
+      background: #f8f9fa; border-left: 4px solid #bdc3c7;
+      padding: 10px 14px; margin-top: 10px; border-radius: 0 6px 6px 0;
+      font-size: 12px; line-height: 1.7; color: #555; font-style: italic;
+    }
+
+    /* 注释框 */
+    .note-box {
+      background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;
+      padding: 14px 16px; margin-top: 16px; font-size: 12px;
+      line-height: 1.7; color: #555;
+    }
+    .note-box p { margin-bottom: 6px; }
+    .note-box p:last-child { margin-bottom: 0; }
+
+    /* 分析表格 */
+    .analysis-card {
+      background: white; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px;
+    }
+    .analysis-card h3 { font-size: 15px; color: #2c3e50; margin-bottom: 14px; border-bottom: 2px solid #ecf0f1; padding-bottom: 8px; }
+    .analysis-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .analysis-table th { background: #ecf0f1; color: #2c3e50; padding: 9px 12px; text-align: left; font-size: 12px; }
+    .analysis-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; }
+    .analysis-table tr:last-child td { border-bottom: none; }
+
+    /* 结论列表 */
+    .conclusion-list { list-style: none; padding: 0; }
+    .conclusion-list li {
+      padding: 10px 14px; margin-bottom: 8px;
+      border-left: 3px solid #e74c3c; background: #fef9f9;
+      border-radius: 0 6px 6px 0; font-size: 13px; line-height: 1.6;
+    }
+    .conclusion-list li strong { color: #c0392b; }
+
+    /* 平台高亮卡片 */
+    .highlight-box {
+      background: #fffbe6; border: 2px solid #f0c040; border-radius: 10px;
+      padding: 18px 20px; margin-bottom: 16px;
+    }
+    .highlight-box h4 { font-size: 15px; color: #7e5109; margin-bottom: 10px; }
+    .highlight-box .info-line { font-size: 13px; line-height: 1.8; color: #333; }
+    .highlight-box .info-line a { color: #2471a3; text-decoration: none; }
+    .highlight-box .info-line a:hover { text-decoration: underline; }
+
+    /* 子标题 */
+    .sub-title {
+      font-size: 15px; font-weight: bold; color: #2c3e50;
+      margin: 20px 0 12px; padding-bottom: 6px;
+      border-bottom: 2px solid #ecf0f1;
+    }
+
+    /* 小表格（渠道列表） */
+    .channel-table { min-width: 600px; }
+
+    /* 页脚 */
+    .footer {
+      background: #2c3e50; color: white; text-align: center;
+      padding: 20px; font-size: 12px; margin-top: 32px;
+    }
+
+    @media print {
+      .page-nav { display: none; }
+      .section-content { display: block !important; }
+      .btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 顶部横幅 -->
+<div class="header">
+  <h1>越南中文人才获客系统 Demo</h1>
+  <div class="subtitle">
+    Vietnamese Chinese-Speaking Talent Acquisition Demo | 数据采集时间：2026年4月5日
+  </div>
+</div>
+
+<!-- 页面导航 -->
+<nav class="page-nav">
+  <a href="index.html">HR公司地图</a>
+  <a href="jobs.html">中文招聘岗位</a>
+  <a href="candidates.html" class="active">中文人才获客</a>
+</nav>
+
+<!-- 统计栏 -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">11</div><div class="stat-label">求职者线索</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">获客渠道</div></div>
+  <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">Facebook群组</div></div>
+  <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Zalo群组</div></div>
+  <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">专业HR平台</div></div>
+</div>
+
+<div class="container">
+
+  <!-- ==================== 求职者线索一览（默认展开）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible" style="margin-top:20px;">
+      求职者线索一览
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>称呼</th>
+              <th>语言能力</th>
+              <th>期望岗位</th>
+              <th>所在地</th>
+              <th>渠道</th>
+              <th>有联系方式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num-cell">1</td>
+              <td>Nguyen Vo Nhu Quynh</td>
+              <td>中文（翻译级）、英文</td>
+              <td>翻译、助理</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">2</td>
+              <td>Nguyen Nhat Mai Le</td>
+              <td>中/英/越（三语）</td>
+              <td>口译员</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">3</td>
+              <td>John Nguyen</td>
+              <td>中/英/越</td>
+              <td>本地化专员</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">4</td>
+              <td>Huy Long Chan</td>
+              <td>英/粤/普通话（三语）</td>
+              <td>会计实习</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">5</td>
+              <td>Nguyen T.</td>
+              <td>越（母语）、中、英</td>
+              <td>翻译/口译</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-upwork">Upwork</span></td>
+              <td>Upwork</td>
+            </tr>
+            <tr>
+              <td class="num-cell">6</td>
+              <td>Hoang Quoc Trung</td>
+              <td>中越双语</td>
+              <td>翻译/口译</td>
+              <td>Vietnam</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">7</td>
+              <td>黎宝玉 (Le Bao Ngoc)</td>
+              <td>中文（推测）</td>
+              <td>--</td>
+              <td>Vietnam</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">8</td>
+              <td>Khoi Nguyen</td>
+              <td>普通话（医学翻译级）</td>
+              <td>医学口译</td>
+              <td>Vietnam</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">9</td>
+              <td>Kieu Nguyen</td>
+              <td>中文、英文</td>
+              <td>数字营销（初级）</td>
+              <td>HCMC</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>LinkedIn</td>
+            </tr>
+            <tr>
+              <td class="num-cell">10</td>
+              <td>Pham Thuy</td>
+              <td>--</td>
+              <td><span class="channel-badge channel-partner">可合作猎头</span></td>
+              <td>Vietnam</td>
+              <td><span class="channel-badge channel-linkedin">LinkedIn</span></td>
+              <td>thuypham@dtalent.vn / 0399449727</td>
+            </tr>
+            <tr>
+              <td class="num-cell">11</td>
+              <td>Thuy</td>
+              <td>中文（大学专业）</td>
+              <td>远程/本地办公</td>
+              <td>Hanoi</td>
+              <td><span class="channel-badge channel-eleduck">电鸭</span></td>
+              <td>电鸭站内</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 求职者线索详情（默认折叠）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      求职者线索详情
+      <span class="toggle-arrow">▶</span>
+    </div>
+    <div class="section-content" style="display:none">
+
+      <!-- #1 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">1</div>
+          <div class="job-title-block">
+            <h3>Nguyen Vo Nhu Quynh</h3>
+            <div class="company-line">Chinese interpreter, Freelance</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese (interpreter level), English</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">Interpreter, Translator, Assistant</div></div></div>
+            <div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">联系方式</div><div class="info-value">LinkedIn 主页</div></div></div>
+          </div>
+          <div class="lead-quote">"Chinese interpreter at Freelance. Able to use two languages - Chinese and English. Seeking positions relating to interpreter, translator, and assistant roles."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/nguy%E1%BB%85n-v%C3%B5-nh%C6%B0-qu%E1%BB%B3nh-0638851a0/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #2 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">2</div>
+          <div class="job-title-block">
+            <h3>Nguyen Nhat Mai Le</h3>
+            <div class="company-line">Freelance Interpreter (Chinese-English-Vietnamese)</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese, English, Vietnamese (trilingual)</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">Interpreter</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🎓</div><div class="info-content"><div class="info-label">教育</div><div class="info-value">Western Sydney University</div></div></div>
+          </div>
+          <div class="lead-quote">"Freelance Interpreter specializing in Chinese-English-Vietnamese. Based in Ho Chi Minh City Metropolitan Area."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/nguy%E1%BB%85n-nh%E1%BA%ADt-mai-l%C3%AA-40a49a29b/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #3 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">3</div>
+          <div class="job-title-block">
+            <h3>John Nguyen</h3>
+            <div class="company-line">Chinese & English Localization Specialist</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese, English, Vietnamese</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">经验</div><div class="info-value">6 years translation (legal, tech, marketing, gaming)</div></div></div>
+            <div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">联系方式</div><div class="info-value">LinkedIn 主页</div></div></div>
+          </div>
+          <div class="lead-quote">"Chinese & English Localization Specialist with 6 years in translation and localization between English, Chinese and Vietnamese. Handles legal, technical, marketing, entertainment, mobile games content."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/john-nguyen-9a0339270/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #4 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">4</div>
+          <div class="job-title-block">
+            <h3>Huy Long Chan</h3>
+            <div class="company-line">Accounting Intern, CFA L1 candidate</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">English, Mandarin, Cantonese (trilingual)</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🎓</div><div class="info-content"><div class="info-label">教育</div><div class="info-value">HUFLIT; CFA Level 1</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">经验</div><div class="info-value">Ernst & Young internship, legal translation</div></div></div>
+          </div>
+          <div class="lead-quote">"Recent graduate, CFA Level 1 candidate, seeking Accounting Internship. Experience at Ernst & Young. Fluency in English, Mandarin, and Cantonese. Translating legal documents Chinese to English."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/longchanhuy/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #5 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">5</div>
+          <div class="job-title-block">
+            <h3>Nguyen T.</h3>
+            <div class="company-line">Vietnamese/Chinese Interpreter</div>
+          </div>
+          <span class="channel-badge channel-upwork">Upwork</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Vietnamese (native), Chinese, English</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">经验</div><div class="info-value">7 years translation, 5 years marketing, 7 years research</div></div></div>
+            <div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">联系方式</div><div class="info-value">Upwork 主页</div></div></div>
+          </div>
+          <div class="lead-quote">"Vietnamese/Chinese Interpreter/Translator. Over 7 years experience in translating Vietnamese, Chinese, and English. Also has 5 years in marketing and 7 years in scientific research."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.upwork.com/freelancers/~01ce65b172dc512c15" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #6 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">6</div>
+          <div class="job-title-block">
+            <h3>Hoang Quoc Trung</h3>
+            <div class="company-line">Translator & Interpreter</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">Vietnam</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese-Vietnamese</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">服务类型</div><div class="info-value">Simultaneous, whispered, consecutive interpretation</div></div></div>
+          </div>
+          <div class="lead-quote">"Translator and interpreter offering simultaneous, whispered, and consecutive interpretation services, including Chinese-Vietnamese translation and document translation."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/hoangquoctrung/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #7 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">7</div>
+          <div class="job-title-block">
+            <h3>黎宝玉 (Le Bao Ngoc)</h3>
+            <div class="company-line">Works at PCVN</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">Vietnam</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese (inferred from Chinese name usage)</div></div></div>
+          </div>
+          <div class="lead-quote">"LinkedIn profile with Chinese name 黎宝玉 alongside Vietnamese name Le Bao Ngoc. Works at PCVN."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/le-bao-ngoc-%E9%BB%8E%E5%AE%9D%E7%8E%89-35940b39/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #8 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">8</div>
+          <div class="job-title-block">
+            <h3>Khoi Nguyen</h3>
+            <div class="company-line">Medical Mandarin Interpreter</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">Vietnam</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Mandarin (medical interpretation level)</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">经验</div><div class="info-value">OPI/VRI medical interpreter, higher education</div></div></div>
+          </div>
+          <div class="lead-quote">"Freelance translator with extensive experience as OPI/VRI medical Mandarin interpreter. Precision in translation directly impacts patient outcomes."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/khoi-nguyen-90052227/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #9 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">9</div>
+          <div class="job-title-block">
+            <h3>Kieu Nguyen</h3>
+            <div class="company-line">Digital Marketing Leader</div>
+          </div>
+          <span class="channel-badge channel-linkedin">LinkedIn</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">HCMC</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese, English</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">Junior position in HCMC</div></div></div>
+          </div>
+          <div class="lead-quote">"Digital Marketing Leader. Has English/Chinese speaking CV looking for Junior position base in HCMC."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/ki%E1%BB%81u-nguy%E1%BB%85n-154a9b178/" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #10 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">10</div>
+          <div class="job-title-block">
+            <h3>Pham Thuy</h3>
+            <div class="company-line">Recruitment Consultant at DTalent</div>
+          </div>
+          <span class="channel-badge channel-partner">可合作猎头</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">Vietnam</div></div></div>
+            <div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">联系方式</div><div class="info-value">thuypham@dtalent.vn / 0399449727</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">备注</div><div class="info-value">This is a RECRUITER (not job seeker), potential partner</div></div></div>
+          </div>
+          <div class="lead-quote">"Recruitment Consultant at DTalent, posting job openings for semiconductor positions requiring Chinese language skills."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://vn.linkedin.com/in/thuyphamdtalent" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+      <!-- #11 -->
+      <div class="job-card">
+        <div class="job-card-header">
+          <div class="job-num">11</div>
+          <div class="job-title-block">
+            <h3>Thuy</h3>
+            <div class="company-line">Chinese major graduate</div>
+          </div>
+          <span class="channel-badge channel-eleduck">电鸭社区</span>
+        </div>
+        <div class="job-card-body">
+          <div class="job-info-grid">
+            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">所在地</div><div class="info-value">Hanoi</div></div></div>
+            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言能力</div><div class="info-value">Chinese (university major)</div></div></div>
+            <div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">Remote work or local office work</div></div></div>
+          </div>
+          <div class="lead-quote">"I am Vietnamese, living in Hanoi. I speak Chinese (Chinese major). Looking for remote work or direct on-site work. Office software skills and business experience."</div>
+        </div>
+        <div class="job-card-footer">
+          <a class="btn btn-primary" href="https://eleduck.com/posts/a4fG9G" target="_blank">🔗 查看原帖</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 获客渠道总览（默认折叠）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      获客渠道总览
+      <span class="toggle-arrow">▶</span>
+    </div>
+    <div class="section-content" style="display:none">
+
+      <!-- A. Facebook 群组 -->
+      <h3 class="sub-title">A. Facebook 群组（30个）</h3>
+      <div class="table-wrap" style="margin-bottom:20px">
+        <table class="channel-table">
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>群组名称</th>
+              <th>类型</th>
+              <th>链接</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num-cell">1</td><td>Viec Lam Tieng Trung Tp.HCM 胡志明中文人才招聘求职总站</td><td><span class="sector-badge sector-hcm">HCM专项</span></td><td><a href="https://www.facebook.com/groups/ViecLamTiengTrungTpHcm/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">2</td><td>Viec Lam Tieng Trung HCM</td><td><span class="sector-badge sector-hcm">HCM专项</span></td><td><a href="https://www.facebook.com/groups/ViecLamTiengTrungHCM/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">3</td><td>Viec lam tieng Trung tai TP Ho Chi Minh</td><td><span class="sector-badge sector-hcm">HCM专项</span></td><td><a href="https://www.facebook.com/groups/1575202949426446/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">4</td><td>VIEC LAM TIENG TRUNG - HO CHI MINH</td><td><span class="sector-badge sector-hcm">HCM专项</span></td><td><a href="https://www.facebook.com/groups/vieclamtiengtrungshz/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">5</td><td>Viec lam tieng Trung TP Ho Chi Minh</td><td><span class="sector-badge sector-hcm">HCM专项</span></td><td><a href="https://www.facebook.com/groups/588927481861149/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">6</td><td>VIEC LAM TIENG TRUNG (中文求职)</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/vieclamchotiengtrung/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">7</td><td>Viec Lam Tieng Trung (Tieng Hoa) Toan Quoc</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/ViecLamTiengTrungToanQuoc/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">8</td><td>HOI VIEC LAM TIENG TRUNG</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/1034197273266994/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">9</td><td>HOI VIEC LAM TIENG TRUNG</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/720531881306156/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">10</td><td>CONG DONG NHAN SU TIENG HOA</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/281256598727146/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">11</td><td>Viec Lam Tieng Trung</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/congdongvieclamtiengtrung/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">12</td><td>Tieng trung - Viec lam cho nguoi that nghiep</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/1605725759701622/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">13</td><td>Tieng Trung lam them Online tai nha</td><td><span class="sector-badge sector-national">全国</span></td><td><a href="https://www.facebook.com/groups/2644288542262032/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">14</td><td>HOI VIEC LAM TIENG TRUNG MIEN BAC</td><td><span class="sector-badge sector-north">北部</span></td><td><a href="https://www.facebook.com/groups/2005590079660857/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">15</td><td>Nhom Viec Lam Tieng Trung Tai Ha Noi</td><td><span class="sector-badge sector-north">河内</span></td><td><a href="https://www.facebook.com/groups/2368866169845332/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">16</td><td>VIEC LAM TIENG TRUNG TAI THANH HOA</td><td><span class="sector-badge sector-north">清化</span></td><td><a href="https://www.facebook.com/groups/1618369331800328/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">17</td><td>HOI TUYEN DUNG TIENG TRUNG HAI PHONG</td><td><span class="sector-badge sector-north">海防</span></td><td><a href="https://www.facebook.com/groups/144598846131319/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">18</td><td>Viec Lam Ke Toan - Hanh Chinh Van Phong Tieng Trung</td><td><span class="sector-badge sector-special">专项</span></td><td><a href="https://www.facebook.com/groups/3539102063016863/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">19</td><td>Nguoi viet tim viec 越南人找工作</td><td><span class="sector-badge sector-bilingual">双语</span></td><td><a href="https://www.facebook.com/groups/134855741925313/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">20</td><td>Bilingual Jobs in Vietnam</td><td><span class="sector-badge sector-bilingual">双语</span></td><td><a href="https://www.facebook.com/groups/832408677763194/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">21</td><td>Jobs for Vietnamese speakers</td><td><span class="sector-badge sector-mixed">综合</span></td><td><a href="https://www.facebook.com/groups/1683134085178855/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">22</td><td>Jobs for Foreigners in HCMC</td><td><span class="sector-badge sector-mixed">综合</span></td><td><a href="https://www.facebook.com/groups/JobsForForeignersInHoChiMinh/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">23</td><td>外聘网求职招聘广告群</td><td><span class="sector-badge sector-chinese">中文</span></td><td><a href="https://www.facebook.com/groups/1472705073066349/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">24</td><td>Tim viec lam tai TP.HCM</td><td><span class="sector-badge sector-mixed">HCM综合</span></td><td><a href="https://www.facebook.com/groups/timvieclam.tai.tphcm/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">25</td><td>Tuyen Dung Tim Viec Lam Sai Gon - TP.HCM</td><td><span class="sector-badge sector-mixed">HCM综合</span></td><td><a href="https://www.facebook.com/groups/1823423861103831/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">26</td><td>Hoi Tim Viec Lam TP.HCM</td><td><span class="sector-badge sector-mixed">HCM综合</span></td><td><a href="https://www.facebook.com/groups/TuyendungvieclamsaigonTphcm.vn/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">27</td><td>Hoi Tim Viec Lam TP.HCM</td><td><span class="sector-badge sector-mixed">HCM综合</span></td><td><a href="https://www.facebook.com/groups/1749676368617186/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">28</td><td>Hiep Hoi Viec lam TP HCM</td><td><span class="sector-badge sector-mixed">HCM综合</span></td><td><a href="https://www.facebook.com/groups/280406889448032/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">29</td><td>Jobs in Ho Chi Minh City</td><td><span class="sector-badge sector-english">HCM英文</span></td><td><a href="https://www.facebook.com/groups/1582966965288622/" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">30</td><td>越南最大招募平台 Viec lam</td><td><span class="sector-badge sector-trilingual">三语</span></td><td><a href="https://www.facebook.com/groups/1848054428741656/" target="_blank">打开 →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- B. Zalo 群组 -->
+      <h3 class="sub-title">B. Zalo 群组（14个）</h3>
+      <div class="table-wrap" style="margin-bottom:20px">
+        <table class="channel-table">
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>群名</th>
+              <th>链接</th>
+              <th>备注</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num-cell">1</td><td>Viec lam Tieng Trung (中文工作)</td><td><a href="https://zalo.me/g/zrgeth769" target="_blank">打开 →</a></td><td>中文专项</td></tr>
+            <tr><td class="num-cell">2</td><td>Viec lam Tieng Trung (中文工作)</td><td><a href="https://zalo.me/g/bftkoa471" target="_blank">打开 →</a></td><td>中文专项</td></tr>
+            <tr><td class="num-cell">3</td><td>Nhom Zalo HR + GA (Tieng Trung)</td><td><a href="https://zalo.me/g/nmdinb968" target="_blank">打开 →</a></td><td>HR+行政中文</td></tr>
+            <tr><td class="num-cell">4</td><td>V/L TIENG TRUNG</td><td><a href="https://zalo.me/g/iqusnw698" target="_blank">打开 →</a></td><td>中文V/L</td></tr>
+            <tr><td class="num-cell">5</td><td>HR VIEC LAM HCM</td><td><a href="https://zalo.me/g/bwozic051" target="_blank">打开 →</a></td><td>HCM HR</td></tr>
+            <tr><td class="num-cell">6</td><td>Chia se ung vien - HR HCM</td><td><a href="https://zalo.me/g/zeozku964" target="_blank">打开 →</a></td><td>HCM候选人</td></tr>
+            <tr><td class="num-cell">7</td><td>JOB HCM</td><td><a href="https://zalo.me/g/kysnkm653" target="_blank">打开 →</a></td><td>HCM工作</td></tr>
+            <tr><td class="num-cell">8</td><td>VIEC LAM HCM - CU CHI</td><td><a href="https://zalo.me/g/dbdnbm894" target="_blank">打开 →</a></td><td>HCM求职</td></tr>
+            <tr><td class="num-cell">9</td><td>HR - TUYEN DUNG - VIEC LAM</td><td><a href="https://zalo.me/g/oigfpd317" target="_blank">打开 →</a></td><td>全国HR</td></tr>
+            <tr><td class="num-cell">10</td><td>HR - VIEC LAM - TUYEN DUNG</td><td><a href="https://zalo.me/g/aavbvk997" target="_blank">打开 →</a></td><td>全国HR</td></tr>
+            <tr><td class="num-cell">11</td><td>TUYEN DUNG TOAN QUOC</td><td><a href="https://zalo.me/g/ykrasy933" target="_blank">打开 →</a></td><td>全国招聘</td></tr>
+            <tr><td class="num-cell">12</td><td>V/L HANH CHINH NHAN SU</td><td><a href="https://zalo.me/g/jiprvk969" target="_blank">打开 →</a></td><td>HR行政</td></tr>
+            <tr><td class="num-cell">13</td><td>Logistics + Import/Export</td><td><a href="https://zalo.me/g/khzkne962" target="_blank">打开 →</a></td><td>物流进出口</td></tr>
+            <tr><td class="num-cell">14</td><td>International Business</td><td><a href="https://zalo.me/g/wvdizv881" target="_blank">打开 →</a></td><td>国际业务</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- C. Telegram 频道 -->
+      <h3 class="sub-title">C. Telegram 频道（7个）</h3>
+      <div class="table-wrap" style="margin-bottom:20px">
+        <table class="channel-table">
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>频道名</th>
+              <th>用户名</th>
+              <th>语言</th>
+              <th>链接</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num-cell">1</td><td>越南招聘</td><td>@yuenanzp</td><td>中文（852成员）</td><td><a href="https://t.me/yuenanzp" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">2</td><td>博牛|越南|求职|招聘</td><td>@bnzpzxz</td><td>中文</td><td><a href="https://t.me/bnzpzxz" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">3</td><td>东南亚求职招聘</td><td>@jianpuzhai_03</td><td>中文</td><td><a href="https://t.me/jianpuzhai_03" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">4</td><td>东南亚招聘平台</td><td>@zhaopintt</td><td>中文</td><td><a href="https://t.me/zhaopintt" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">5</td><td>华人招聘网</td><td>@hrzpw</td><td>中文</td><td><a href="https://t.me/hrzpw" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">6</td><td>Tuyen dung - tim viec lam</td><td>--</td><td>越南语</td><td><a href="https://t.me/tuyendungtimvieclam" target="_blank">打开 →</a></td></tr>
+            <tr><td class="num-cell">7</td><td>VIEC LAM - TUYEN DUNG PH</td><td>--</td><td>越南语</td><td><a href="https://t.me/jobvietphi" target="_blank">打开 →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- D. 专业中文HR平台 -->
+      <h3 class="sub-title">D. 专业中文HR平台</h3>
+
+      <div class="highlight-box">
+        <h4>Yufei HR（裕飞人力）</h4>
+        <div class="info-line">🌐 官网：<a href="https://yufeihr.com" target="_blank">yufeihr.com</a></div>
+        <div class="info-line">📞 电话：0349311817</div>
+        <div class="info-line">📧 邮箱：info@yufeihr.com</div>
+        <div class="info-line">📍 地址：51 Duong so 10, Sala, Quan 2, HCMC</div>
+        <div class="info-line">📋 持证经营</div>
+        <div class="info-line">📘 Facebook：<a href="https://facebook.com/yufeihr/" target="_blank">facebook.com/yufeihr/</a></div>
+      </div>
+
+      <div class="highlight-box">
+        <h4>FastWinner</h4>
+        <div class="info-line">🌐 官网：<a href="https://fastwinner.vn" target="_blank">fastwinner.vn</a></div>
+        <div class="info-line">📞 电话：0934.282.787</div>
+        <div class="info-line">📊 简历库：75万份中文简历</div>
+        <div class="info-line">📘 Facebook：<a href="https://facebook.com/tuyendungvieclamtiengtrung/" target="_blank">facebook.com/tuyendungvieclamtiengtrung/</a></div>
+      </div>
+
+      <div class="highlight-box">
+        <h4>vinazhaopin.com（越南招聘网）</h4>
+        <div class="info-line">🌐 官网：<a href="https://vinazhaopin.com" target="_blank">vinazhaopin.com</a></div>
+        <div class="info-line">📋 中越双语招聘网，有简历库，免费发布</div>
+      </div>
+
+      <div class="highlight-box">
+        <h4>job.vnicn.com（越南人力中文门户）</h4>
+        <div class="info-line">🌐 官网：<a href="https://job.vnicn.com" target="_blank">job.vnicn.com</a></div>
+        <div class="info-line">📍 地址：1119 Tran Hung Dao D5 HCMC</div>
+        <div class="info-line">📧 邮箱：hscc02@vnicn.com</div>
+      </div>
+
+      <div class="highlight-box">
+        <h4>越聘咨询 vnconsultingpro.com</h4>
+        <div class="info-line">🌐 官网：<a href="https://vnconsultingpro.com" target="_blank">vnconsultingpro.com</a></div>
+        <div class="info-line">📋 中企猎头服务</div>
+      </div>
+
+      <!-- E. 华人论坛/社区 -->
+      <h3 class="sub-title">E. 华人论坛/社区</h3>
+      <div class="table-wrap" style="margin-bottom:20px">
+        <table class="channel-table">
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>平台名称</th>
+              <th>网址</th>
+              <th>备注</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num-cell">1</td><td>越南华人网 (huarenca)</td><td><a href="https://huarenca.com" target="_blank">huarenca.com</a></td><td>华人社区</td></tr>
+            <tr><td class="num-cell">2</td><td>越南华人论坛 (yuenanbbs)</td><td><a href="https://yuenanbbs.com" target="_blank">yuenanbbs.com</a></td><td>华人论坛</td></tr>
+            <tr><td class="num-cell">3</td><td>越南华人论坛 (99876)</td><td><a href="https://99876.com" target="_blank">99876.com</a></td><td>华人论坛</td></tr>
+            <tr><td class="num-cell">4</td><td>电鸭社区</td><td><a href="https://eleduck.com" target="_blank">eleduck.com</a></td><td>远程工作社区</td></tr>
+            <tr><td class="num-cell">5</td><td>Expat.com</td><td><a href="https://expat.com" target="_blank">expat.com</a></td><td>外籍人士社区</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 市场分析（默认折叠）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      市场分析
+      <span class="toggle-arrow">▶</span>
+    </div>
+    <div class="section-content" style="display:none">
+
+      <div class="analysis-card">
+        <h3>A. 中文岗位规模</h3>
+        <table class="analysis-table">
+          <thead><tr><th>平台</th><th>HCMC 岗位数</th><th>全越南岗位数</th></tr></thead>
+          <tbody>
+            <tr><td>VietnamWorks</td><td>--</td><td>--</td></tr>
+            <tr><td>Facebook 群组（30个）</td><td>高频发布</td><td>高频发布</td></tr>
+            <tr><td>Zalo 群组（14个）</td><td>活跃</td><td>活跃</td></tr>
+            <tr><td>各平台合计</td><td colspan="2"><strong>2000+ 中文岗位在招</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="analysis-card">
+        <h3>B. 薪资区间</h3>
+        <table class="analysis-table">
+          <thead><tr><th>级别</th><th>薪资范围（VND/月）</th><th>折合人民币（约）</th></tr></thead>
+          <tbody>
+            <tr><td>Entry（HSK3-4）</td><td>7.5 - 12M VND</td><td>~2,100 - 3,400 RMB</td></tr>
+            <tr><td>Mid（HSK5, 1-3年经验）</td><td>12 - 20M VND</td><td>~3,400 - 5,700 RMB</td></tr>
+            <tr><td>Senior（3年+, 流利）</td><td>20 - 40M VND</td><td>~5,700 - 11,400 RMB</td></tr>
+            <tr><td>Manager</td><td>40 - 60M VND</td><td>~11,400 - 17,100 RMB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="analysis-card">
+        <h3>C. 核心发现</h3>
+        <ul class="conclusion-list">
+          <li><strong>HCMC各平台合计2000+中文岗位在招</strong>，市场需求旺盛，供不应求。</li>
+          <li><strong>VnExpress报道35-40M VND/月仍招不到人</strong>，中文人才缺口明显。</li>
+          <li><strong>中文岗位薪资比同等非语言岗位高10-40%</strong>，语言溢价显著。</li>
+          <li><strong>Facebook群组（30个）和Zalo群（14个）是最活跃的免费获客渠道</strong>，可零成本触达大量中文求职者。</li>
+          <li><strong>专业平台Yufei HR和FastWinner已有成熟的中文人才库</strong>，FastWinner声称拥有75万份中文简历。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /.container -->
+
+<!-- 页脚 -->
+<div class="footer">
+  <div>数据来源：LinkedIn / Upwork / Facebook / Zalo / 各平台公开信息 | 采集时间：2026年4月5日</div>
+  <div style="margin-top:6px; opacity:0.7">线索数据具有时效性，建议联系前核实个人资料是否仍然有效</div>
+</div>
+
+<script>
+  document.querySelectorAll('.section-title.collapsible').forEach(function(title) {
+    title.addEventListener('click', function() {
+      var content = this.nextElementSibling;
+      var arrow = this.querySelector('.toggle-arrow');
+      var isOpen = content.style.display !== 'none';
+      content.style.display = isOpen ? 'none' : 'block';
+      arrow.textContent = isOpen ? '▶' : '▼';
+    });
+  });
+</script>
+
+</body>
+</html>
