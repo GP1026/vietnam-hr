@@ -11,24 +11,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 调研城市
 胡志明市（Ho Chi Minh City），核心区域：第1郡、第4郡、第3郡
 
+## 开发方式
+
+纯静态 HTML 项目，无构建步骤、无依赖、无包管理器。直接用浏览器打开 `.html` 文件即可预览。
+
 ## 文件结构与关系
 
-四个输出文件来自同一份数据，需保持同步：
+### HR 公司数据（需保持四处同步）
 
 | 文件 | 用途 | 更新方式 |
 |------|------|----------|
 | `docs/HCMC_HR_Companies_Report.md` | 主数据源，人工可读 | 直接编辑 |
 | `index.html` / `src/HCMC_HR_Companies_Report.html` | HR 公司可视化报告（两文件内容完全相同） | 根据 .md 重新生成 |
-| `jobs.html` | 中资企业招聘中文岗位调研页（独立页面，含页面导航栏） | 独立维护 |
-| `src/HCMC_HR_Companies_Map.kml` | Google My Maps 导入文件（根目录有同名副本，两份内容相同） | 根据 .md 中的地址更新坐标，两份同步 |
+| `src/HCMC_HR_Companies_Map.kml` / `HCMC_HR_Companies_Map.kml` | Google My Maps 导入文件（两份内容相同） | 根据 .md 中的地址更新坐标，两份同步 |
 
-**更新公司信息时**：先改 `.md`，再同步更新两个 HTML 文件和两份 `.kml`。
+**更新公司信息时**：先改 `.md`，再同步更新两个 HTML 和两份 `.kml`。
 
-`index.html` 与 `src/HCMC_HR_Companies_Report.html` 内容完全相同，修改时需同时更新两份。
+### 独立页面
 
-## HTML 报告结构
+| 文件 | 用途 |
+|------|------|
+| `jobs.html` | 中资企业招聘中文岗位调研页 |
+| `candidates.html` | 越南中文人才获客系统 Demo 页 |
 
-HTML 文件为纯静态单页，无构建步骤，直接用浏览器打开。结构：
+`jobs.html` 和 `candidates.html` 有共享的页面导航栏（`.page-nav`），导航链接指向三个页面（`index.html`、`jobs.html`、`candidates.html`）。新增页面时需同步更新所有页面的导航栏。
+
+### 获客线索数据（`docs/leads_*.md`）
+
+- `docs/leads_phase_a_facebook.md` — Facebook 渠道线索
+- `docs/leads_phase_b_jobsites.md` — 招聘网站渠道线索
+- `docs/leads_phase_c_other.md` — 其他渠道线索
+- `docs/leads_progress.md` — 各阶段进度总览
+
+这些 Markdown 文件是 `candidates.html` 的数据来源。
+
+## HTML 报告结构（index.html）
+
 - 顶部横幅 + 统计栏（公司数、郡区数、含地图链接数）
 - 公司卡片列表（`.company-card`），每张卡片含国际/本土标签、联系表格、地图链接
 - KML 下载按钮区

@@ -73,6 +73,7 @@
     }
     .lang-required { background: #fdebd0; color: #d35400; }
     .lang-preferred { background: #d5f5e3; color: #1e8449; }
+    .lang-internal { background: #d5f5e3; color: #1e8449; }
 
     /* 公司类型标签 */
     .sector-badge {
@@ -84,53 +85,17 @@
     .sector-finance { background: #e8daef; color: #6c3483; }
     .sector-construction { background: #eafaf1; color: #1e8449; }
     .sector-edu { background: #fce4ec; color: #880e4f; }
+    .sector-auto { background: #e8f8f5; color: #0e6655; }
+    .sector-energy { background: #eaf2f8; color: #1b4f72; }
+    .sector-food { background: #fef5e7; color: #b9770e; }
+    .sector-home { background: #f5eef8; color: #7d3c98; }
 
-    /* 岗位详情卡片 */
-    .job-card {
-      background: white; border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      overflow: hidden; margin-bottom: 16px; transition: box-shadow 0.2s;
+    /* 新增标签 */
+    .new-tag {
+      display: inline-block; background: #e74c3c; color: white;
+      font-size: 10px; padding: 1px 6px; border-radius: 3px;
+      margin-left: 6px; vertical-align: middle; font-weight: bold;
     }
-    .job-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.14); }
-    .job-card-header {
-      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
-      border-bottom: 3px solid #e74c3c; background: #fef9f9;
-    }
-    .job-num {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: #e74c3c; color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 14px; flex-shrink: 0;
-    }
-    .job-title-block { flex: 1; }
-    .job-title-block h3 { font-size: 16px; color: #2c3e50; }
-    .job-title-block .company-line { font-size: 12px; color: #7f8c8d; margin-top: 3px; }
-    .job-card-body { padding: 16px 20px; }
-    .job-info-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 10px; margin-bottom: 12px;
-    }
-    .job-info-item { display: flex; gap: 8px; align-items: flex-start; }
-    .info-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .info-content { font-size: 13px; line-height: 1.5; }
-    .info-label { color: #7f8c8d; font-size: 11px; }
-    .info-value { color: #2c3e50; font-weight: 500; }
-    .info-value a { color: #2471a3; text-decoration: none; }
-    .info-value a:hover { text-decoration: underline; }
-    .job-card-footer {
-      padding: 10px 20px; background: #f8f9fa;
-      border-top: 1px solid #ecf0f1;
-      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 6px 14px; border-radius: 6px;
-      font-size: 12px; font-weight: bold; text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn:hover { opacity: 0.85; }
-    .btn-primary { background: #e74c3c; color: white; }
-    .btn-secondary { background: #2471a3; color: white; }
 
     /* 注释框 */
     .note-box {
@@ -183,8 +148,8 @@
 <div class="header">
   <h1>🇻🇳 胡志明市中资企业招聘中文岗位调研</h1>
   <div class="subtitle">
-    筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
-    地理范围：胡志明市（含周边新合并区域）｜ 数据截止：2026-04-04 ｜ 仅收录活跃在招岗位
+    第三次调研 ｜ 筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
+    地理范围：胡志明市（含周边新合并区域）｜ 数据截止：2026-04-06 ｜ 数据来源：TopCV / VietnamWorks / LinkedIn / Indeed
   </div>
 </div>
 
@@ -197,11 +162,11 @@
 
 <!-- 统计栏 -->
 <div class="stats">
-  <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">活跃岗位</div></div>
-  <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">确认中资企业</div></div>
-  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">强制要求中文</div></div>
-  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">中文优先加分</div></div>
-  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">来自 VietnamWorks</div></div>
+  <div class="stat-item"><div class="stat-num">43</div><div class="stat-label">活跃岗位</div></div>
+  <div class="stat-item"><div class="stat-num">25</div><div class="stat-label">确认中资企业</div></div>
+  <div class="stat-item"><div class="stat-num">22</div><div class="stat-label">强制要求中文</div></div>
+  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">内部工作语言</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">数据渠道</div></div>
 </div>
 
 <div class="container">
@@ -209,7 +174,7 @@
   <!-- ==================== 岗位汇总表（默认展开）==================== -->
   <div class="collapsible-section">
     <div class="section-title collapsible" style="margin-top:20px;">
-      岗位汇总表
+      岗位汇总表（43 个活跃岗位）
       <span class="toggle-arrow">▼</span>
     </div>
     <div class="section-content">
@@ -220,7 +185,7 @@
               <th style="width:30px">#</th>
               <th>职位</th>
               <th>公司</th>
-              <th>行业</th>
+              <th>分类</th>
               <th>薪资（VND/月）</th>
               <th>中文要求</th>
               <th>截止日期</th>
@@ -228,39 +193,342 @@
             </tr>
           </thead>
           <tbody>
+            <!-- ===== A: 电商/互联网 ===== -->
             <tr>
               <td class="num-cell">1</td>
-              <td>进出口单证员（精通中文）</td>
-              <td>Chainvalue Vietnam<br><small style="color:#95a5a6">厦门象屿集团子公司</small></td>
-              <td><span class="sector-badge sector-trade">贸易/物流</span></td>
-              <td>12–16M</td>
-              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
-              <td>2026-04-17</td>
-              <td><a href="https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" target="_blank">查看 →</a></td>
+              <td>Sales Support<span class="new-tag">新</span></td>
+              <td>JD.COM<br><small style="color:#95a5a6">京东 NYSE: JD</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/sales-support-at-jd-com-4385667864" target="_blank">查看 →</a></td>
             </tr>
             <tr>
               <td class="num-cell">2</td>
-              <td>物流/仓储客服专员（要求中文）</td>
-              <td>Chainvalue Vietnam<br><small style="color:#95a5a6">厦门象屿集团子公司</small></td>
-              <td><span class="sector-badge sector-trade">贸易/物流</span></td>
-              <td>12–18M</td>
-              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
-              <td>2026-04-17</td>
-              <td><a href="https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" target="_blank">查看 →</a></td>
+              <td>Key Account Manager<span class="new-tag">新</span></td>
+              <td>JD.COM<br><small style="color:#95a5a6">京东</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/key-account-manager-at-jd-com-4384982115" target="_blank">查看 →</a></td>
             </tr>
             <tr>
               <td class="num-cell">3</td>
+              <td>Procurement Manager<span class="new-tag">新</span></td>
+              <td>JD.COM<br><small style="color:#95a5a6">京东</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/procurement-manager-at-jd-com-4384973970" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">4</td>
+              <td>Operations Manager - Internship<span class="new-tag">新</span></td>
+              <td>JD.COM<br><small style="color:#95a5a6">京东</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/operations-manager-jd-young-internship-program-at-jd-com-4388945818" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">5</td>
+              <td>Commodity Supply Chain Intern<span class="new-tag">新</span></td>
+              <td>JD.COM<br><small style="color:#95a5a6">京东</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/commodity-supply-chain-intern-at-jd-com-4386817411" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">6</td>
+              <td>Sales Supervisor<span class="new-tag">新</span></td>
+              <td>Alibaba.com<br><small style="color:#95a5a6">阿里巴巴</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/sales-supervisor-at-alibaba-com-4393532813" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">7</td>
+              <td>Relationship Management - Cross Border<span class="new-tag">新</span></td>
+              <td>Shopee<br><small style="color:#95a5a6">Sea Limited（腾讯持股）</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须 Chinese Speaking</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/relationship-management-chinese-speaking-cross-border-shopee-at-shopee-4299935955" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">8</td>
+              <td>Partnerships Manager, Vietnam Outbound<span class="new-tag">新</span></td>
+              <td>TikTok<br><small style="color:#95a5a6">字节跳动 ByteDance</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/partnerships-manager-vietnam-outbound-at-tiktok-4389830136" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">9</td>
+              <td>运营专员（中文，up to 1500 USD）</td>
+              <td>HelloWorld / 51Talk<br><small style="color:#95a5a6">壹起教科技 NYSE</small></td>
+              <td><span class="sector-badge sector-edu">教育科技</span></td>
+              <td>最高 ~37M</td>
+              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
+              <td class="deadline-warning">2026-04-12 ⚠️</td>
+              <td><a href="https://www.vietnamworks.com/nhan-vien-van-hanh-tieng-trung-upto-1500-usdmonth-2023327-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">10</td>
+              <td>Team Leader Sales 教育（中文）</td>
+              <td>HelloWorld / 51Talk<br><small style="color:#95a5a6">壹起教科技 NYSE</small></td>
+              <td><span class="sector-badge sector-edu">教育科技</span></td>
+              <td>30.5M + 佣金</td>
+              <td><span class="lang-badge lang-required">必须 HSK5</span></td>
+              <td>2026-05-05</td>
+              <td><a href="https://www.topcv.vn/viec-lam/team-leader-sales-nganh-giao-duc-luong-30tr5-hoa-hong-quan-1-biet-tieng-trung-hsk5/2042217.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">11</td>
+              <td>Admin Executive - Chinese<span class="new-tag">新</span></td>
+              <td>BlueFocus<br><small style="color:#95a5a6">蓝色光标 002261.SZ</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/admin-executive-chinese-at-bluefocus-4396061568" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">12</td>
+              <td>ERP Consultant<span class="new-tag">新</span></td>
+              <td>yonyou Network Technology<br><small style="color:#95a5a6">用友网络 600588.SH</small></td>
+              <td><span class="sector-badge sector-tech">电商/互联网</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/erp-consultant-at-yonyou-network-technology-4387793327" target="_blank">查看 →</a></td>
+            </tr>
+            <!-- ===== B: 制造/贸易 ===== -->
+            <tr>
+              <td class="num-cell">13</td>
+              <td>服务平台运营员（中文）</td>
+              <td>OPPO Vietnam<br><small style="color:#95a5a6">欧珀移动，广东</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须·中文流利</span></td>
+              <td>2026-04-30</td>
+              <td><a href="https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-nen-tang-dich-vu-tieng-trung/2091889.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">14</td>
+              <td>女性销售员（中文/英文）</td>
+              <td>Gree Air Conditioning VN<br><small style="color:#95a5a6">格力电器</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>14–20M + 佣金</td>
+              <td><span class="lang-badge lang-required">必须 HSK5</span></td>
+              <td>2026-05-01</td>
+              <td><a href="https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nu-tieng-trung-tieng-anh/1302237.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">15</td>
+              <td>售后保修助理（中文）</td>
+              <td>Gree Air Conditioning VN<br><small style="color:#95a5a6">格力电器</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>12–16M</td>
+              <td><span class="lang-badge lang-required">必须 HSK4-5</span></td>
+              <td>2026-05-31</td>
+              <td><a href="https://www.topcv.vn/viec-lam/tro-ly-bao-hanh-tieng-trung/2095879.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">16</td>
+              <td>业务助理（中文）</td>
+              <td>Gree Air Conditioning VN<br><small style="color:#95a5a6">格力电器</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>12–16M</td>
+              <td><span class="lang-badge lang-required">必须 HSK5</span></td>
+              <td>2026-04-30</td>
+              <td><a href="https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/1398992.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">17</td>
+              <td>翻译员（中文，3年经验）</td>
+              <td>PowerChina Vietnam<br><small style="color:#95a5a6">中国电力建设集团</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>15–35M</td>
+              <td><span class="lang-badge lang-required">必须 HSK6</span></td>
+              <td class="deadline-warning">2026-04-16 ⚠️</td>
+              <td><a href="https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-3-nam-kinh-nghiem-phong-van-di-lam-ngay/1826074.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">18</td>
+              <td>总经理助理/翻译（商务中文）</td>
+              <td>China Equipment Group VN<br><small style="color:#95a5a6">中国设备集团</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>最高 40M</td>
+              <td><span class="lang-badge lang-required">必须·商务中文</span></td>
+              <td>2026-05-03</td>
+              <td><a href="https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-tieng-trung/1587208.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">19</td>
+              <td>进出口单证员（精通中文）</td>
+              <td>Chainvalue Vietnam<br><small style="color:#95a5a6">厦门象屿集团 Fortune 500</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>12–16M</td>
+              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
+              <td class="deadline-warning">2026-04-17 ⚠️</td>
+              <td><a href="https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">20</td>
+              <td>物流/仓储客服专员（要求中文）</td>
+              <td>Chainvalue Vietnam<br><small style="color:#95a5a6">厦门象屿集团</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>12–18M</td>
+              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
+              <td class="deadline-warning">2026-04-17 ⚠️</td>
+              <td><a href="https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">21</td>
+              <td>业务助理（精通中文）</td>
+              <td>Chainvalue Vietnam<br><small style="color:#95a5a6">厦门象屿集团</small></td>
+              <td><span class="sector-badge sector-trade">制造/贸易</span></td>
+              <td>30–50M</td>
+              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
+              <td>2026-05-03</td>
+              <td><a href="https://www.vietnamworks.com/tro-ly-kinh-doanh-thanh-thao-tieng-trung-2034950-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">22</td>
+              <td>Branding<span class="new-tag">新</span></td>
+              <td>Changan Automobile<br><small style="color:#95a5a6">长安汽车 000625.SZ</small></td>
+              <td><span class="sector-badge sector-auto">汽车</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/branding-at-changan-automobile-4382758156" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">23</td>
+              <td>Product Planning Specialist<span class="new-tag">新</span></td>
+              <td>Changan Automobile<br><small style="color:#95a5a6">长安汽车</small></td>
+              <td><span class="sector-badge sector-auto">汽车</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/product-planning-specialist-at-changan-automobile-4386636845" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">24</td>
+              <td>Channel Management<span class="new-tag">新</span></td>
+              <td>Changan Automobile<br><small style="color:#95a5a6">长安汽车</small></td>
+              <td><span class="sector-badge sector-auto">汽车</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/channel-management-at-changan-automobile-4382752311" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">25</td>
+              <td>Country Deputy Chief Representative<span class="new-tag">新</span></td>
+              <td>Changan Automobile<br><small style="color:#95a5a6">长安汽车</small></td>
+              <td><span class="sector-badge sector-auto">汽车</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/country-deputy-chief-representative-at-changan-automobile-4395609281" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">26</td>
+              <td>HR Supervisor - Chinese<span class="new-tag">新</span></td>
+              <td>BYD Oway Auto<br><small style="color:#95a5a6">比亚迪 002594.SZ</small></td>
+              <td><span class="sector-badge sector-auto">汽车</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须 Chinese Speaking</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/hcm-hr-supervisor-tiếng-trung-at-byd-oway-auto-4389898059" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">27</td>
+              <td>人力资源经理<span class="new-tag">新</span></td>
+              <td>Bodor Laser<br><small style="color:#95a5a6">邦德激光</small></td>
+              <td><span class="sector-badge sector-energy">能源/工业</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/人力资源经理-at-bodor-laser-4382955471" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">28</td>
+              <td>Operational Specialist<span class="new-tag">新</span></td>
+              <td>Sungrow<br><small style="color:#95a5a6">阳光电源 300274.SZ</small></td>
+              <td><span class="sector-badge sector-energy">能源/工业</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/operational-specialist-at-sungrow-4370082223" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">29</td>
+              <td>Vietnam Marketing Manager<span class="new-tag">新</span></td>
+              <td>DeRUCCI International Holdings<br><small style="color:#95a5a6">慕思 001323.SZ</small></td>
+              <td><span class="sector-badge sector-home">家居</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/vietnam-marketing-manager-at-derucci-international-holdings-ltd-4384015495" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">30</td>
+              <td>销售经理 Sales Manager<span class="new-tag">新</span></td>
+              <td>CHOHO Industrial<br><small style="color:#95a5a6">超宏工业/传动链制造</small></td>
+              <td><span class="sector-badge sector-energy">能源/工业</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/%E9%94%80%E5%94%AE%E7%BB%8F%E7%90%86-at-choho-industrial-4392341705" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">31</td>
+              <td>Energy Storage Engineer<span class="new-tag">新</span></td>
+              <td>Envision Energy<br><small style="color:#95a5a6">远景能源</small></td>
+              <td><span class="sector-badge sector-energy">能源/工业</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-internal">内部工作语言</span></td>
+              <td>—</td>
+              <td><a href="https://vn.linkedin.com/jobs/view/energy-storage-engineer-in-india-at-envision-energy-4390480262" target="_blank">查看 →</a></td>
+            </tr>
+            <!-- ===== C: 金融/银行/建筑 ===== -->
+            <tr>
+              <td class="num-cell">32</td>
+              <td>Relationship Manager（英+中文流利）</td>
+              <td>中国建设银行 HCM 分行<br><small style="color:#95a5a6">中国国有银行</small></td>
+              <td><span class="sector-badge sector-finance">金融/银行</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须·普通话+英文</span></td>
+              <td class="deadline-warning">2026-04-16 ⚠️</td>
+              <td><a href="https://www.vietnamworks.com/relationship-manager-2024931-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">33</td>
               <td>Project Manager（流利中文必须）</td>
               <td>华为越南<br><small style="color:#95a5a6">华为技术有限公司</small></td>
               <td><span class="sector-badge sector-tech">电信/科技</span></td>
-              <td>面议（Senior级）</td>
+              <td>面议（Senior）</td>
               <td><span class="lang-badge lang-required">必须·高级流利</span></td>
               <td class="deadline-warning">2026-04-12 ⚠️</td>
               <td><a href="https://www.vietnamworks.com/project-manager--2023028-jv" target="_blank">查看 →</a></td>
             </tr>
             <tr>
-              <td class="num-cell">4</td>
-              <td>RF Engineer</td>
+              <td class="num-cell">34</td>
+              <td>RF Engineer（中文加分）</td>
               <td>华为越南<br><small style="color:#95a5a6">华为技术有限公司</small></td>
               <td><span class="sector-badge sector-tech">电信/科技</span></td>
               <td>最高 $3,000</td>
@@ -269,8 +537,8 @@
               <td><a href="https://www.vietnamworks.com/rf-engineer--2021114-jv" target="_blank">查看 →</a></td>
             </tr>
             <tr>
-              <td class="num-cell">5</td>
-              <td>Core Network Engineer</td>
+              <td class="num-cell">35</td>
+              <td>Core Network Engineer（中文加分）</td>
               <td>华为越南<br><small style="color:#95a5a6">华为技术有限公司</small></td>
               <td><span class="sector-badge sector-tech">电信/科技</span></td>
               <td>最高 80M</td>
@@ -279,8 +547,8 @@
               <td><a href="https://www.vietnamworks.com/core-network-engineer-salary-upto-80m--2019343-jv" target="_blank">查看 →</a></td>
             </tr>
             <tr>
-              <td class="num-cell">6</td>
-              <td>RF Engineer Senior</td>
+              <td class="num-cell">36</td>
+              <td>RF Engineer Senior（中文加分）</td>
               <td>华为越南<br><small style="color:#95a5a6">华为技术有限公司</small></td>
               <td><span class="sector-badge sector-tech">电信/科技</span></td>
               <td>最高 100M</td>
@@ -289,261 +557,195 @@
               <td><a href="https://www.vietnamworks.com/rf-engineer-salary-upto-100m-2019340-jv" target="_blank">查看 →</a></td>
             </tr>
             <tr>
-              <td class="num-cell">7</td>
-              <td>Relationship Manager</td>
-              <td>中国建设银行 HCM 分行<br><small style="color:#95a5a6">中国国有银行</small></td>
-              <td><span class="sector-badge sector-finance">金融/银行</span></td>
-              <td>面议（3年+经验）</td>
-              <td><span class="lang-badge lang-required">必须·普通话+英文</span></td>
-              <td class="deadline-warning">2026-04-16 ⚠️</td>
-              <td><a href="https://www.vietnamworks.com/relationship-manager-2024931-jv" target="_blank">查看 →</a></td>
+              <td class="num-cell">37</td>
+              <td>C&B 薪酬福利专员（精通中文）</td>
+              <td>Horizon Construction Dev. Overseas VN<br><small style="color:#95a5a6">远东宏信 03360.HK</small></td>
+              <td><span class="sector-badge sector-construction">建筑/工程</span></td>
+              <td>1,000 USD</td>
+              <td><span class="lang-badge lang-required">必须·精通听说读写</span></td>
+              <td>2026-05-03</td>
+              <td><a href="https://www.vietnamworks.com/chuyen-vien-candb-thanh-thao-tieng-trung-2034931-jv" target="_blank">查看 →</a></td>
             </tr>
             <tr>
-              <td class="num-cell">8</td>
+              <td class="num-cell">38</td>
+              <td>税务会计（英文或中文沟通）</td>
+              <td>Horizon Construction Dev. Overseas VN<br><small style="color:#95a5a6">远东宏信</small></td>
+              <td><span class="sector-badge sector-construction">建筑/工程</span></td>
+              <td>最高 30M</td>
+              <td><span class="lang-badge lang-required">必须·英文或中文</span></td>
+              <td>2026-04-23</td>
+              <td><a href="https://www.vietnamworks.com/ke-toan-thue-giao-tiep-tot-tieng-anh-hoac-tieng-hoa-luong-upto-30-million-2028598-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <!-- ===== D: 物流/建设工程 ===== -->
+            <tr>
+              <td class="num-cell">39</td>
+              <td>总经理助理（中文）</td>
+              <td>Best Logistics Technology VN<br><small style="color:#95a5a6">百世物流 NYSE: BEST</small></td>
+              <td><span class="sector-badge sector-trade">物流</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须·中越双语</span></td>
+              <td>2026-04-30</td>
+              <td><a href="https://www.vietnamworks.com/tro-ly-tong-giam-djoc-tieng-trung-2032639-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">40</td>
+              <td>综合会计（中文）</td>
+              <td>Best Logistics Technology VN<br><small style="color:#95a5a6">百世物流</small></td>
+              <td><span class="sector-badge sector-trade">物流</span></td>
+              <td>面议</td>
+              <td><span class="lang-badge lang-required">必须</span></td>
+              <td><small style="color:#95a5a6">待确认</small></td>
+              <td><a href="https://www.vietnamworks.com/ke-toan-tong-hop-tieng-trung-2015008-jv" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">41</td>
               <td>人事行政专员（中文项目）</td>
-              <td>China Construction (S.E.A.)<br><small style="color:#95a5a6">中国建筑集团海外板块</small></td>
+              <td>China Construction (S.E.A.)<br><small style="color:#95a5a6">中国建筑集团 央企</small></td>
               <td><span class="sector-badge sector-construction">建筑/工程</span></td>
               <td>9–11M</td>
               <td><span class="lang-badge lang-required">必须</span></td>
-              <td><small style="color:#95a5a6">待确认¹</small></td>
+              <td><small style="color:#95a5a6">待确认</small></td>
               <td><a href="https://www.vietnamworks.com/chuyen-vien-hcns-du-an-tieng-trung-2016514-jv" target="_blank">查看 →</a></td>
             </tr>
+            <!-- ===== E: 餐饮 ===== -->
             <tr>
-              <td class="num-cell">9</td>
-              <td>运营专员（up to 1500 USD）</td>
-              <td>HelloWorld / 51Talk²<br><small style="color:#95a5a6">中国 EdTech，NYSE上市</small></td>
-              <td><span class="sector-badge sector-edu">教育科技</span></td>
-              <td>最高 37M（≈$1,500）</td>
-              <td><span class="lang-badge lang-required">必须 HSK5+</span></td>
-              <td class="deadline-warning">2026-04-12 ⚠️</td>
-              <td><a href="https://www.vietnamworks.com/nhan-vien-van-hanh-tieng-trung-upto-1500-usdmonth-2023327-jv" target="_blank">查看 →</a></td>
+              <td class="num-cell">42</td>
+              <td>仓库管理员（基础中文）</td>
+              <td>Hai Di Lao Vietnam Holdings<br><small style="color:#95a5a6">海底捞 06862.HK</small></td>
+              <td><span class="sector-badge sector-food">餐饮</span></td>
+              <td>13–20M</td>
+              <td><span class="lang-badge lang-required">必须·基础口语+读写</span></td>
+              <td class="deadline-warning">2026-04-10 ⚠️</td>
+              <td><a href="https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2059785.html" target="_blank">查看 →</a></td>
+            </tr>
+            <tr>
+              <td class="num-cell">43</td>
+              <td>HR 实习生（需中文）</td>
+              <td>Hai Di Lao Vietnam Holdings<br><small style="color:#95a5a6">海底捞</small></td>
+              <td><span class="sector-badge sector-food">餐饮</span></td>
+              <td>最高 1.5M</td>
+              <td><span class="lang-badge lang-required">必须 HSK4+</span></td>
+              <td class="deadline-warning">2026-04-19 ⚠️</td>
+              <td><a href="https://www.topcv.vn/viec-lam/thuc-tap-sinh-nhan-su-yeu-cau-biet-tieng-trung/1528086.html" target="_blank">查看 →</a></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="note-box">
-        <p>⚠️ <strong>帖子时效说明：</strong>招聘平台采用付费展示模式，帖子到期后自动下线但<strong>不代表职位已招满</strong>——企业可随时续期。超过截止日期访问原帖链接可能显示"职位已关闭"，建议在有效期内访问或直接联系企业确认。</p>
-        <p>¹ #8 截止日期未能从页面提取，建议访问原帖确认是否仍在展示。</p>
-        <p>² #9 HelloWorld/51Talk 中资身份待核实：公司由中国团队创立，NYSE上市（COE），但越南实体有新加坡注册背景，尚未通过越南工商注册库确认母公司国籍。</p>
+        <p>⚠️ <strong>截止日期提示：</strong>标注 ⚠️ 的岗位截止日期在 2026-04-16 之前（距今 10 天以内），建议尽早访问原帖确认。</p>
+        <p>⚠️ <strong>#42 海底捞仓库管理员：</strong>帖子有效期 2026-04-10，仅剩 4 天即将到期，建议立即访问原帖确认是否仍在招聘。</p>
+        <p>LinkedIn 发布的岗位（#1–8, #11–12, #22–31）无明确截止日期，以"—"标注；招聘平台帖子到期后自动下线但<strong>不代表职位已招满</strong>——企业可随时续期。</p>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 岗位明细（默认折叠）==================== -->
+  <!-- ==================== 企业汇总（默认折叠）==================== -->
   <div class="collapsible-section">
     <div class="section-title collapsible">
-      岗位明细
+      企业汇总（25 家确认中资企业）
       <span class="toggle-arrow">▶</span>
     </div>
     <div class="section-content" style="display:none">
-
-      <!-- #1 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">1</div>
-          <div class="job-title-block">
-            <h3>进出口单证员（精通中文）</h3>
-            <div class="company-line">Chainvalue Vietnam（厦门象屿集团子公司 · Fortune Global 500）<span class="sector-badge sector-trade" style="margin-left:8px">贸易/物流</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须 HSK5+</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">235 Đồng Khởi, Phường Sài Gòn, Q.1（Metropolitan大厦704室）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">12–16M VND/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">越南籍申请者需 HSK5+；中国籍申请者需精通越南语</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-04-03 ／ 2026-04-17</div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" target="_blank">🔗 查看原帖</a>
-        </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>企业</th>
+              <th>行业</th>
+              <th>中资来源确认</th>
+              <th>岗位数</th>
+              <th>新增</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>JD.COM（京东）</td><td>电商</td><td>京东，NYSE: JD，中国电商龙头</td><td><strong>5</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>Alibaba.com</td><td>电商</td><td>阿里巴巴，NYSE/HKEx</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>Shopee（Sea Limited）</td><td>电商平台</td><td>腾讯持股，新加坡注册但中资背景</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>TikTok / ByteDance</td><td>社交/内容</td><td>字节跳动，中国科技独角兽</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>HelloWorld / 51Talk</td><td>教育科技</td><td>壹起教科技，NYSE上市</td><td><strong>2</strong></td><td>—</td></tr>
+            <tr><td>BlueFocus（蓝色光标）</td><td>营销/PR</td><td>蓝色光标，002261.SZ</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>yonyou（用友）</td><td>ERP/软件</td><td>用友网络，600588.SH</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>OPPO Vietnam</td><td>消费电子</td><td>OPPO（欧珀移动），广东</td><td><strong>1</strong></td><td>—</td></tr>
+            <tr><td>Gree Air Conditioning VN</td><td>家电/制造</td><td>格力电器，深交所</td><td><strong>3</strong></td><td>—</td></tr>
+            <tr><td>PowerChina Vietnam</td><td>能源/建设</td><td>中国电力建设集团，央企</td><td><strong>1</strong></td><td>—</td></tr>
+            <tr><td>China Equipment Group VN</td><td>机械设备</td><td>中国设备集团，中资背景</td><td><strong>1</strong></td><td>—</td></tr>
+            <tr><td>Chainvalue Vietnam（象屿）</td><td>贸易/物流</td><td>厦门象屿集团，Fortune 500</td><td><strong>3</strong></td><td>—</td></tr>
+            <tr><td>Changan Automobile（长安汽车）</td><td>汽车</td><td>长安汽车，000625.SZ，国有车企</td><td><strong>4</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>BYD Oway Auto（比亚迪）</td><td>汽车</td><td>比亚迪，002594.SZ</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>Bodor Laser（邦德激光）</td><td>工业激光</td><td>邦德激光，激光切割设备龙头</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>Sungrow（阳光电源）</td><td>清洁能源</td><td>阳光电源，300274.SZ</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>DeRUCCI（慕思）</td><td>家居/寝具</td><td>慕思，001323.SZ</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>CHOHO Industrial</td><td>工业/传动</td><td>超宏工业，中国链条龙头</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>Envision Energy（远景能源）</td><td>风电/储能</td><td>远景能源，风电独角兽</td><td><strong>1</strong></td><td><span class="new-tag">新</span></td></tr>
+            <tr><td>华为越南</td><td>电信/科技</td><td>华为技术有限公司</td><td><strong>4</strong></td><td>—</td></tr>
+            <tr><td>中国建设银行 HCM 分行</td><td>金融/银行</td><td>中国建设银行，国有银行</td><td><strong>1</strong></td><td>—</td></tr>
+            <tr><td>China Construction (S.E.A.)</td><td>建筑/工程</td><td>中国建筑集团，央企</td><td><strong>1</strong></td><td>—</td></tr>
+            <tr><td>Horizon Construction Dev. Overseas VN</td><td>建筑/工程</td><td>远东宏信，港股 03360.HK</td><td><strong>2</strong></td><td>—</td></tr>
+            <tr><td>Best Logistics Technology VN（百世物流）</td><td>物流</td><td>BEST Inc.，NYSE: BEST</td><td><strong>2</strong></td><td>—</td></tr>
+            <tr><td>Hai Di Lao Vietnam Holdings（海底捞）</td><td>餐饮</td><td>海底捞，港股 06862.HK</td><td><strong>2</strong></td><td>—</td></tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
 
-      <!-- #2 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">2</div>
-          <div class="job-title-block">
-            <h3>物流/仓储客服专员（要求中文）</h3>
-            <div class="company-line">Chainvalue Vietnam（厦门象屿集团子公司）<span class="sector-badge sector-trade" style="margin-left:8px">贸易/物流</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须 HSK5+</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">235 Đồng Khởi, Q.1, HCM</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">12–18M VND/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文 HSK5+（流利口语）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-03-18 ／ 2026-04-17</div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" target="_blank">🔗 查看原帖</a>
-        </div>
+  <!-- ==================== 渠道执行情况（默认折叠）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      渠道执行情况
+      <span class="toggle-arrow">▶</span>
+    </div>
+    <div class="section-content" style="display:none">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>渠道</th>
+              <th>状态</th>
+              <th>有效岗位数</th>
+              <th>备注</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A. TopCV (topcv.vn)</td>
+              <td>✅ 成功</td>
+              <td><strong>11</strong></td>
+              <td>Playwright 脚本抓取 510 条，疑似中资 45 条，人工确认 11 条</td>
+            </tr>
+            <tr>
+              <td>B. VietnamWorks</td>
+              <td>✅ 成功</td>
+              <td><strong>16</strong></td>
+              <td>依赖已保存链接核查，大部分帖子仍在有效期内</td>
+            </tr>
+            <tr>
+              <td>C. Indeed Vietnam</td>
+              <td>✅ 部分</td>
+              <td><strong>2</strong>（辅助验证）</td>
+              <td>抓取 438 条，确认 54 条疑似中资，与其他渠道高度重叠</td>
+            </tr>
+            <tr>
+              <td>D. 中越人才网 (vietong.cn)</td>
+              <td>❌ 失败</td>
+              <td><strong>0</strong></td>
+              <td>连续三天显示"网站升级中，暂停访问"</td>
+            </tr>
+            <tr>
+              <td>E. 中资企业官方招聘页</td>
+              <td>⚠️ 未深入</td>
+              <td><strong>0</strong></td>
+              <td>LinkedIn 已捕获主要企业岗位，官方页必要性降低</td>
+            </tr>
+            <tr>
+              <td>F. LinkedIn (vn.linkedin.com)</td>
+              <td>✅ 成功（首次）</td>
+              <td><strong>20</strong></td>
+              <td><strong>本次最大增量来源</strong>：确认 13 家新中资企业，含 JD.COM(5)、长安(4)、TikTok、Alibaba、Shopee 等</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <!-- #3 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">3</div>
-          <div class="job-title-block">
-            <h3>Project Manager（流利中文必须）</h3>
-            <div class="company-line">华为越南（Huawei Vietnam · 华为技术有限公司）<span class="sector-badge sector-tech" style="margin-left:8px">电信/科技</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须·高级流利</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">Vincom Dong Khoi, Q.1（同时招 Da Nang）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">面议（Senior级）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">👥</div><div class="info-content"><div class="info-label">招聘人数</div><div class="info-value">8名</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文高级流利（Fluency in Chinese is advanced）+ 英文流利</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-03-13 ／ <span class="deadline-warning">2026-04-12 ⚠️</span></div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/project-manager--2023028-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #4 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">4</div>
-          <div class="job-title-block">
-            <h3>RF Engineer</h3>
-            <div class="company-line">华为越南（HCM / Can Tho / Hanoi）<span class="sector-badge sector-tech" style="margin-left:8px">电信/科技</span></div>
-          </div>
-          <span class="lang-badge lang-preferred">优先加分</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">最高 $3,000/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文能力优先（技术背景为主）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">截止</div><div class="info-value">2026-04-30</div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/rf-engineer--2021114-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #5 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">5</div>
-          <div class="job-title-block">
-            <h3>Core Network Engineer</h3>
-            <div class="company-line">华为越南（HCM / Can Tho / Hanoi）<span class="sector-badge sector-tech" style="margin-left:8px">电信/科技</span></div>
-          </div>
-          <span class="lang-badge lang-preferred">优先加分</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">最高 80M VND/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文能力优先</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">截止</div><div class="info-value">2026-05-02</div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/core-network-engineer-salary-upto-80m--2019343-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #6 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">6</div>
-          <div class="job-title-block">
-            <h3>RF Engineer Senior</h3>
-            <div class="company-line">华为越南（HCM / Can Tho / Hanoi）<span class="sector-badge sector-tech" style="margin-left:8px">电信/科技</span></div>
-          </div>
-          <span class="lang-badge lang-preferred">优先加分</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">最高 100M VND/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文能力优先</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">截止</div><div class="info-value">2026-05-02</div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/rf-engineer-salary-upto-100m-2019340-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #7 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">7</div>
-          <div class="job-title-block">
-            <h3>Relationship Manager</h3>
-            <div class="company-line">中国建设银行胡志明分行（CCB HCMC · 中国国有银行）<span class="sector-badge sector-finance" style="margin-left:8px">金融/银行</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须·普通话+英文</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">Tầng 11, Sailing Tower, 111A Pasteur, Bến Nghé, Q.1, HCM</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">面议（与资历匹配）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📋</div><div class="info-content"><div class="info-label">要求</div><div class="info-value">本科+ 金融/银行/会计；3年+银行信贷/营销经验</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文普通话 + 英文（书面+口语均要求 good command）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📊</div><div class="info-content"><div class="info-label">浏览 / 投递</div><div class="info-value">748次浏览，52人已投递</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-03-17 ／ <span class="deadline-warning">2026-04-16 ⚠️</span></div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/relationship-manager-2024931-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #8 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">8</div>
-          <div class="job-title-block">
-            <h3>人事行政专员（中文项目）</h3>
-            <div class="company-line">China Construction (S.E.A.) Co., Ltd.（中国建筑集团海外板块 · 央企）<span class="sector-badge sector-construction" style="margin-left:8px">建筑/工程</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">HCM（具体地址未获取）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">9–11M VND/月</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-03（T3）／ <small style="color:#95a5a6">截止日期待确认¹</small></div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/chuyen-vien-hcns-du-an-tieng-trung-2016514-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
-      <!-- #9 -->
-      <div class="job-card">
-        <div class="job-card-header">
-          <div class="job-num">9</div>
-          <div class="job-title-block">
-            <h3>运营专员（up to 1500 USD/month）</h3>
-            <div class="company-line">HelloWorld Online Education Vietnam / 51Talk²（中国 EdTech · NYSE上市 COE）<span class="sector-badge sector-edu" style="margin-left:8px">教育科技</span></div>
-          </div>
-          <span class="lang-badge lang-required">必须 HSK5+</span>
-        </div>
-        <div class="job-card-body">
-          <div class="job-info-grid">
-            <div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">地址</div><div class="info-value">27 Trần Nhật Duật, Tân Định, Q.1, HCM</div></div></div>
-            <div class="job-info-item"><div class="info-icon">💰</div><div class="info-content"><div class="info-label">薪资</div><div class="info-value">最高约 37M VND（≈ 1,500 USD/月）</div></div></div>
-            <div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">语言要求</div><div class="info-value">中文 HSK5+（听说读写4项），基础英文</div></div></div>
-            <div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发布 / 截止</div><div class="info-value">2026-03-13 ／ <span class="deadline-warning">2026-04-12 ⚠️</span></div></div></div>
-          </div>
-        </div>
-        <div class="job-card-footer">
-          <a class="btn btn-primary" href="https://www.vietnamworks.com/nhan-vien-van-hanh-tieng-trung-upto-1500-usdmonth-2023327-jv" target="_blank">🔗 查看原帖</a>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -556,52 +758,173 @@
     <div class="section-content" style="display:none">
 
       <div class="analysis-card">
-        <h3>行业分布</h3>
+        <h3>4.1 行业分布</h3>
         <table class="analysis-table">
           <thead><tr><th>行业</th><th>岗位数</th><th>代表企业</th></tr></thead>
           <tbody>
-            <tr><td><span class="sector-badge sector-tech">电信/科技</span></td><td><strong>4</strong></td><td>华为越南</td></tr>
-            <tr><td><span class="sector-badge sector-trade">贸易/物流</span></td><td><strong>2</strong></td><td>Chainvalue（厦门象屿集团）</td></tr>
-            <tr><td><span class="sector-badge sector-finance">金融/银行</span></td><td><strong>1</strong></td><td>中国建设银行 HCM 分行</td></tr>
-            <tr><td><span class="sector-badge sector-construction">建筑/工程</span></td><td><strong>1</strong></td><td>China Construction (S.E.A.)</td></tr>
-            <tr><td><span class="sector-badge sector-edu">教育科技</span></td><td><strong>1</strong></td><td>HelloWorld / 51Talk</td></tr>
+            <tr><td><span class="sector-badge sector-tech">电商/互联网</span></td><td><strong>12</strong></td><td>JD.COM x5、Alibaba x1、Shopee x1、TikTok x1、51Talk x2、BlueFocus x1、用友 x1</td></tr>
+            <tr><td><span class="sector-badge sector-trade">制造/贸易</span></td><td><strong>12</strong></td><td>格力 x3、象屿 x3、长安 x4、比亚迪 x1、OPPO x1</td></tr>
+            <tr><td><span class="sector-badge sector-energy">工业/能源/汽车</span></td><td><strong>5</strong></td><td>邦德激光 x1、阳光电源 x1、远景能源 x1、中国电建 x1、China Equipment x1</td></tr>
+            <tr><td><span class="sector-badge sector-home">家居/消费</span></td><td><strong>2</strong></td><td>慕思 x1、超宏工业 x1</td></tr>
+            <tr><td><span class="sector-badge sector-finance">金融/银行</span></td><td><strong>1</strong></td><td>中国建设银行 x1</td></tr>
+            <tr><td><span class="sector-badge sector-tech">电信/科技</span></td><td><strong>4</strong></td><td>华为 x4</td></tr>
+            <tr><td><span class="sector-badge sector-construction">建筑/工程/物流</span></td><td><strong>5</strong></td><td>中国建筑 x1、远东宏信 x2、百世物流 x2</td></tr>
+            <tr><td><span class="sector-badge sector-food">餐饮</span></td><td><strong>2</strong></td><td>海底捞 x2</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="analysis-card">
-        <h3>薪资区间分布</h3>
+        <h3>4.2 薪资分布</h3>
         <table class="analysis-table">
-          <thead><tr><th>薪资区间</th><th>岗位数</th><th>对应岗位</th></tr></thead>
+          <thead><tr><th>薪资区间</th><th>岗位数</th><th>典型岗位</th></tr></thead>
           <tbody>
-            <tr><td>低（&lt; 15M VND）</td><td><strong>2</strong></td><td>进出口单证员（12–16M）、HCNS项目专员（9–11M）</td></tr>
-            <tr><td>中（15–40M VND）</td><td><strong>3</strong></td><td>物流客服（12–18M）、运营专员（最高37M）、关系经理（面议）</td></tr>
-            <tr><td>高（40M+ 或 &gt;$1,000）</td><td><strong>4</strong></td><td>华为工程师系列（最高 $3,000 / 80M / 100M）、PM（Senior面议）</td></tr>
+            <tr><td>实习/低（&lt; 5M）</td><td><strong>2</strong></td><td>海底捞 HR 实习生（1.5M）、VNFT 实习生</td></tr>
+            <tr><td>低（5–18M）</td><td><strong>10</strong></td><td>格力系列、China Construction HR、象屿单证员、海底捞仓库等</td></tr>
+            <tr><td>中（18–50M）</td><td><strong>12</strong></td><td>51Talk 运营（37M）、象屿业务助理（50M）、PowerChina 翻译（35M）等</td></tr>
+            <tr><td>高（50M+ 或 &gt;1000 USD）</td><td><strong>4</strong></td><td>华为系列（80-100M）、Horizon C&B（1000 USD）、China Equipment 总助（40M）</td></tr>
+            <tr><td>面议（未知）</td><td><strong>17</strong></td><td>LinkedIn 渠道的 JD.COM、长安汽车、比亚迪等全部面议</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="analysis-card">
-        <h3>中文要求强度</h3>
+        <h3>4.3 语言要求强度</h3>
         <table class="analysis-table">
-          <thead><tr><th>强度</th><th>描述</th><th>岗位数</th></tr></thead>
+          <thead><tr><th>强度</th><th>岗位数</th><th>描述</th></tr></thead>
           <tbody>
-            <tr><td><span class="lang-badge lang-required">强制要求</span></td><td>HSK5+ 或"流利中文"（必要条件）</td><td><strong>6</strong></td></tr>
-            <tr><td><span class="lang-badge lang-preferred">优先加分</span></td><td>"中文能力优先"（非强制）</td><td><strong>3</strong>（华为工程师 #4–6）</td></tr>
+            <tr><td><span class="lang-badge lang-required">强制必须（HSK5+/流利）</span></td><td><strong>22</strong></td><td>象屿 HSK5+、51Talk HSK5、PowerChina HSK6、格力 HSK5 等</td></tr>
+            <tr><td><span class="lang-badge lang-required">中等（HSK4/基础）</span></td><td><strong>6</strong></td><td>格力售后 HSK4-5、海底捞仓库基础口语等</td></tr>
+            <tr><td><span class="lang-badge lang-preferred">加分/优先</span></td><td><strong>3</strong></td><td>华为工程师 #34–36</td></tr>
+            <tr><td><span class="lang-badge lang-internal">内部工作语言</span></td><td><strong>12</strong></td><td>JD.COM、长安汽车、邦德激光、阳光电源等 LinkedIn 新发现企业</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="analysis-card">
-        <h3>主要结论</h3>
+        <h3>4.4 三次调研对比</h3>
+        <table class="analysis-table">
+          <thead><tr><th>指标</th><th>2026-04-04</th><th>2026-04-05</th><th>2026-04-06</th><th>趋势</th></tr></thead>
+          <tbody>
+            <tr><td>活跃岗位总数</td><td>9</td><td>23</td><td><strong>43</strong></td><td>↑↑↑</td></tr>
+            <tr><td>确认中资企业数</td><td>5</td><td>11</td><td><strong>25</strong></td><td>↑↑↑</td></tr>
+            <tr><td>覆盖渠道</td><td>VW 人工</td><td>VW + TopCV 脚本</td><td>VW + TopCV + LinkedIn + Indeed</td><td>LinkedIn 大幅拓展</td></tr>
+            <tr><td>最高单岗位薪资</td><td>面议</td><td>100M（华为）</td><td>100M（华为）</td><td>稳定</td></tr>
+            <tr><td>新行业/新企业</td><td>—</td><td>格力/海底捞/OPPO/中国电建</td><td>JD.COM/长安/比亚迪/阳光电源/用友/慕思等 13 家</td><td>制造+汽车+新能源强</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="analysis-card">
+        <h3>4.5 主要结论</h3>
         <ul class="conclusion-list">
-          <li><strong>VietnamWorks 是最有效渠道：</strong>本次找到的全部 9 个有效岗位均来自该平台。建议拜访 Navigos Group / VietnamWorks（E.Town Central 20F）时重点探讨中文人才数据库。</li>
-          <li><strong>实际活跃中资招聘以非互联网行业为主：</strong>电信（华为）、银行（建设银行）、贸易（象屿）、建筑（中建）占主导，头部互联网/电商中资（TikTok、Shopee）当前在 HCM 的中文岗位反而不明显。</li>
-          <li><strong>薪资两极分化：</strong>基层岗（单证员、行政专员）集中在 9–18M VND；技术/管理岗（华为工程师）最高达 100M VND 或 $3,000/月，差距悬殊。</li>
-          <li><strong>HSK5+ 是主流语言门槛：</strong>6 个强制要求中文的岗位中，多数明确要求 HSK5+ 或"高级流利"，仅少数笼统写"中文"。</li>
+          <li><strong>LinkedIn 首次深入覆盖，带来质的突破：</strong>13 家新中资企业全部来自 LinkedIn，涵盖京东、阿里、字节、长安、比亚迪、阳光电源、慕思等多个行业头部企业。此前连续两次调研因 LinkedIn 未覆盖而漏掉了整个中资"主力层"。</li>
+          <li><strong>JD.COM（京东）在 HCM 招聘最积极：</strong>5 个同时开放的岗位（销售、KAM、采购、运营实习、供应链实习），覆盖前中后台，显示京东越南团队正处于快速扩张期。</li>
+          <li><strong>长安汽车越南布局深入：</strong>4 个岗位（Branding、产品规划、渠道管理、副代表），正在建立完整的本地团队，是继比亚迪之后第二个大规模在越招聘的中国车企。</li>
+          <li><strong>新能源/工业赛道集中涌现：</strong>阳光电源、远景能源、邦德激光同时在 HCM 招聘，与越南制造业承接中国产能转移的宏观趋势一致。</li>
+          <li><strong>胡志明市中资招聘格局已初步清晰：</strong>至少 25 家有档可查的中资企业在 HCM 同时发布需要中文的岗位，涵盖电商、汽车、家电、能源、物流、餐饮、银行等 8+ 个行业，需求是真实且多元的。</li>
+          <li><strong>中越人才网连续三日失效：</strong>该渠道已无法产生数据，不影响整体判断，但需后续关注是否恢复。</li>
         </ul>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ==================== 待核实候选（默认折叠）==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      待核实候选（10 家疑似中资企业）
+      <span class="toggle-arrow">▶</span>
+    </div>
+    <div class="section-content" style="display:none">
+      <div class="note-box" style="margin-bottom:16px">
+        <p>以下公司在 TopCV/Indeed 抓取中出现，名称/岗位特征暗示可能为中资，但尚未通过工商注册库或官方渠道确认，<strong>不计入汇总表</strong>，留作下次核查。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>公司越文名</th>
+              <th>疑似中文名</th>
+              <th>招聘岗位</th>
+              <th>优先级</th>
+              <th>链接</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TINH LIEN VN</td>
+              <td>精联 VN</td>
+              <td>助理翻译、客服（中文）、项目执行等 5 个职位</td>
+              <td><strong>高</strong>（岗位数多）</td>
+              <td><a href="https://www.topcv.vn" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>GUICUIHUI (VIET NAM)</td>
+              <td>贵翠汇</td>
+              <td>内部会计（中文）</td>
+              <td>中</td>
+              <td><a href="https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-noi-bo-biet-tieng-trung/2096232.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>XWILL VIET NAM</td>
+              <td>XWILL 供应链管理</td>
+              <td>会计（中文）12-15M</td>
+              <td>中</td>
+              <td><a href="https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tieng-trung/1383093.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>TOKBOOST MEDIA</td>
+              <td>TokBoost（TikTok 营销？）</td>
+              <td>翻译、对外联络（中文）</td>
+              <td>中</td>
+              <td><a href="https://www.topcv.vn/viec-lam/phien-dich-thuong-mai-tieng-trung/2085822.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>KESAI EAGROW VIET NAM</td>
+              <td>Kesai Eagrow（农化？）</td>
+              <td>内部会计（中文）14-17M</td>
+              <td>中</td>
+              <td><a href="https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/2097248.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>JIA XIANG</td>
+              <td>佳祥商贸</td>
+              <td>销售行政（中文）</td>
+              <td>低</td>
+              <td><a href="https://www.topcv.vn/viec-lam/sales-admin-biet-tieng-trung/2095204.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>BUSY MING VIET NAM</td>
+              <td>Busy Ming（中式 F&B 连锁？）</td>
+              <td>HRBP（中文沟通）</td>
+              <td>中</td>
+              <td><a href="https://www.topcv.vn/viec-lam/hrbp-chinese-communication/2078907.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>GOBUY VIET NAM</td>
+              <td>GoBuy 跨境电商</td>
+              <td>总监助理（Chinese Speaking，1000-1500 USD）</td>
+              <td><strong>高</strong>（薪资高，疑似中资跨境电商）</td>
+              <td><a href="https://www.topcv.vn/viec-lam/tro-ly-giam-doc-chinese-speaking/2103926.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>PANDA AGENCY</td>
+              <td>Panda Agency（Douyin 直播代理？）</td>
+              <td>斗音直播主播（中文必须）</td>
+              <td>低</td>
+              <td><a href="https://www.topcv.vn/viec-lam/idol-livestream-tren-nen-tang-douyin-part-time-full-time-bat-buoc-tieng-trung-lam-viec-remote-luong-15-100-trieu-thuong/2100745.html" target="_blank">TopCV</a></td>
+            </tr>
+            <tr>
+              <td>VNFT GROUP</td>
+              <td>VNFT（供应链/贸易？）</td>
+              <td>实习会计（中文）</td>
+              <td>低</td>
+              <td><a href="https://www.topcv.vn/viec-lam/thuc-tap-sinh-ke-toan-tieng-trung/2107541.html" target="_blank">TopCV</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -609,7 +932,7 @@
 
 <!-- 页脚 -->
 <div class="footer">
-  <div>数据来源：VietnamWorks（vietnamworks.com）｜ 抓取日期：2026-04-04</div>
+  <div>数据来源：VietnamWorks / TopCV / LinkedIn / Indeed ｜ 调研日期：2026-04-06</div>
   <div style="margin-top:6px; opacity:0.7">岗位具有时效性，建议访问原帖前核实是否仍在招聘</div>
 </div>
 
