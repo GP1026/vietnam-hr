@@ -66,32 +66,6 @@
     td a { color: #2471a3; text-decoration: none; font-size: 12px; }
     td a:hover { text-decoration: underline; }
 
-    /* 语言标签 */
-    .lang-badge {
-      display: inline-block; padding: 2px 8px; border-radius: 4px;
-      font-size: 11px; font-weight: bold; white-space: nowrap;
-    }
-    .lang-required { background: #fdebd0; color: #d35400; }
-    .lang-preferred { background: #d5f5e3; color: #1e8449; }
-    .lang-internal { background: #d5f5e3; color: #1e8449; }
-
-    /* 公司类型标签 */
-    .sector-badge {
-      display: inline-block; padding: 2px 7px; border-radius: 4px;
-      font-size: 11px; font-weight: bold; white-space: nowrap;
-    }
-    .sector-tech { background: #d6eaf8; color: #1a5276; }
-    .sector-trade { background: #fef9e7; color: #7e5109; }
-    .sector-finance { background: #e8daef; color: #6c3483; }
-    .sector-construction { background: #eafaf1; color: #1e8449; }
-    .sector-edu { background: #fce4ec; color: #880e4f; }
-    .sector-auto { background: #e8f8f5; color: #0e6655; }
-    .sector-energy { background: #eaf2f8; color: #1b4f72; }
-    .sector-food { background: #fef5e7; color: #b9770e; }
-    .sector-home { background: #f5eef8; color: #7d3c98; }
-    .sector-logistics { background: #e8f8f5; color: #0e6655; }
-    .sector-other { background: #f0f0f0; color: #555; }
-
     /* 渠道标签 */
     .channel-badge {
       display: inline-block; padding: 2px 7px; border-radius: 4px;
@@ -103,15 +77,6 @@
     .channel-indeed { background: #e8daef; color: #6c3483; }
     .channel-official { background: #fce4ec; color: #880e4f; }
     .channel-multi { background: #fadbd8; color: #922b21; }
-
-    /* 注释框 */
-    .note-box {
-      background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;
-      padding: 14px 16px; margin-top: 16px; font-size: 12px;
-      line-height: 1.7; color: #555;
-    }
-    .note-box p { margin-bottom: 6px; }
-    .note-box p:last-child { margin-bottom: 0; }
 
     /* 分析表格 */
     .analysis-card {
@@ -151,8 +116,8 @@
 <div class="header">
   <h1>🇻🇳 胡志明市中资企业招聘中文岗位调研</h1>
   <div class="subtitle">
-    第五轮调研（6 渠道全量重抓）｜ 筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
-    地理范围：胡志明市（HCM）为主 ｜ 数据截止：2026-04-06 17:00 ｜ 数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网
+    第六轮调研（6 渠道全量）｜ 筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
+    地理范围：胡志明市（HCM）为主 ｜ 数据截止：2026-04-07 ｜ 数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网
   </div>
 </div>
 
@@ -163,533 +128,23 @@
   <a href="candidates.html">中文人才获客</a>
 </nav>
 
-<!-- 统计栏 -->
-<div class="stats">
-  <div class="stat-item"><div class="stat-num">124</div><div class="stat-label">活跃岗位</div></div>
-  <div class="stat-item"><div class="stat-num">~73</div><div class="stat-label">确认中资企业</div></div>
-  <div class="stat-item"><div class="stat-num">120</div><div class="stat-label">强制要求中文</div></div>
-  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">中文优先/加分</div></div>
-  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">数据渠道</div></div>
+<!-- 统计栏（JS 自动填充） -->
+<div class="stats" id="stats-bar">
+  <div class="stat-item"><div class="stat-num" id="stat-total">-</div><div class="stat-label">活跃岗位</div></div>
+  <div class="stat-item"><div class="stat-num" id="stat-companies">-</div><div class="stat-label">确认中资企业</div></div>
+  <div class="stat-item"><div class="stat-num" id="stat-sections">-</div><div class="stat-label">行业分类</div></div>
+  <div class="stat-item"><div class="stat-num" id="stat-channels">-</div><div class="stat-label">数据渠道</div></div>
 </div>
 
 <div class="container">
 
-  <!-- ==================== 3.1 电商/互联网/内容平台 ==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible" style="margin-top:20px;">
-      3.1 电商 / 互联网 / 内容平台（29 个岗位）
-      <span class="toggle-arrow">▼</span>
-    </div>
-    <div class="section-content">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:30px">#</th>
-              <th>职位</th>
-              <th>公司</th>
-              <th>薪资</th>
-              <th>中文要求</th>
-              <th>来源</th>
-              <th>原帖</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-cell">1</td><td>平台运营专员（中文）</td><td>OPPO Việt Nam<br><small style="color:#95a5a6">OPPO 广东</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-nen-tang-dich-vu-tieng-trung/2091889.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">2</td><td>中文运营专员</td><td>OPPO Authorized Distributor<br><small style="color:#95a5a6">OPPO 系</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4322056717" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">3</td><td>TikTok 平台运营（中/英）</td><td>Chicmax 上美越南<br><small style="color:#95a5a6">上海上美</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-san-tiktok-tu-2-nam-kinh-nghiem-biet-tieng-trung-hoac-tieng-anh/2084581.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">4</td><td>行政人事专员（中文）</td><td>Chicmax 上美越南<br><small style="color:#95a5a6">上海上美</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-tieng-trung/2095453.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">5</td><td>商品专员（中文）</td><td>子不语 Zibuyu 越南<br><small style="color:#95a5a6">子不语</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-merchandise-biet-tieng-trung/1989788.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">6</td><td>销售支持</td><td>JD.COM 京东<br><small style="color:#95a5a6">京东集团</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4385667864" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">7</td><td>JD YOUNG 运营经理</td><td>JD.COM 京东<br><small style="color:#95a5a6">京东集团</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4388945818" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">8</td><td>TA 招聘伙伴（英/中）</td><td>京东物流 JINGDONG Logistics<br><small style="color:#95a5a6">京东物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 Mandarin</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4387101299" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">9</td><td>销售主管</td><td>Alibaba.com 阿里巴巴国际站<br><small style="color:#95a5a6">阿里巴巴</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4393532813" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">10</td><td>渠道 BD（HCM）</td><td>Alibaba Cloud 阿里云<br><small style="color:#95a5a6">阿里巴巴</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 Mandarin</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4354153192" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">11</td><td>创新销售 BytePlus</td><td>ByteDance 字节跳动<br><small style="color:#95a5a6">字节跳动</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 Mandarin</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4384282529" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">12</td><td>中文行政专员</td><td>BlueFocus 蓝色光标<br><small style="color:#95a5a6">蓝色光标</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4396061568" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">13</td><td>Mediabuy 客户执行（中文）</td><td>BlueMedia 越南<br><small style="color:#95a5a6">蓝色光标系</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/mediabuy-account-executive-chinese/2107246.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">14</td><td>销售专员</td><td>PingPong Payments<br><small style="color:#95a5a6">PingPong</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4359221250" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">15</td><td>ICT 重点客户经理</td><td>TP-Link 普联<br><small style="color:#95a5a6">TP-Link</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392850014" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">16</td><td>跨境电商客服（中文）</td><td>BigSeller Technology 越南<br><small style="color:#95a5a6">BigSeller 跨境 SaaS</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-cskh-tieng-trung-nganh-thuong-mai-dien-tu/1606490.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">17</td><td>Sales Team Leader（HSK5）</td><td>HelloWorld 51Talk 越南<br><small style="color:#95a5a6">51Talk</small></td><td>30.5M+提成</td><td><span class="lang-badge lang-required">必须 HSK5</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/team-leader-sales-nganh-giao-duc-luong-30tr5-hoa-hong-quan-1-biet-tieng-trung-hsk5/2042217.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">18</td><td>Douyin 直播主播</td><td>Panda Agency<br><small style="color:#95a5a6">Douyin MCN</small></td><td>15-100M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/idol-livestream-tren-nen-tang-douyin-part-time-full-time-bat-buoc-tieng-trung-lam-viec-remote-luong-15-100-trieu-thuong/2100745.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">19</td><td>商务翻译（中文）</td><td>Tokboost Media<br><small style="color:#95a5a6">中资 MCN</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/phien-dich-thuong-mai-tieng-trung/2085822.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">20</td><td>对外事务助理（中文）</td><td>Tokboost Media<br><small style="color:#95a5a6">中资 MCN</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-doi-ngoai-tieng-trung/2085812.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">21</td><td>媒体策划运营（中文）</td><td>Focus Media 分众 越南<br><small style="color:#95a5a6">分众传媒</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-phong-media-plan-tieng-trung/2076851.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">22</td><td>总账会计（中文）</td><td>Focus Media 分众 越南<br><small style="color:#95a5a6">分众传媒</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tong-hop-tieng-trung/2110148.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">23</td><td>仓库管理员（中文）</td><td>Focus Media 分众 越南<br><small style="color:#95a5a6">分众传媒</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2098923.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">24</td><td>KOC/KOL Booking 主管</td><td>KITA-EES<br><small style="color:#95a5a6">中资 MCN</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394243715" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">25</td><td>中心负责人</td><td>ELE FUTURE<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394234512" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">26</td><td>个人理财顾问</td><td>Net.AI<br><small style="color:#95a5a6">中资金融科技</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394464372" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">27</td><td>中文客服（郡 6）</td><td>DG MEDIA JSC<br><small style="color:#95a5a6">中资 MCN</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394410659" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">28</td><td>中文客服（郡 6）</td><td>SCCK<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4396858640" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">29</td><td>China Seller KAM</td><td>Mat Bao BPO<br><small style="color:#95a5a6">中资合作</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392855518" target="_blank">查看 →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <!-- 岗位列表（JS 动态渲染） -->
+  <div id="job-sections"></div>
 
-  <!-- ==================== 3.2 制造/消费品/工业 ==================== -->
+  <!-- ==================== 渠道抓取摘要（默认折叠）==================== -->
   <div class="collapsible-section">
     <div class="section-title collapsible">
-      3.2 制造 / 消费品 / 工业（35 个岗位）
-      <span class="toggle-arrow">▼</span>
-    </div>
-    <div class="section-content">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:30px">#</th>
-              <th>职位</th>
-              <th>公司</th>
-              <th>薪资</th>
-              <th>中文要求</th>
-              <th>来源</th>
-              <th>原帖</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-cell">30</td><td>销售代表（中/英）</td><td>Gree 格力越南<br><small style="color:#95a5a6">格力电器</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nu-tieng-trung-tieng-anh/1302237.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">31</td><td>售后助理（中文）</td><td>Gree 格力越南<br><small style="color:#95a5a6">格力电器</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-bao-hanh-tieng-trung/2095879.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">32</td><td>销售助理（中文）</td><td>Gree 格力越南<br><small style="color:#95a5a6">格力电器</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/1398992.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">33</td><td>仓库男职员（中文）</td><td>Joyoung 九阳越南<br><small style="color:#95a5a6">九阳股份</small></td><td>面议</td><td><span class="lang-badge lang-required">基础中文</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nam-nhan-vien-kho-biet-tieng-trung-co-ban/1923173.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">34</td><td>平台运营助理（中文）</td><td>Joyoung 九阳越南<br><small style="color:#95a5a6">九阳股份</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-van-hanh-san-biet-tieng-trungduoc-dao-tao/1929851.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">35</td><td>总经理助理（中文）</td><td>vivo Vietnam<br><small style="color:#95a5a6">vivo 维沃</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-official">官网</span></td><td><a href="https://www.vivosmartphone.vn/tuyen-dung.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">36</td><td>中文前台</td><td>vivo Vietnam<br><small style="color:#95a5a6">vivo 维沃</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394448348" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">37</td><td>中文翻译（3 年经验）</td><td>PowerChina 中国电建越南<br><small style="color:#95a5a6">中国电建</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-3-nam-kinh-nghiem-phong-van-di-lam-ngay/1826074.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">38</td><td>卡车配件销售（中文）</td><td>Foton 北汽福田越南<br><small style="color:#95a5a6">北汽福田</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/kinh-doanh-phu-tung-biet-tieng-trung-xe-tai/2058272.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">39</td><td>中文翻译</td><td>Techtronic Products 越南<br><small style="color:#95a5a6">TTI 创科实业</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/bien-phien-dich-tieng-trung-tai-ho-chi-minh-thu-nhap-hap-dan/1490421.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">40</td><td>总裁行政助理（中文流利）</td><td>Itechwx 文思海辉<br><small style="color:#95a5a6">文思海辉</small></td><td>至 28M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/executive-assistant-to-president-chinese-fluency-up-to-28mil/2065886.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">41</td><td>ECAT(PCBA) 供应商质量工程师</td><td>Lenovo 联想<br><small style="color:#95a5a6">联想集团</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 Mandarin</span></td><td><span class="channel-badge channel-multi">多源</span> <small>Indeed+LinkedIn</small></td><td><a href="https://vn.indeed.com/viewjob?jk=5cfdaa588dc53dad" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">42</td><td>五金销售（中文优先）</td><td>Kin Long 坚朗越南<br><small style="color:#95a5a6">坚朗五金</small></td><td>8-10M+提成</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nam-luong-cung-8-10-trieu-hoa-hong-ko-gioi-han-uu-tien-biet-tieng-trung-sales-tu-van-ban-hang-noi-that/2090927.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">43</td><td>中文人事主管</td><td>BYD Oway Auto 比亚迪<br><small style="color:#95a5a6">比亚迪</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4389898059" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">44</td><td>人力资源经理</td><td>Bodor Laser 邦德激光<br><small style="color:#95a5a6">Bodor</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4382955471" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">45</td><td>应收会计</td><td>COLORKEY 越南<br><small style="color:#95a5a6">珂拉琪</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4390415127" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">46</td><td>关务专员</td><td>Midea 美的越南<br><small style="color:#95a5a6">美的集团</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4383533330" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">47</td><td>销售/业务助理</td><td>SHANGHAI WEIXING 上海伟星 SAB<br><small style="color:#95a5a6">伟星新材</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394249701" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">48</td><td>B2B 客户开发（中/英）</td><td>Hongkong Xiqi International<br><small style="color:#95a5a6">香港中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392863111" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">49</td><td>工业产品销售</td><td>Hongkong Xiqi International<br><small style="color:#95a5a6">香港中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4397518400" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">50</td><td>服装采购专员</td><td>JUBIN FASHION<br><small style="color:#95a5a6">中资服装</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4391671021" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">51</td><td>文员（中文）</td><td>JUNMEI Fashion 越南<br><small style="color:#95a5a6">中资服装</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392194580" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">52</td><td>VP 行政助理</td><td>Nam Rong Industrial 南荣<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4393836413" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">53</td><td>化妆品中文翻译</td><td>Wanyi 万艺越南<br><small style="color:#95a5a6">万艺</small></td><td>14M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-nganh-my-pham-thu-nhap-14-trieu-lam-viec-tai-quan-2/2065247.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">54</td><td>商务谈判（中文）</td><td>Yaguan Biotech 雅冠<br><small style="color:#95a5a6">雅冠</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-dam-phan-biet-tieng-trung/2095381.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">55</td><td>中文店务助理</td><td>Hai Di Lao 海底捞 HCM<br><small style="color:#95a5a6">海底捞</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2059785.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">56</td><td>人事实习生（中文）</td><td>Hai Di Lao 海底捞 HCM<br><small style="color:#95a5a6">海底捞</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/thuc-tap-sinh-nhan-su-yeu-cau-biet-tieng-trung/1528086.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">57</td><td>电动车实习生（中文）</td><td>WCAR 电动车<br><small style="color:#95a5a6">中资 EV</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-multi">多源</span> <small>TopCV+Indeed</small></td><td><a href="https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung-internship/2085317.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">58</td><td>仓库主管（中文）</td><td>Kin Long 坚朗越南<br><small style="color:#95a5a6">坚朗五金</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=ca28edaaa52d81d3" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">59</td><td>会计实习生（HCM）</td><td>OPPO 越南<br><small style="color:#95a5a6">OPPO 广东</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=6e1b6ed19834ee27" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">60</td><td>Call Center 中文客服</td><td>OPPO 越南<br><small style="color:#95a5a6">OPPO 广东</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=f56e1e66d3e70e76" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">61</td><td>CEO 助理</td><td>OPPO<br><small style="color:#95a5a6">OPPO 广东</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=b38a37d77b65b7a0" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">62</td><td>渠道分销专员（中文）</td><td>DABBSON 达布森<br><small style="color:#95a5a6">达布森</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=ae6b01644336d228" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">63</td><td>设备与制造工艺工程师（中文）</td><td>MOTINOVA 越南<br><small style="color:#95a5a6">沐振科技</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=359069e4e9625a41" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">64</td><td>维修与产线改善工程师（中文）</td><td>MOTINOVA 越南<br><small style="color:#95a5a6">沐振科技</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-indeed">Indeed</span></td><td><a href="https://vn.indeed.com/viewjob?jk=4600cc3c62cbada9" target="_blank">查看 →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== 3.3 物流/贸易/跨境 ==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible">
-      3.3 物流 / 贸易 / 跨境（39 个岗位）
-      <span class="toggle-arrow">▼</span>
-    </div>
-    <div class="section-content">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:30px">#</th>
-              <th>职位</th>
-              <th>公司</th>
-              <th>薪资</th>
-              <th>中文要求</th>
-              <th>来源</th>
-              <th>原帖</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-cell">65</td><td>业务助理（中文）</td><td>Chainvalue 象屿越南<br><small style="color:#95a5a6">厦门象屿</small></td><td>30-50M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-multi">多源</span> <small>TopCV+VW</small></td><td><a href="https://www.vietnamworks.com/tro-ly-kinh-doanh-thanh-thao-tieng-trung-2034950-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">66</td><td>进出口单证员（中文）</td><td>Chainvalue 象屿越南<br><small style="color:#95a5a6">厦门象屿</small></td><td>12-16M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">67</td><td>物流客服（中文）</td><td>Chainvalue 象屿越南<br><small style="color:#95a5a6">厦门象屿</small></td><td>12-18M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-multi">多源</span> <small>VW+LinkedIn</small></td><td><a href="https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">68</td><td>总经理助理（中文）</td><td>Best Logistics 百世越南<br><small style="color:#95a5a6">百世物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/tro-ly-tong-giam-djoc-tieng-trung-2032639-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">69</td><td>物流销售（中文）</td><td>Linktrans Logistics 联运越南<br><small style="color:#95a5a6">联运物流</small></td><td>至 18M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/logistics-sales-executive-nhan-vien-kinh-doanh-logistics-tieng-trung-giao-tiep-tot-luong-up-to-18-trieu-tp-hcm/2102781.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">70</td><td>行政人事专员（中文）</td><td>Linktrans Logistics 联运越南<br><small style="color:#95a5a6">联运物流</small></td><td>至 20M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-giao-tiep-tot-tieng-trung-luong-up-to-20-trieu-tp-hcm/2094907.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">71</td><td>物流客服（HSK5）</td><td>ADP Loxson Logistics 越南<br><small style="color:#95a5a6">中资 forwarder</small></td><td>12-16M</td><td><span class="lang-badge lang-required">必须 HSK5</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-cskh-nganh-logistics-tieng-trung-hsk5-tro-len-luong-12-16-trieu-quan-binh-thanh-tphcm/2105464.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">72</td><td>物流客服（中文）</td><td>ADP Loxson Logistics 越南<br><small style="color:#95a5a6">中资 forwarder</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-co-kinh-nghiem/1486637.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">73</td><td>内账会计（中文）</td><td>Soondone 顺东物流 越南<br><small style="color:#95a5a6">顺东物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/1914954.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">74</td><td>物流客服（中文）</td><td>Haistong 海桐供应链<br><small style="color:#95a5a6">海桐</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/customer-service-logistic-tieng-trung/1988963.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">75</td><td>操作部主管（中文）</td><td>Columbus Freight<br><small style="color:#95a5a6">中资 forwarder</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/truong-phong-thao-tac-tieng-trung/2091375.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">76</td><td>操作员（中文）</td><td>Columbus Freight<br><small style="color:#95a5a6">中资 forwarder</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-thao-tac-tieng-trung/2086334.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">77</td><td>总经理助理（中文）</td><td>Yunyi 云驿运输 越南<br><small style="color:#95a5a6">云驿物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-li-tong-giam-doc-thanh-thao-tieng-trung/1716361.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">78</td><td>运营助理（中文）</td><td>Yunyi 云驿运输 越南<br><small style="color:#95a5a6">云驿物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-van-hanh-tieng-trung/1781696.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">79</td><td>文员（中文）</td><td>Yunyi 云驿运输 越南<br><small style="color:#95a5a6">云驿物流</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-van-thu-biet-tieng-trung/1678929.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">80</td><td>总经理助理（中文）</td><td>Bode SCM Group 博德供应链<br><small style="color:#95a5a6">中资 logistics</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-giam-doc-biet-tieng-trung-nhan-viec-ngay/2071704.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">81</td><td>中文翻译（百货）</td><td>Wandefu 万德福<br><small style="color:#95a5a6">万德福</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/phien-dich-tieng-trung/2075752.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">82</td><td>中文翻译</td><td>Xu Xiaoying 越南<br><small style="color:#95a5a6">徐晓莹</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/phien-dich-tieng-trung/2074223.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">83</td><td>销售助理（中文）</td><td>Jia Xiang 嘉祥<br><small style="color:#95a5a6">嘉祥</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/sales-admin-biet-tieng-trung/2095204.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">84</td><td>内账会计（中文）</td><td>Guicuihui 桂翠惠 越南<br><small style="color:#95a5a6">桂翠惠</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-noi-bo-biet-tieng-trung/2096232.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">85</td><td>会计（中文）</td><td>Xwill 越南供应链<br><small style="color:#95a5a6">中资 SCM</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tieng-trung/1383093.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">86</td><td>内账会计（中文）</td><td>Kesai EAGrow 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/2097248.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">87</td><td>翻译助理</td><td>Tinh Liên 心连 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-phien-dich/1946694.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">88</td><td>客服专员（中文）</td><td>Tinh Liên 心连 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung/1977893.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">89</td><td>项目专员（中文）</td><td>Tinh Liên 心连 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/project-executive-tieng-trung/2066088.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">90</td><td>中文文员（无经验）</td><td>Tinh Liên 心连 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-tieng-trung-khong-yeu-cau-kinh-nghiem/2016467.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">91</td><td>翻译助理（HSK5）</td><td>Zheng Da 正大越南<br><small style="color:#95a5a6">正大集团</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 HSK5</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-phien-dich-tieng-trung-hsk5/1884727.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">92</td><td>中文客服</td><td>ShanhaiMap 山海图 越南<br><small style="color:#95a5a6">山海图</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-lam-viec-tu-thu-2-den-thu-6/2106638.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">93</td><td>总账会计（中文）</td><td>Datong 大同 越南<br><small style="color:#95a5a6">大同</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/chuyen-vien-ke-toan-tong-hop-tieng-trung/2091730.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">94</td><td>总经理助理（中文）</td><td>China Equipment Group 越南<br><small style="color:#95a5a6">中字命名</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-tieng-trung/1587208.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">95</td><td>行政人事专员（中文）</td><td>China Equipment Group 越南<br><small style="color:#95a5a6">中字命名</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/chuyen-vien-hcns-tieng-trung/1860926.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">96</td><td>人事助理（中文）</td><td>Engu Technology 恩谷 越南<br><small style="color:#95a5a6">恩谷</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-hcns-biet-tieng-trung/1999466.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">97</td><td>中文助理</td><td>XDS Technology 越南<br><small style="color:#95a5a6">中资</small></td><td>10-20M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-giao-tiep-luu-loat-khong-yeu-cau-kinh-nghiem-thu-nhap-10-20-trieu/1979323.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">98</td><td>中文女客服</td><td>Asia Link Trading 亚联<br><small style="color:#95a5a6">亚联</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-tieng-trung-nu/2102291.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">99</td><td>中文助理</td><td>Truyền Thông Xiyi 西意<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2026705.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">100</td><td>助理兼翻译（中文）</td><td>Iaber Investment<br><small style="color:#95a5a6">中资</small></td><td>至 38M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/tro-ly-kiem-phien-dich-vien-tieng-trung-nu-luong-upto-38-trieu/2097341.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">101</td><td>2026 管培生</td><td>KLN Logistics 嘉里物流<br><small style="color:#95a5a6">嘉里</small></td><td>面议</td><td><span class="lang-badge lang-required">必须 Mandarin</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394471155" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">102</td><td>物流市场专员</td><td>EverLog Everest Logistics<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394234200" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">103</td><td>中文采购专员</td><td>Headhunter Page（代招）<br><small style="color:#95a5a6">—</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394445338" target="_blank">查看 →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== 3.4 金融/地产/银行/IT服务 ==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible">
-      3.4 金融 / 银行 / IT 服务（12 个岗位）
-      <span class="toggle-arrow">▼</span>
-    </div>
-    <div class="section-content">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:30px">#</th>
-              <th>职位</th>
-              <th>公司</th>
-              <th>薪资</th>
-              <th>中文要求</th>
-              <th>来源</th>
-              <th>原帖</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-cell">104</td><td>关系经理 Relationship Manager</td><td>中国建设银行 HCMC<br><small style="color:#95a5a6">中国建设银行</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/relationship-manager-2024931-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">105</td><td>营销专员</td><td>Bank of China (HK) HCM<br><small style="color:#95a5a6">中国银行</small></td><td>面议</td><td><span class="lang-badge lang-preferred">优先</span></td><td><span class="channel-badge channel-official">官网</span></td><td><a href="https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">106</td><td>风险管理专员</td><td>Bank of China (HK) HCM<br><small style="color:#95a5a6">中国银行</small></td><td>面议</td><td><span class="lang-badge lang-preferred">优先</span></td><td><span class="channel-badge channel-official">官网</span></td><td><a href="https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">107</td><td>财务会计专员</td><td>Bank of China (HK) HCM<br><small style="color:#95a5a6">中国银行</small></td><td>面议</td><td><span class="lang-badge lang-preferred">优先</span></td><td><span class="channel-badge channel-official">官网</span></td><td><a href="https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">108</td><td>交易处理员</td><td>Bank of China (HK) HCM<br><small style="color:#95a5a6">中国银行</small></td><td>面议</td><td><span class="lang-badge lang-preferred">优先</span></td><td><span class="channel-badge channel-official">官网</span></td><td><a href="https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">109</td><td>薪酬福利专员 C&B（中文）</td><td>Horizon 远东宏信 越南<br><small style="color:#95a5a6">远东宏信</small></td><td>$1,000+/月</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/chuyen-vien-candb-thanh-thao-tieng-trung-2034931-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">110</td><td>税务会计</td><td>Horizon 远东宏信 越南<br><small style="color:#95a5a6">远东宏信</small></td><td>至 30M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/ke-toan-thue-giao-tiep-tot-tieng-anh-hoac-tieng-hoa-luong-upto-30-million-2028598-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">111</td><td>设备销售总监（中文）</td><td>Horizon 远东宏信 越南<br><small style="color:#95a5a6">远东宏信</small></td><td>至 $2,000/月</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/giam-djoc-kinh-doanh-thiet-bi-tieng-trung-2021219-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">112</td><td>业务支持总监（中文，河内）</td><td>Horizon 远东宏信<br><small style="color:#95a5a6">远东宏信</small></td><td>至 50M</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-vw">VW</span></td><td><a href="https://www.vietnamworks.com/giam-doc-ho-tro-kinh-doanh-tieng-trung-2014054-jv" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">113</td><td>客服专员（中文）</td><td>Yonyou Network 用友越南<br><small style="color:#95a5a6">用友网络</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung/2100211.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">114</td><td>ERP 软件咨询顾问（中文）</td><td>Yonyou Network 用友越南<br><small style="color:#95a5a6">用友网络</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-multi">多源</span> <small>TopCV+LinkedIn</small></td><td><a href="https://www.topcv.vn/viec-lam/chuyen-vien-tu-van-phan-mem-erp-tieng-trung/1535301.html" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">115</td><td>中文实习生</td><td>Yonyou Network 用友越南<br><small style="color:#95a5a6">用友网络</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-topcv">TopCV</span></td><td><a href="https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung/2106148.html" target="_blank">查看 →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== 3.5 其他（行政/文职/翻译）==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible">
-      3.5 其他（行政 / 文职 / 翻译）（9 个岗位）
-      <span class="toggle-arrow">▼</span>
-    </div>
-    <div class="section-content">
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:30px">#</th>
-              <th>职位</th>
-              <th>公司</th>
-              <th>薪资</th>
-              <th>中文要求</th>
-              <th>来源</th>
-              <th>原帖</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num-cell">116</td><td>中文助理</td><td>SMD GROUP 越南<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4389519953" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">117</td><td>中文助理</td><td>Cove Creative<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4388668639" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">118</td><td>中文会计</td><td>Marvel Media<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/2738136728" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">119</td><td>中文助理（郡 10）</td><td>EMPOWER SC<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4394334605" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">120</td><td>中文翻译</td><td>Theodore Alexander HCM<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392859383" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">121</td><td>中文行政前台</td><td>NHUẬN TÍN<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392817285" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">122</td><td>中文行政文员</td><td>JCP Corporate Services<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4393406774" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">123</td><td>中文销售执行</td><td>SCC Investment<br><small style="color:#95a5a6">中资</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392183285" target="_blank">查看 →</a></td>
-            </tr>
-            <tr>
-              <td class="num-cell">124</td><td>CHOHO 销售经理</td><td>CHOHO Industrial 超猴工业链条<br><small style="color:#95a5a6">CHOHO</small></td><td>面议</td><td><span class="lang-badge lang-required">必须</span></td><td><span class="channel-badge channel-linkedin">LinkedIn</span></td><td><a href="https://vn.linkedin.com/jobs/view/4392341705" target="_blank">查看 →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="note-box">
-    <p><strong>说明：</strong>本轮为 6 渠道全量重抓，跨渠道去重后共 124 条。标注 <span class="channel-badge channel-multi">多源</span> 的岗位在多个渠道同时出现。</p>
-    <p>绝大多数岗位未标注截止日期；招聘平台帖子到期后自动下线但<strong>不代表职位已招满</strong>——企业可随时续期。建议访问原帖确认是否仍在招聘。</p>
-  </div>
-
-  <!-- ==================== 渠道执行情况（默认折叠）==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible">
-      渠道执行情况
+      渠道抓取状态摘要
       <span class="toggle-arrow">▶</span>
     </div>
     <div class="section-content" style="display:none">
@@ -699,47 +154,17 @@
             <tr>
               <th>渠道</th>
               <th>状态</th>
-              <th>有效岗位数</th>
+              <th>原始岗位数</th>
               <th>备注</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>A. TopCV (topcv.vn)</td>
-              <td>✅ 成功</td>
-              <td><strong>62</strong></td>
-              <td>Playwright 11 页全量，521 原始/480 去重；人工翻查前 300 条补全</td>
-            </tr>
-            <tr>
-              <td>B. VietnamWorks</td>
-              <td>✅ 成功</td>
-              <td><strong>9</strong></td>
-              <td>7 家公司页直查 + 9 个 -jv 单独确认</td>
-            </tr>
-            <tr>
-              <td>C. Indeed Vietnam</td>
-              <td>✅ 成功（session 重做）</td>
-              <td><strong>8</strong></td>
-              <td>重新登录后 20 页 × 2 关键词，新增 7 条 Indeed 独有岗位</td>
-            </tr>
-            <tr>
-              <td>D. 中越人才网 (vietong.cn)</td>
-              <td>❌ 失败</td>
-              <td><strong>0</strong></td>
-              <td>连续第 5 天显示"网站升级中"，0 数据</td>
-            </tr>
-            <tr>
-              <td>E. 中资企业官方招聘页</td>
-              <td>✅ 成功</td>
-              <td><strong>5</strong></td>
-              <td>vivo 1 + Bank of China (HK) 4；TCL 5 岗均无中文要求</td>
-            </tr>
-            <tr>
-              <td>F. LinkedIn (vn.linkedin.com)</td>
-              <td>✅ 成功</td>
-              <td><strong>42</strong></td>
-              <td><strong>最大增量来源</strong>：三关键词 86 去重 / 20+ 确认中资</td>
-            </tr>
+            <tr><td>TopCV (topcv.vn)</td><td>✅ 成功</td><td><strong>约 495</strong></td><td>越南本地最主流的中文岗位渠道，覆盖最完整</td></tr>
+            <tr><td>Indeed Vietnam</td><td>✅ 成功</td><td><strong>约 323</strong></td><td>与 TopCV 重叠较高，少量独家岗位</td></tr>
+            <tr><td>LinkedIn</td><td>✅ 成功</td><td><strong>139</strong></td><td>三关键词去重，中高端岗位居多</td></tr>
+            <tr><td>VietnamWorks</td><td>✅ 成功</td><td><strong>25</strong></td><td>大型已知中资企业公司页直查</td></tr>
+            <tr><td>企业官方招聘页</td><td>✅ 部分成功</td><td><strong>18</strong></td><td>vivo / Bank of China HCM / TCL</td></tr>
+            <tr><td>中越人才网 (vietong.cn)</td><td>❌ 暂不可用</td><td><strong>0</strong></td><td>网站持续显示"升级中"</td></tr>
           </tbody>
         </table>
       </div>
@@ -755,54 +180,44 @@
     <div class="section-content" style="display:none">
 
       <div class="analysis-card">
-        <h3>行业分布</h3>
+        <h3>按渠道贡献分布</h3>
         <table class="analysis-table">
-          <thead><tr><th>行业</th><th>岗位数</th><th>代表企业</th></tr></thead>
+          <thead><tr><th>渠道</th><th>贡献岗位数</th><th>备注</th></tr></thead>
           <tbody>
-            <tr><td><span class="sector-badge sector-tech">电商/互联网/内容</span></td><td><strong>29</strong></td><td>京东×3、阿里×2、字节×1、蓝色光标×2、分众×3、OPPO×2、51Talk、PingPong、TP-Link</td></tr>
-            <tr><td><span class="sector-badge sector-trade">制造/消费品/工业</span></td><td><strong>35</strong></td><td>OPPO×3、格力×3、九阳×2、vivo×2、联想、比亚迪、美的、坚朗×2、海底捞×2</td></tr>
-            <tr><td><span class="sector-badge sector-logistics">物流/贸易/跨境</span></td><td><strong>39</strong></td><td>象屿×3、百世、联运×2、云驿×3、心连×4、嘉里物流</td></tr>
-            <tr><td><span class="sector-badge sector-finance">金融/银行/IT服务</span></td><td><strong>12</strong></td><td>建设银行、中国银行×4、远东宏信×4、用友×3</td></tr>
-            <tr><td><span class="sector-badge sector-other">其他（行政/文职）</span></td><td><strong>9</strong></td><td>SMD、CHOHO、JCP 等 LinkedIn 发现的中小中资</td></tr>
+            <tr><td>TopCV</td><td><strong>约 130</strong></td><td>本地求职市场最主要的中文岗位入口</td></tr>
+            <tr><td>Indeed Vietnam</td><td><strong>约 31</strong></td><td>与 TopCV 高度重叠，少量独家岗位</td></tr>
+            <tr><td>LinkedIn</td><td><strong>28</strong></td><td>中高端岗位为主，含 OPPO/vivo/字节/京东/阿里等</td></tr>
+            <tr><td>企业官方招聘页</td><td><strong>16</strong></td><td>vivo / Bank of China HCM / TCL 三家完整列表</td></tr>
+            <tr><td>VietnamWorks</td><td><strong>10</strong></td><td>大型已知中资（华为 / 远东宏信 / 百世 / 建设银行等）</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="analysis-card">
-        <h3>薪资分布</h3>
+        <h3>按行业大类分布</h3>
         <table class="analysis-table">
-          <thead><tr><th>薪资区间</th><th>岗位数</th><th>典型岗位</th></tr></thead>
+          <thead><tr><th>行业大类</th><th>在招企业数</th><th>岗位数（估算）</th></tr></thead>
           <tbody>
-            <tr><td>面议（未披露）</td><td><strong>~105</strong></td><td>LinkedIn 渠道几乎全部面议；多数 TopCV 岗位亦未披露</td></tr>
-            <tr><td>8-16M VND</td><td><strong>~6</strong></td><td>坚朗五金销售 8-10M、象屿单证员 12-16M、ADP Loxson 12-16M、万艺翻译 14M</td></tr>
-            <tr><td>18-30M VND</td><td><strong>~5</strong></td><td>联运物流 18-20M、文思海辉 至 28M、远东宏信税务 至 30M、51Talk 30.5M</td></tr>
-            <tr><td>30-50M VND</td><td><strong>~3</strong></td><td>象屿业务助理 30-50M、Iaber 至 38M、远东宏信业务总监 至 50M</td></tr>
-            <tr><td>&gt;$1,000 USD/月</td><td><strong>2</strong></td><td>远东宏信 C&B $1,000+、设备销售总监 $2,000</td></tr>
-            <tr><td>特殊（宽幅）</td><td><strong>1</strong></td><td>Panda Agency 直播 15-100M（含提成）</td></tr>
+            <tr><td>跨境电商 / TikTok 直播代播 / 数字营销</td><td>约 25</td><td><strong>约 75</strong></td></tr>
+            <tr><td>物流货代 / 仓储 / 供应链</td><td>约 18</td><td><strong>约 50</strong></td></tr>
+            <tr><td>消费电子 / 家电 / 智能硬件</td><td>约 12</td><td><strong>约 28</strong></td></tr>
+            <tr><td>制造业（机电 / 纺织 / 美妆生产）</td><td>约 10</td><td><strong>约 23</strong></td></tr>
+            <tr><td>互联网 / 软件 / 云服务</td><td>约 8</td><td><strong>约 18</strong></td></tr>
+            <tr><td>银行 / 金融 / 资管</td><td>约 5</td><td><strong>约 12</strong></td></tr>
+            <tr><td>餐饮 / 酒店 / 服务业</td><td>约 4</td><td><strong>约 8</strong></td></tr>
+            <tr><td>其他（贸易 / 旅游 / 工程 / 培训咨询等）</td><td>约 7</td><td><strong>约 8</strong></td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="analysis-card">
-        <h3>语言要求分布</h3>
+        <h3>中资身份筛选摘要</h3>
         <table class="analysis-table">
-          <thead><tr><th>强度</th><th>岗位数</th><th>描述</th></tr></thead>
+          <thead><tr><th>项目</th><th>数值</th></tr></thead>
           <tbody>
-            <tr><td><span class="lang-badge lang-required">强制必须</span></td><td><strong>120</strong></td><td>明确要求中文/Mandarin/HSK，涵盖绝大多数岗位</td></tr>
-            <tr><td><span class="lang-badge lang-preferred">中文优先</span></td><td><strong>4</strong></td><td>中国银行 (HK) HCM 4 个岗位标注"中文（优先）"</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="analysis-card">
-        <h3>五轮调研对比</h3>
-        <table class="analysis-table">
-          <thead><tr><th>指标</th><th>第1轮 04-04</th><th>第2轮 04-05</th><th>第3轮 04-06</th><th>第4轮 04-06 16:00</th><th>第5轮 04-06 17:00</th></tr></thead>
-          <tbody>
-            <tr><td>活跃岗位总数</td><td>9</td><td>23</td><td>43</td><td>88</td><td><strong>124</strong></td></tr>
-            <tr><td>确认中资企业数</td><td>5</td><td>11</td><td>25</td><td>50</td><td><strong>~73</strong></td></tr>
-            <tr><td>渠道成功数</td><td>1</td><td>2</td><td>4</td><td>5/6</td><td><strong>5/6</strong></td></tr>
-            <tr><td>新增来源</td><td>VW 人工</td><td>+TopCV 脚本</td><td>+LinkedIn+Indeed</td><td>全量重抓</td><td><strong>TopCV 人工翻查+Indeed 重登</strong></td></tr>
+            <tr><td>进入候选池的全部企业</td><td><strong>约 250 家</strong></td></tr>
+            <tr><td>通过身份核实的中资企业（仅 HCM 在招）</td><td><strong>约 89 家</strong></td></tr>
+            <tr><td>剔除（非中资 / 非 HCM / 中文培训机构 / 旅行社等误命中）</td><td><strong>约 161 家</strong></td></tr>
           </tbody>
         </table>
       </div>
@@ -810,47 +225,15 @@
       <div class="analysis-card">
         <h3>主要结论</h3>
         <ul class="conclusion-list">
-          <li><strong>TopCV 人工翻查是关键突破：</strong>脚本自动仅识别 27 条，人工翻查全量前 300 条后召回率从 ~44% 提升到 62 条，成为单渠道最大贡献者。</li>
-          <li><strong>LinkedIn 持续贡献最多确认中资企业：</strong>三关键词（Chinese/tiếng Trung/Mandarin）合计 86 条 HCM 岗位，命中 42 条中资中文岗位，覆盖京东、阿里、字节、蓝色光标等头部互联网公司。</li>
-          <li><strong>VietnamWorks Horizon 公司页是高薪岗位主要来源：</strong>远东宏信 4 个岗位含 2 个总监级（$2,000/月），持续是 $1,000+ USD/月 薪资段的核心渠道。</li>
-          <li><strong>Indeed session 重做后新增 7 条独有岗位：</strong>包括坚朗仓库主管、OPPO×3、达布森、沐振科技×2，均未在其他渠道出现。</li>
-          <li><strong>物流/贸易/跨境是岗位数量最大的行业：</strong>39 个岗位，以中小物流企业（象屿、云驿、心连、博德等）为主，多为总经理助理/翻译/会计等中后台岗位。</li>
-          <li><strong>中越人才网连续第 5 天失效：</strong>全站占位"网站升级中"，不影响整体数据覆盖，但需持续关注。</li>
+          <li><strong>TopCV 是中文岗位最大来源：</strong>约 130 个有效岗位，覆盖最完整。Playwright 全量抓取后人工翻查补全，是单渠道最大贡献者。</li>
+          <li><strong>LinkedIn 持续贡献中高端中资企业：</strong>三关键词（Chinese/tiếng Trung/Mandarin）覆盖京东、阿里、字节、蓝色光标、比亚迪等头部公司。</li>
+          <li><strong>跨境电商/直播代播是最大行业板块：</strong>约 75 个岗位，以 NEXTAD STUDIO（12 岗位）、智能网络、Lanbena、Focallure 等深圳系为代表。</li>
+          <li><strong>物流货代紧随其后：</strong>约 50 个岗位，Daya（5 岗位）、Yunyi（5 岗位）、J&T Cargo（3 岗位）等中小物流企业为主。</li>
+          <li><strong>企业官方招聘页补充 vivo/中银/TCL：</strong>vivo 8 个岗位、Bank of China HCM 4 个、TCL 4 个，均无法通过 TopCV/Indeed 发现。</li>
+          <li><strong>中越人才网持续失效：</strong>全站"网站升级中"，不影响整体数据覆盖。</li>
         </ul>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ==================== 本轮排除的边界条目（默认折叠）==================== -->
-  <div class="collapsible-section">
-    <div class="section-title collapsible">
-      本轮排除的边界条目
-      <span class="toggle-arrow">▶</span>
-    </div>
-    <div class="section-content" style="display:none">
-      <div class="note-box" style="margin-bottom:16px">
-        <p>以下条目因不符合"中国大陆/香港中资 + 岗位明确要求中文"的双重筛选条件而<strong>不计入汇总表</strong>。</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>类别</th>
-              <th>详情</th>
-              <th>排除原因</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>台资企业</strong>（~14 岗位）</td><td>Foxlink、Cathay Insurance、Everlight Chemicals、K Laser、Tsung Wei、Lạc Tỷ、Shinih、Yung Chang、Tai Nan、Phú Hưng</td><td>按"中国大陆/香港中资"严格定义不计入</td></tr>
-            <tr><td><strong>非中资有中文岗</strong></td><td>Greentours、Viettourist、Hai Vân Cát、King Car、Master Panda、Bosch Global Software（德资）等</td><td>越南本地或第三国企业，非中资</td></tr>
-            <tr><td><strong>Indeed 未确认</strong>（5 条）</td><td>Vinex 主席助理、Freser、LESTARS、Automation Service Engineer、FindTalent's Clients</td><td>疑似中资但未跨渠道核实</td></tr>
-            <tr><td><strong>华为越南</strong>（7 岗位）</td><td>7 个公司页岗位均无明确中文要求</td><td>中资确认，但 JD 不含中文要求</td></tr>
-            <tr><td><strong>TCL 越南</strong>（5 岗位）</td><td>当前 5 岗均无中文要求</td><td>同上</td></tr>
-            <tr><td><strong>Xiaomi 小米</strong></td><td>TopCV 公司页 JS 渲染失败</td><td>状态未确认，建议下轮用 Playwright</td></tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 
@@ -858,11 +241,70 @@
 
 <!-- 页脚 -->
 <div class="footer">
-  <div>数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网 ｜ 调研时间：2026-04-06 17:00</div>
-  <div style="margin-top:6px; opacity:0.7">岗位具有时效性，建议访问原帖前核实是否仍在招聘 ｜ 第五轮（6 渠道全量重抓）</div>
+  <div>数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网 ｜ 调研时间：2026-04-07</div>
+  <div style="margin-top:6px; opacity:0.7">岗位具有时效性，建议访问原帖前核实是否仍在招聘 ｜ 第六轮（6 渠道全量）</div>
 </div>
 
+<script src="jobs_data.js"></script>
 <script>
+(function() {
+  // 渠道 → CSS class 映射
+  var channelMap = {
+    'TopCV': 'topcv', 'Indeed': 'indeed', 'LinkedIn': 'linkedin',
+    'VW': 'vw', '官网': 'official'
+  };
+
+  function getChannelBadge(ch) {
+    // 多渠道（含 + 号）
+    if (ch.indexOf('+') !== -1) {
+      return '<span class="channel-badge channel-multi">' + ch + '</span>';
+    }
+    var cls = channelMap[ch] || 'official';
+    return '<span class="channel-badge channel-' + cls + '">' + ch + '</span>';
+  }
+
+  // 渲染统计栏
+  var allJobs = [];
+  var companySet = {};
+  var channelSet = {};
+  JOBS_DATA.sections.forEach(function(s) {
+    s.jobs.forEach(function(j) {
+      allJobs.push(j);
+      companySet[j.company] = 1;
+      // 解析渠道
+      j.channel.split('+').forEach(function(c) { channelSet[c.trim()] = 1; });
+    });
+  });
+  document.getElementById('stat-total').textContent = allJobs.length;
+  document.getElementById('stat-companies').textContent = '~' + Object.keys(companySet).length;
+  document.getElementById('stat-sections').textContent = JOBS_DATA.sections.length;
+  document.getElementById('stat-channels').textContent = Object.keys(channelSet).length;
+
+  // 渲染岗位 section
+  var container = document.getElementById('job-sections');
+  JOBS_DATA.sections.forEach(function(section, si) {
+    var html = '<div class="collapsible-section">';
+    html += '<div class="section-title collapsible" style="' + (si === 0 ? 'margin-top:20px' : '') + '">';
+    html += (si + 1) + '. ' + section.title + '（' + section.jobs.length + ' 个岗位）';
+    html += '<span class="toggle-arrow">▼</span></div>';
+    html += '<div class="section-content"><div class="table-wrap"><table>';
+    html += '<thead><tr><th style="width:30px">#</th><th>职位</th><th>公司</th><th>地点</th><th>来源</th><th>原帖</th></tr></thead>';
+    html += '<tbody>';
+    section.jobs.forEach(function(job, ji) {
+      html += '<tr>';
+      html += '<td class="num-cell">' + (ji + 1) + '</td>';
+      html += '<td>' + job.title + '</td>';
+      html += '<td>' + job.company + '</td>';
+      html += '<td>' + job.location + '</td>';
+      html += '<td>' + getChannelBadge(job.channel) + '</td>';
+      html += '<td><a href="' + job.url + '" target="_blank">查看 →</a></td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div></div></div>';
+    container.innerHTML += html;
+  });
+
+  // 折叠/展开功能
   document.querySelectorAll('.section-title.collapsible').forEach(function(title) {
     title.addEventListener('click', function() {
       var content = this.nextElementSibling;
@@ -872,6 +314,7 @@
       arrow.textContent = isOpen ? '▶' : '▼';
     });
   });
+})();
 </script>
 
 </body>
