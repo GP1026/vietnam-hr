@@ -27,11 +27,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **更新公司信息时**：先改 `.md`，再同步更新两个 HTML 和两份 `.kml`。
 
+### 岗位调研数据（数据驱动）
+
+| 文件 | 用途 | 更新方式 |
+|------|------|----------|
+| `jobs_data.js` | 岗位数据源（JS 数组，按 8 个行业分类） | 直接编辑，添加/删除 JSON 对象 |
+| `jobs.html` | 岗位可视化页面，从 `jobs_data.js` 动态渲染 | 一般无需修改，改数据即可 |
+
+**新增岗位时**：只需在 `jobs_data.js` 对应行业 section 中添加 `{ title, company, location, channel, url }` 对象，统计栏自动计算。
+
 ### 独立页面
 
 | 文件 | 用途 |
 |------|------|
-| `jobs.html` | 中资企业招聘中文岗位调研页 |
+| `jobs.html` | 中资企业招聘中文岗位调研页（数据驱动，读取 `jobs_data.js`） |
 | `candidates.html` | 越南中文人才获客系统 Demo 页 |
 
 `jobs.html` 和 `candidates.html` 有共享的页面导航栏（`.page-nav`），导航链接指向三个页面（`index.html`、`jobs.html`、`candidates.html`）。新增页面时需同步更新所有页面的导航栏。
