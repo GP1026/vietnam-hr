@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>河内 HR 招聘公司地图</name>
+    <description>越南河内主要HR/招聘公司位置，用于帮助中国企业招聘懂中文越南本地员工的调研。数据核实时间：2026年4月13日。共28家。</description>
+
+    <!-- 样式定义：蓝色 = 国际连锁，红色 = 越南本土 -->
+    <Style id="international">
+      <IconStyle>
+        <color>ffff5500</color>
+        <scale>1.2</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/ms/icons/blue-dot.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <color>ffff5500</color>
+      </LabelStyle>
+    </Style>
+
+    <Style id="local">
+      <IconStyle>
+        <color>ff0000ff</color>
+        <scale>1.2</scale>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/ms/icons/red-dot.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <color>ff0000ff</color>
+      </LabelStyle>
+    </Style>
+
+    <!-- ===== Ba Dinh District 巴亭郡 — 政务使馆区 ===== -->
+    <Folder>
+      <name>Ba Dinh District 巴亭郡 — 政务使馆区（5家）</name>
+
+      <Placemark>
+        <name>①② Prime Center【JAC + Adecco 同楼】</name>
+        <description><![CDATA[
+          <b>地址：</b>53 Quang Trung, Ba Dinh Ward, Hanoi<br/>
+          <hr/>
+          <b>— ① JAC Recruitment Vietnam  15/F —</b><br/>
+          类型：国际连锁（英国JAC Group）<br/>
+          电话：+84 24 3633 2115<br/>
+          邮箱：hanoi@jac-recruitment.vn<br/>
+          官网：<a href="https://www.jac-recruitment.vn">jac-recruitment.vn</a><br/>
+          特点：多语言人才（含中文岗位）专长<br/>
+          <br/>
+          <b>— ② Adecco Vietnam  7/F —</b><br/>
+          类型：国际连锁（瑞士Adecco Group）<br/>
+          电话：+84 24 3218 1190<br/>
+          邮箱：vn.info@adecco.com<br/>
+          官网：<a href="https://www.adecco.com/en-vn">adecco.com/en-vn</a><br/>
+          特点：综合HR服务，周一至周五 09:00-18:00<br/>
+          <hr/>
+          <b>💡 调研建议：</b>同一栋楼可一次拜访2家，效率最高！
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8425,21.0225,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>④⑫ Lotte Center Hanoi【PERSOLKELLY + First Alliances 同楼】</name>
+        <description><![CDATA[
+          <b>地址：</b>54 Lieu Giai, Ba Dinh District, Hanoi<br/>
+          <hr/>
+          <b>— ④ PERSOLKELLY Vietnam  10/F (West Tower) —</b><br/>
+          类型：国际连锁（日本PERSOL集团）<br/>
+          电话：+84 24 3538 1996<br/>
+          邮箱：info.vn@persolapac.com<br/>
+          官网：<a href="https://persolvietnam.com">persolvietnam.com</a><br/>
+          <br/>
+          <b>— ⑫ First Alliances  10/F —</b><br/>
+          类型：国际连锁（PERSOL亚太体系）<br/>
+          电话：+84 24 3538 1996<br/>
+          邮箱：hn@fa.net.vn<br/>
+          官网：<a href="https://www.fa.net.vn">fa.net.vn</a><br/>
+          <hr/>
+          <b>💡 调研建议：</b>同一栋楼可一次拜访2家！
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8131,21.0323,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑮ CareerLink Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（在线招聘平台+猎头）<br/>
+          <b>地址：</b>Rm 307, DMC Tower, 535 Kim Ma, Giang Vo Ward, Ba Dinh, Hanoi<br/>
+          <b>电话：</b>024 3519 0410<br/>
+          <b>邮箱：</b>contact@careerlink.vn<br/>
+          <b>官网：</b><a href="https://www.careerlink.vn">careerlink.vn</a><br/>
+          <b>特点：</b>综合招聘平台
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8100,21.0332,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑧ Faro Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（Faro Recruitment Group，17国80+办公室）<br/>
+          <b>地址：</b>Unit 701A, Tower A, Handi Resco Towers, 521 Kim Ma, Giang Vo Ward, Ba Dinh, Hanoi<br/>
+          <b>电话：</b>+84 24 3974 3091<br/>
+          <b>邮箱：</b>service@farovietnam.com.vn<br/>
+          <b>官网：</b><a href="https://www.farovietnam.com.vn">farovietnam.com.vn</a><br/>
+          <b>特点：</b>17年河内经营经验，中高端猎头（工程/IT/销售/金融/酒店）
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8095,21.0330,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Dong Da District 栋多郡 — 商务白领区 ===== -->
+    <Folder>
+      <name>Dong Da District 栋多郡 — 商务白领区（5家+同楼集群）</name>
+
+      <Placemark>
+        <name>⑦⑱ Viet Tower【HR2B + ICONIC 同楼】</name>
+        <description><![CDATA[
+          <b>地址：</b>1 Thai Ha Street, Dong Da District, Hanoi<br/>
+          <hr/>
+          <b>— ⑦ HR2B  4/F —</b><br/>
+          类型：越南本土（2003年成立，顶级本土猎头）<br/>
+          电话：+84 24 3736 6843<br/>
+          邮箱：contact@hr2b.com<br/>
+          官网：<a href="https://www.hr2b.com">hr2b.com</a><br/>
+          <br/>
+          <b>— ⑱ ICONIC Group  4/F —</b><br/>
+          类型：国际连锁（日本ICONIC Inc.）<br/>
+          电话：(84) 24 3248 4446<br/>
+          邮箱：contact@iconicjob.vn<br/>
+          官网：<a href="https://iconic-intl.com">iconic-intl.com</a><br/>
+          特点：专注日资企业招聘+HR咨询<br/>
+          <hr/>
+          <b>💡 调研建议：</b>同一栋楼可一次拜访2家！
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8225,21.0110,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>③ ManpowerGroup Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（美国ManpowerGroup）<br/>
+          <b>地址：</b>4/F, Thaisquare Caliria Building, 11A Cat Linh, O Cho Dua Ward, Dong Da, Hanoi<br/>
+          <b>电话：</b>+84 24 3974 4574<br/>
+          <b>邮箱：</b>inquiry@manpower.com.vn<br/>
+          <b>官网：</b><a href="https://www.manpower.com.vn">manpower.com.vn</a><br/>
+          <b>特点：</b>综合HR，白领+蓝领覆盖
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8285,21.0275,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑤ Talentnet Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（越南最大HR咨询公司，1995年成立）<br/>
+          <b>地址：</b>Unit 5, 5/F, Horison Tower, 40 Cat Linh Street, O Cho Dua Ward, Dong Da, Hanoi<br/>
+          <b>电话：</b>+84 24 3936 7618<br/>
+          <b>邮箱：</b>contact-hn@talentnetgroup.com<br/>
+          <b>官网：</b><a href="https://www.talentnetgroup.com">talentnetgroup.com</a><br/>
+          <b>特点：</b>Executive Search + 薪酬+员工调研，前身为PwC HR Services
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8290,21.0270,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑪ HR1Vietnam Holdings</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土顶级猎头（近200名顾问）<br/>
+          <b>地址：</b>5A Floor, 71-73 Hoang Cau Street, O Cho Dua Ward, Dong Da, Hanoi<br/>
+          <b>电话：</b>+84 28 3925 2566<br/>
+          <b>邮箱：</b>contact@hr1vietnam.com<br/>
+          <b>官网：</b><a href="https://hr1vietnam.com">hr1vietnam.com</a><br/>
+          <b>特点：</b>Executive Search 至专业岗位全链路
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8260,21.0190,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉒ Hitsuji Consulting Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（日资，100% 日本出资，2021年越南注册）<br/>
+          <b>地址：</b>5/F, Vuon Xuan Building, Nguyen Chi Thanh, Lang Ha Ward, Dong Da, Hanoi<br/>
+          <b>电话：</b>+84 24 7778 8968<br/>
+          <b>邮箱：</b>katherine@hitsuji-vn.com<br/>
+          <b>官网：</b><a href="https://hitsuji-vn.com">hitsuji-vn.com</a><br/>
+          <b>特点：</b>专注日系企业中高端职位
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8150,21.0180,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Hoan Kiem District 还剑郡 — 老城核心 ===== -->
+    <Folder>
+      <name>Hoan Kiem District 还剑郡 — 老城核心（4家）</name>
+
+      <Placemark>
+        <name>⑨ Pasona HR Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（日本Pasona Group）<br/>
+          <b>地址：</b>6/F, CornerStone Building, 16 Phan Chu Trinh, Cuu Nam Ward, Hoan Kiem, Hanoi<br/>
+          <b>电话：</b>+84 24 3822 1666<br/>
+          <b>邮箱：</b>inquiry@pasona.vn<br/>
+          <b>官网：</b><a href="https://phr.pasona.vn">phr.pasona.vn</a><br/>
+          <b>特点：</b>日系企业综合HR方案
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8570,21.0250,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉕ Pasona Tech Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（日本Pasona Group技术招聘分支）<br/>
+          <b>地址：</b>Unit 904, 9/F, Pacific Place Building, 83B Ly Thuong Kiet, Tran Hung Dao Ward, Hoan Kiem, Hanoi<br/>
+          <b>电话：</b>+84 24 3822 1666<br/>
+          <b>邮箱：</b>narumi-inagaki@vn.pasonatech.co.jp<br/>
+          <b>官网：</b><a href="https://pasona.vn">pasona.vn</a><br/>
+          <b>特点：</b>IT + BPO + 技术招聘，2014年3月开设河内分部
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.8470,21.0230,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉑ TalentsAll Global</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（高端 Executive Search）<br/>
+          <b>地址：</b>102 Ngo Quyen Street, Quang Trung Ward, Hoan Kiem, Hanoi<br/>
+          <b>电话：</b>+84 24 7305 8688（Hotline +84 944 211 808）<br/>
+          <b>邮箱：</b>trang@talentsall.com.vn<br/>
+          <b>官网：</b><a href="https://talentsall.com.vn">talentsall.com.vn</a><br/>
+          <b>特点：</b>专注高端执行职位
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8575,21.0240,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉘ Recruit in Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（日系背景，2013年成立）<br/>
+          <b>地址：</b>2 Le Quy Don Street, Hai Ba Trung Ward, Hanoi<br/>
+          <b>电话：</b>+84 24 3938 8455<br/>
+          <b>邮箱：</b>通过官网联系页<br/>
+          <b>官网：</b><a href="https://recruitinvietnam.com">recruitinvietnam.com</a><br/>
+          <b>特点：</b>专做在越日企中高端招聘 ⚠️部分条目
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8525,21.0120,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Hai Ba Trung District 二征郡 — 金融商务 ===== -->
+    <Folder>
+      <name>Hai Ba Trung District 二征郡 — 金融商务（3家）</name>
+
+      <Placemark>
+        <name>⑬ Navigos Search / VietnamWorks</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（Navigos Group，2003年成立）<br/>
+          <b>地址：</b>7/F, V-Building, 125-127 Ba Trieu Street, Hai Ba Trung District, Hanoi<br/>
+          <b>电话：</b>024 3974 3033<br/>
+          <b>邮箱：</b>contact@navigossearch.com<br/>
+          <b>官网：</b><a href="https://navigossearch.com">navigossearch.com</a><br/>
+          <b>特点：</b>越南最大在线招聘平台（VietnamWorks）+ 执行搜寻双轮驱动
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8505,21.0085,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑰ NIC Global Sourcing</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2002年成立，越南最早HR服务商之一）<br/>
+          <b>地址：</b>No. 3A Thi Sach, Pham Dinh Ho Ward, Hai Ba Trung, Hanoi<br/>
+          <b>电话：</b>+84 24 3971 2763<br/>
+          <b>邮箱：</b>info@nicvn.com<br/>
+          <b>官网：</b><a href="https://nicvn.com">nicvn.com</a><br/>
+          <b>特点：</b>EOR + 招聘外包 + 薪资 + 执行搜寻
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8545,21.0150,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑳ EV Search (Employment Vietnam)</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2007年成立）<br/>
+          <b>地址：</b>7/F, CDC Building, 25 Le Dai Hanh Street, Hai Ba Trung, Hanoi<br/>
+          <b>电话：</b>+84 24 3222 2268<br/>
+          <b>邮箱：</b>info@ev-search.com<br/>
+          <b>官网：</b><a href="https://ev-search.com">ev-search.com</a><br/>
+          <b>特点：</b>Executive Search + RPO + 薪资外包 + 合同工
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8520,21.0080,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Cau Giay District 纸桥郡 — IT 科技走廊 ===== -->
+    <Folder>
+      <name>Cau Giay District 纸桥郡 — IT 科技走廊（5家）</name>
+
+      <Placemark>
+        <name>㉓㉖ Duy Tan 大道【Dezan Shira + Jellyfish HR 邻近】</name>
+        <description><![CDATA[
+          <b>— ㉓ Dezan Shira &amp; Associates  9/F, Epic Tower, 19 Duy Tan —</b><br/>
+          类型：国际连锁（泛亚专业服务集团，2010年设河内办）<br/>
+          电话：+84 24 3942 0476<br/>
+          邮箱：hanoi@dezshira.com<br/>
+          官网：<a href="https://www.dezshira.com">dezshira.com</a><br/>
+          特点：税务合规 + HR/薪资外包 + EOR + 劳动法咨询<br/>
+          <br/>
+          <b>— ㉖ Jellyfish HR Vietnam  13/F, CMC Tower, 11 Duy Tan —</b><br/>
+          类型：国际连锁（日本Jellyfish Group，2013年越南成立）<br/>
+          电话：+84 24 3795 7118<br/>
+          邮箱：info@jellyfishhr.com<br/>
+          官网：<a href="https://jellyfishhr.com">jellyfishhr.com</a><br/>
+          特点：日本顶级执行搜寻（在越日企中高管）<br/>
+          <hr/>
+          <b>💡 调研建议：</b>Duy Tan 大道同一条路步行3分钟连访！
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.7830,21.0290,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑩ Harvey Nash Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（英国Harvey Nash Group，全球科技猎头领导品牌）<br/>
+          <b>地址：</b>6/F, HITC Building, 239 Xuan Thuy Road, Cau Giay District, Hanoi<br/>
+          <b>电话：</b>+84 24 7300 3388<br/>
+          <b>邮箱：</b>info@harveynash.vn<br/>
+          <b>官网：</b><a href="https://www.harveynash.vn">harveynash.vn</a><br/>
+          <b>特点：</b>IT 猎头（近河内国家大学）
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.7820,21.0365,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑥ Reeracoen Vietnam</name>
+        <description><![CDATA[
+          <b>类型：</b>国际连锁（日本Neo Career Group）<br/>
+          <b>地址：</b>5/F, Eurowindow Multicomplex Building, 27 Tran Duy Hung Street, Yen Hoa Ward, Cau Giay, Hanoi<br/>
+          <b>电话：</b>024 6653 4328<br/>
+          <b>邮箱：</b>info@reeracoen.com.vn<br/>
+          <b>官网：</b><a href="https://www.reeracoen.com.vn">reeracoen.com.vn</a><br/>
+          <b>特点：</b>专注日系客户，位于韩国城/日本人聚集区
+        ]]></description>
+        <styleUrl>#international</styleUrl>
+        <Point>
+          <coordinates>105.7965,21.0078,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>⑲ Vietnam Manpower (Vina Manpower)</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2004年河内成立）<br/>
+          <b>地址：</b>D1004, HanCorp Plaza, 72D Tran Dang Ninh Street, Cau Giay District, Hanoi<br/>
+          <b>电话：</b>+84 9696 51975<br/>
+          <b>邮箱：</b>brian@vnmanpower.com<br/>
+          <b>官网：</b><a href="https://vinamanpower.com">vinamanpower.com</a><br/>
+          <b>特点：</b>劳务派遣/国际劳工输送（建筑/油气/物流/酒店）+ 本土招聘
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.7920,21.0368,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Thanh Xuan District 青春郡 — 新兴商务 ===== -->
+    <Folder>
+      <name>Thanh Xuan District 青春郡 — 新兴商务（3家）</name>
+
+      <Placemark>
+        <name>⑯ TopCV Vietnam【总部】</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2015年成立，日本Mynavi战略入股）<br/>
+          <b>地址：</b>3-4/F, FS GoldSeason Tower, 47 Nguyen Tuan, Thanh Xuan Trung, Thanh Xuan District, Hanoi<br/>
+          <b>电话：</b>(024) 6680 5588<br/>
+          <b>邮箱：</b>hotro@topcv.vn<br/>
+          <b>官网：</b><a href="https://www.topcv.vn">topcv.vn</a><br/>
+          <b>特点：</b>越南最大 AI 简历平台 + 招聘服务（总部在河内）
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8050,21.0003,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉔ 1Office</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2016年河内成立）<br/>
+          <b>地址：</b>3/F, G2 Tower, Five Star Building, No. 2 Kim Giang, Thanh Xuan District, Hanoi<br/>
+          <b>电话：</b>+84 1900 3313<br/>
+          <b>邮箱：</b>hr@1Office.vn<br/>
+          <b>官网：</b><a href="https://1office.vn">1office.vn</a><br/>
+          <b>特点：</b>企业管理平台（HR/考勤/薪资/招聘一体化）+ 猎头/RPO
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8210,20.9945,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <Placemark>
+        <name>㉗ Vieclam24h（河内分部）</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（大型在线招聘平台）<br/>
+          <b>地址：</b>12A Floor, Center Building, 1 Nguyen Huy Tuong Street, Thanh Xuan District, Hanoi<br/>
+          <b>电话：</b>(024) 7308 2424 / 7309 2424<br/>
+          <b>邮箱：</b>通过官网联系表单<br/>
+          <b>官网：</b><a href="https://vieclam24h.vn">vieclam24h.vn</a><br/>
+          <b>特点：</b>越南第二大在线招聘平台 ⚠️部分条目
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.8100,20.9980,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+    <!-- ===== Nam Tu Liem District 南慈廉郡 — 城西商务 ===== -->
+    <Folder>
+      <name>Nam Tu Liem District 南慈廉郡 — 城西商务（1家）</name>
+
+      <Placemark>
+        <name>⑭ HRchannels Group</name>
+        <description><![CDATA[
+          <b>类型：</b>越南本土（2008年成立）<br/>
+          <b>地址：</b>12A Floor, MD Complex Building, 28 Nguyen Co Thach Street, My Dinh, Nam Tu Liem District, Hanoi<br/>
+          <b>电话：</b>+84 24 3755 8453（Hotline 08 3636 1080）<br/>
+          <b>邮箱：</b>sales@hrchannels.com<br/>
+          <b>官网：</b><a href="https://hrchannels.com">hrchannels.com</a><br/>
+          <b>特点：</b>专注河内本地猎头 + APAC 覆盖，同时运营 talentbold.com
+        ]]></description>
+        <styleUrl>#local</styleUrl>
+        <Point>
+          <coordinates>105.7740,21.0330,0</coordinates>
+        </Point>
+      </Placemark>
+
+    </Folder>
+
+  </Document>
+</kml>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>河内 HR 招聘公司调研报告</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; background: #f5f5f5; color: #333; }
+
+    .header {
+      background: linear-gradient(135deg, #1a5276 0%, #2874a6 50%, #1a5276 100%);
+      color: white; padding: 32px 24px; text-align: center;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 8px; }
+    .header .subtitle { font-size: 14px; opacity: 0.9; line-height: 1.6; }
+    .flag { font-size: 24px; margin-right: 8px; }
+
+    .stats {
+      display: flex; gap: 0; background: #2c3e50; color: white;
+      flex-wrap: wrap;
+    }
+    .stat-item { flex: 1; min-width: 120px; padding: 16px; text-align: center; border-right: 1px solid #34495e; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 28px; font-weight: bold; color: #3498db; }
+    .stat-label { font-size: 11px; opacity: 0.8; margin-top: 4px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+    .section-title {
+      font-size: 18px; font-weight: bold; color: #2c3e50;
+      border-left: 4px solid #3498db; padding-left: 12px;
+      margin: 28px 0 16px;
+    }
+    .collapsible-section { margin-top: 0; }
+    .section-title.collapsible {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-title.collapsible:hover { background: rgba(52,152,219,0.05); border-radius: 0 4px 4px 0; }
+    .toggle-arrow { font-size: 13px; color: #95a5a6; margin-left: 8px; flex-shrink: 0; }
+
+    .companies-grid { display: flex; flex-direction: column; gap: 16px; }
+
+    .company-card {
+      background: white; border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden; transition: box-shadow 0.2s;
+    }
+    .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.14); }
+
+    .card-header {
+      padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .card-header.international { background: #ebf5fb; border-bottom: 3px solid #3498db; }
+    .card-header.local { background: #fef9e7; border-bottom: 3px solid #e74c3c; }
+
+    .company-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 15px; flex-shrink: 0;
+    }
+    .international .company-num { background: #3498db; color: white; }
+    .local .company-num { background: #e74c3c; color: white; }
+
+    .company-name { flex: 1; }
+    .company-name h2 { font-size: 17px; color: #2c3e50; }
+    .company-name .eng-name { font-size: 12px; color: #7f8c8d; margin-top: 2px; }
+
+    .company-badge {
+      padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;
+    }
+    .badge-intl { background: #d6eaf8; color: #2471a3; }
+    .badge-local { background: #fdebd0; color: #d35400; }
+    .badge-star { background: #d5f5e3; color: #1e8449; }
+
+    .card-body { padding: 16px 20px; }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px; margin-bottom: 12px;
+    }
+    .info-item { display: flex; gap: 8px; align-items: flex-start; }
+    .info-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .info-content { font-size: 13px; line-height: 1.5; }
+    .info-label { color: #7f8c8d; font-size: 11px; }
+    .info-value { color: #2c3e50; font-weight: 500; }
+    .info-value a { color: #2471a3; text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+
+    .card-footer {
+      padding: 12px 20px; background: #f8f9fa;
+      border-top: 1px solid #ecf0f1;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 6px;
+      font-size: 12px; font-weight: bold; text-decoration: none;
+      transition: opacity 0.2s; cursor: pointer; border: none;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-map { background: #27ae60; color: white; }
+    .btn-web { background: #2471a3; color: white; }
+    .btn-email { background: #8e44ad; color: white; }
+
+    .feature-tag {
+      display: inline-block; padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; background: #eaecee; color: #555; margin: 2px;
+    }
+
+    .multiple-offices {
+      background: #ebf5fb; border: 1px solid #3498db; border-radius: 6px;
+      padding: 10px 14px; margin-top: 10px; font-size: 13px;
+    }
+    .multiple-offices strong { color: #1a5276; }
+
+    .map-section {
+      background: white; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px;
+    }
+    #map { height: 480px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-bottom: 16px; }
+    .leaflet-popup-content { font-size: 13px; line-height: 1.6; min-width: 200px; }
+    .leaflet-popup-content b { color: #2c3e50; }
+    .leaflet-popup-content a { color: #2471a3; }
+
+    .district-block {
+      border: 2px solid #bdc3c7; border-radius: 8px;
+      margin-bottom: 12px; overflow: hidden;
+    }
+    .district-title {
+      padding: 10px 16px; font-weight: bold; font-size: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .district-badinh .district-title { background: #d6eaf8; color: #1a5276; }
+    .district-dongda .district-title { background: #fdebd0; color: #7e5109; }
+    .district-hoankiem .district-title { background: #fadbd8; color: #922b21; }
+    .district-haibatrung .district-title { background: #d5f5e3; color: #1e8449; }
+    .district-caugiay .district-title { background: #e8daef; color: #6c3483; }
+    .district-thanhxuan .district-title { background: #d4efdf; color: #1e8449; }
+    .district-namtuliem .district-title { background: #d6dbdf; color: #2c3e50; }
+
+    .district-companies { padding: 12px 16px; }
+    .district-company-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px;
+    }
+    .district-company-item:last-child { border-bottom: none; }
+    .district-num { font-weight: bold; color: #3498db; width: 28px; }
+    .district-building { color: #7f8c8d; font-size: 12px; }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #ebf5fb, #d6eaf8);
+      border: 2px solid #3498db; border-radius: 8px;
+      padding: 14px 18px; margin-bottom: 20px;
+      font-size: 14px; line-height: 1.7;
+    }
+    .highlight-box strong { color: #1a5276; }
+
+    .schedule-card {
+      background: white; border-radius: 10px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px;
+    }
+    .day-item { display: flex; gap: 14px; margin-bottom: 14px; }
+    .day-badge {
+      width: 50px; height: 50px; border-radius: 8px;
+      background: #2c3e50; color: white;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      font-size: 11px; font-weight: bold;
+    }
+    .day-badge span { font-size: 18px; line-height: 1; }
+    .day-content h4 { font-size: 14px; color: #2c3e50; margin-bottom: 4px; }
+    .day-content p { font-size: 13px; color: #555; line-height: 1.6; }
+
+    .question-list { counter-reset: q; }
+    .question-item {
+      counter-increment: q; padding: 10px 14px;
+      border-left: 3px solid #3498db; margin-bottom: 8px;
+      background: #f8fbff; border-radius: 0 6px 6px 0;
+      font-size: 13px; line-height: 1.6;
+    }
+    .question-item::before {
+      content: "Q" counter(q) ". ";
+      font-weight: bold; color: #2471a3;
+    }
+
+    .footer {
+      background: #2c3e50; color: white; text-align: center;
+      padding: 20px; font-size: 12px; margin-top: 32px;
+    }
+    .footer a { color: #87ceeb; }
+
+    @media print {
+      .btn { display: none; }
+      .company-card { break-inside: avoid; }
+      body { background: white; }
+      .header { background: #1a5276 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      #map { display: none; }
+      .section-content { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span class="flag">🇻🇳</span>河内 HR 招聘公司调研报告</h1>
+  <div class="subtitle">
+    业务方向：帮助中国企业招聘懂中文的越南本地员工（北部经济区）<br>
+    数据核实时间：2026年4月13日 ｜ 所有信息来源于各公司官方网站
+  </div>
+</div>
+
+<nav style="background:#1a252f; padding:0 24px; display:flex; gap:0; overflow-x:auto;">
+  <a href="HCMC_HR_Companies_Report.html" style="color:#bdc3c7; text-decoration:none; padding:12px 20px; font-size:13px; font-weight:bold; white-space:nowrap; border-bottom:3px solid transparent;">胡志明市报告</a>
+  <a href="Hanoi_HR_Companies_Report.html" style="color:white; text-decoration:none; padding:12px 20px; font-size:13px; font-weight:bold; white-space:nowrap; border-bottom:3px solid #3498db;">河内报告</a>
+  <a href="../index.html" style="color:#bdc3c7; text-decoration:none; padding:12px 20px; font-size:13px; font-weight:bold; white-space:nowrap; border-bottom:3px solid transparent;">HR公司地图</a>
+</nav>
+
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">28</div><div class="stat-label">收录公司</div></div>
+  <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">主要集聚郡区</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">官网核实</div></div>
+  <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">越南本土公司</div></div>
+  <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">国际连锁公司</div></div>
+  <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">两城共有</div></div>
+</div>
+
+<div class="container">
+
+  <!-- ==================== 地图区位 ==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible" style="margin-top:20px;">
+      地图区位分布
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+
+      <div class="highlight-box">
+        💡 <strong>调研效率提示：</strong>河内有 3 个"一栋楼多家"的高效拜访点 —
+        <strong>Prime Center (53 Quang Trung) JAC+Adecco 同楼</strong>、
+        <strong>Lotte Center (54 Lieu Giai) PERSOLKELLY+First Alliances 同楼</strong>、
+        <strong>Viet Tower (1 Thai Ha) HR2B+ICONIC 同楼</strong>。
+        另 <strong>Duy Tan 大道</strong> Dezan Shira + Jellyfish HR 相邻、
+        <strong>Cat Linh 大道</strong> ManpowerGroup + Talentnet 相邻，步行可连访。
+      </div>
+
+      <div class="map-section">
+        <div style="font-size:12px; color:#7f8c8d; margin-bottom:10px; display:flex; gap:18px; flex-wrap:wrap;">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="12" height="18" style="vertical-align:middle;margin-right:4px;">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 24 12 24S24 21 24 12C24 5.37 18.63 0 12 0z" fill="#3498db"/>
+              <circle cx="12" cy="12" r="5" fill="white"/>
+            </svg>蓝色图钉 = 国际连锁
+          </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="12" height="18" style="vertical-align:middle;margin-right:4px;">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 24 12 24S24 21 24 12C24 5.37 18.63 0 12 0z" fill="#e74c3c"/>
+              <circle cx="12" cy="12" r="5" fill="white"/>
+            </svg>红色图钉 = 越南本土
+          </span>
+        </div>
+        <div id="map"></div>
+
+        <div class="district-block district-badinh">
+          <div class="district-title">🏛️ Ba Dinh District 巴亭郡 — 政务使馆区（5家，含2个同楼集群）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">①</div><div><strong>JAC Recruitment</strong><span class="district-building">— 15F, Prime Center, 53 Quang Trung</span></div></div>
+            <div class="district-company-item"><div class="district-num">②</div><div><strong>Adecco Vietnam</strong><span class="district-building">— 7F, Prime Center（与JAC同楼）</span></div></div>
+            <div class="district-company-item"><div class="district-num">④</div><div><strong>PERSOLKELLY</strong><span class="district-building">— 10F, Lotte Center West Tower, 54 Lieu Giai</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑫</div><div><strong>First Alliances</strong><span class="district-building">— 10F, Lotte Center（与PERSOLKELLY同楼）</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑧</div><div><strong>Faro Vietnam</strong><span class="district-building">— Handi Resco Tower A, 521 Kim Ma</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑮</div><div><strong>CareerLink Vietnam</strong><span class="district-building">— DMC Tower, 535 Kim Ma（与Faro相邻）</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-dongda">
+          <div class="district-title">🏢 Dong Da District 栋多郡 — 商务白领区（5家，含1个同楼集群）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">⑦</div><div><strong>HR2B</strong><span class="district-building">— 4F, Viet Tower, 1 Thai Ha</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑱</div><div><strong>ICONIC Group</strong><span class="district-building">— 4F, Viet Tower（与HR2B同楼）</span></div></div>
+            <div class="district-company-item"><div class="district-num">③</div><div><strong>ManpowerGroup</strong><span class="district-building">— Thaisquare Caliria, 11A Cat Linh</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑤</div><div><strong>Talentnet</strong><span class="district-building">— Horison Tower, 40 Cat Linh（与Manpower相邻）</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑪</div><div><strong>HR1Vietnam Holdings</strong><span class="district-building">— 71-73 Hoang Cau</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉒</div><div><strong>Hitsuji Consulting</strong><span class="district-building">— Vuon Xuan, Nguyen Chi Thanh</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-hoankiem">
+          <div class="district-title">🏯 Hoan Kiem District 还剑郡 — 老城核心（4家）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">⑨</div><div><strong>Pasona HR Vietnam</strong><span class="district-building">— CornerStone, 16 Phan Chu Trinh</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉕</div><div><strong>Pasona Tech Vietnam</strong><span class="district-building">— Pacific Place, 83B Ly Thuong Kiet</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉑</div><div><strong>TalentsAll Global</strong><span class="district-building">— 102 Ngo Quyen</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉘</div><div><strong>Recruit in Vietnam</strong><span class="district-building">— 2 Le Quy Don</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-haibatrung">
+          <div class="district-title">💼 Hai Ba Trung District 二征郡 — 金融商务（3家）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">⑬</div><div><strong>Navigos Search / VietnamWorks</strong><span class="district-building">— V-Building, 125-127 Ba Trieu</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑰</div><div><strong>NIC Global Sourcing</strong><span class="district-building">— 3A Thi Sach</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑳</div><div><strong>EV Search</strong><span class="district-building">— CDC Building, 25 Le Dai Hanh</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-caugiay">
+          <div class="district-title">💻 Cau Giay District 纸桥郡 — IT 科技走廊（5家，含Duy Tan邻近集群）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">㉓</div><div><strong>Dezan Shira &amp; Associates</strong><span class="district-building">— 9F, Epic Tower, 19 Duy Tan</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉖</div><div><strong>Jellyfish HR Vietnam</strong><span class="district-building">— 13F, CMC Tower, 11 Duy Tan（步行3分钟）</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑩</div><div><strong>Harvey Nash Vietnam</strong><span class="district-building">— HITC, 239 Xuan Thuy</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑥</div><div><strong>Reeracoen Vietnam</strong><span class="district-building">— Eurowindow, 27 Tran Duy Hung</span></div></div>
+            <div class="district-company-item"><div class="district-num">⑲</div><div><strong>Vietnam Manpower</strong><span class="district-building">— HanCorp Plaza, 72D Tran Dang Ninh</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-thanhxuan">
+          <div class="district-title">🌳 Thanh Xuan District 青春郡 — 新兴商务（3家）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">⑯</div><div><strong>TopCV Vietnam</strong><span class="district-building">— GoldSeason Tower, 47 Nguyen Tuan ← 总部</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉔</div><div><strong>1Office</strong><span class="district-building">— Five Star Building, 2 Kim Giang</span></div></div>
+            <div class="district-company-item"><div class="district-num">㉗</div><div><strong>Vieclam24h 河内分部</strong><span class="district-building">— Center Building, 1 Nguyen Huy Tuong</span></div></div>
+          </div>
+        </div>
+
+        <div class="district-block district-namtuliem">
+          <div class="district-title">🌆 Nam Tu Liem District 南慈廉郡 — 城西商务（1家）</div>
+          <div class="district-companies">
+            <div class="district-company-item"><div class="district-num">⑭</div><div><strong>HRchannels Group</strong><span class="district-building">— MD Complex, 28 Nguyen Co Thach, My Dinh</span></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 公司完整联系信息 ==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      公司完整联系信息（28家）
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+      <div class="companies-grid">
+
+        <!-- 01 JAC Recruitment -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">01</div>
+            <div class="company-name">
+              <h2>JAC Recruitment Vietnam</h2>
+              <div class="eng-name">JAC Group 旗下 · 英国</div>
+            </div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">15F, Prime Center, 53 Quang Trung, <strong>Ba Dinh Ward</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3633 2115</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:hanoi@jac-recruitment.vn">hanoi@jac-recruitment.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.jac-recruitment.vn" target="_blank">jac-recruitment.vn</a></div></div></div>
+            </div>
+            <div>
+              <span class="feature-tag">多语言人才（含中文）</span>
+              <span class="feature-tag">1983年成立</span>
+              <span class="feature-tag">两城经营</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Prime+Center+53+Quang+Trung+Ba+Dinh+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.jac-recruitment.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:hanoi@jac-recruitment.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 02 Adecco -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">02</div>
+            <div class="company-name"><h2>Adecco Vietnam</h2><div class="eng-name">Adecco Group · 瑞士（全球最大HR集团）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">7F, Prime Center, 53 Quang Trung, <strong>Hai Ba Trung Ward</strong>（与JAC同楼）</div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3218 1190</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:vn.info@adecco.com">vn.info@adecco.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🕐</div><div class="info-content"><div class="info-label">办公时间</div><div class="info-value">Mon-Fri 09:00-18:00</div></div></div>
+            </div>
+            <div><span class="feature-tag">综合HR</span><span class="feature-tag">薪资外包</span><span class="feature-tag">员工派遣</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Prime+Centre+53+Quang+Trung+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.adecco.com/en-vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:vn.info@adecco.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 03 ManpowerGroup -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">03</div>
+            <div class="company-name"><h2>ManpowerGroup Vietnam</h2><div class="eng-name">ManpowerGroup · 美国（全球三大HR）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">4F, Thaisquare Caliria, 11A Cat Linh, <strong>O Cho Dua Ward, Dong Da</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3974 4574</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:inquiry@manpower.com.vn">inquiry@manpower.com.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.manpower.com.vn" target="_blank">manpower.com.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">白领+蓝领</span><span class="feature-tag">多语言人才</span><span class="feature-tag">2008年进入越南</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Thaisquare+Caliria+11A+Cat+Linh+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.manpower.com.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:inquiry@manpower.com.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 04 PERSOLKELLY -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">04</div>
+            <div class="company-name"><h2>PERSOLKELLY Vietnam</h2><div class="eng-name">PERSOL Group · 日本（亚太最大HR之一）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">10F, Lotte Center Hanoi (West Tower), 54 Lieu Giai, <strong>Ba Dinh District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3538 1996</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info.vn@persolapac.com">info.vn@persolapac.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://persolvietnam.com" target="_blank">persolvietnam.com</a></div></div></div>
+            </div>
+            <div class="multiple-offices">💡 <strong>与 First Alliances 同驻 Lotte Center 10F</strong> — 可一次拜访两家</div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Lotte+Center+54+Lieu+Giai+Ba+Dinh+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://persolvietnam.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info.vn@persolapac.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 05 Talentnet -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">05</div>
+            <div class="company-name"><h2>Talentnet Vietnam 🌟</h2><div class="eng-name">越南本土最大 HR 咨询公司 · 前身 PwC HR Services</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">Unit 5, 5F, Horison Tower, 40 Cat Linh, <strong>O Cho Dua Ward, Dong Da</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3936 7618</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact-hn@talentnetgroup.com">contact-hn@talentnetgroup.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.talentnetgroup.com" target="_blank">talentnetgroup.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">Executive Search</span><span class="feature-tag">薪酬咨询</span><span class="feature-tag">1995年成立</span><span class="feature-tag">重中之重</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Horison+Tower+40+Cat+Linh+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.talentnetgroup.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact-hn@talentnetgroup.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 06 Reeracoen -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">06</div>
+            <div class="company-name"><h2>Reeracoen Vietnam</h2><div class="eng-name">Neo Career Group · 日本</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">5F, Eurowindow Multicomplex, 27 Tran Duy Hung, <strong>Yen Hoa Ward, Cau Giay</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">024 6653 4328</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info@reeracoen.com.vn">info@reeracoen.com.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.reeracoen.com.vn" target="_blank">reeracoen.com.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">日资企业双语招聘</span><span class="feature-tag">韩国城/日本人聚集区</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Eurowindow+27+Tran+Duy+Hung+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.reeracoen.com.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info@reeracoen.com.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 07 HR2B -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">07</div>
+            <div class="company-name"><h2>HR2B</h2><div class="eng-name">Talent Recruitment JSC · 越南顶级本土猎头</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">4F, Viet Tower, 1 Thai Ha, <strong>Dong Da District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3736 6843</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact@hr2b.com">contact@hr2b.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.hr2b.com" target="_blank">hr2b.com</a></div></div></div>
+            </div>
+            <div class="multiple-offices">💡 <strong>与 ICONIC Group 同驻 Viet Tower 4F</strong> — 可一次拜访两家</div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Viet+Tower+1+Thai+Ha+Dong+Da+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.hr2b.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact@hr2b.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 08 Faro Vietnam -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">08</div>
+            <div class="company-name"><h2>Faro Vietnam</h2><div class="eng-name">Faro Recruitment Group · 17国80+办公室</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">Unit 701A, Tower A, Handi Resco Towers, 521 Kim Ma, <strong>Giang Vo Ward, Ba Dinh</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3974 3091</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:service@farovietnam.com.vn">service@farovietnam.com.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.farovietnam.com.vn" target="_blank">farovietnam.com.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">17年河内经验</span><span class="feature-tag">工程/IT/金融/酒店</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Handi+Resco+521+Kim+Ma+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.farovietnam.com.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:service@farovietnam.com.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 09 Pasona HR Vietnam -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">09</div>
+            <div class="company-name"><h2>Pasona HR Vietnam</h2><div class="eng-name">Pasona Group · 日本</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">6F, CornerStone Building, 16 Phan Chu Trinh, <strong>Hoan Kiem District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3822 1666</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:inquiry@pasona.vn">inquiry@pasona.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://phr.pasona.vn" target="_blank">phr.pasona.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">日系企业综合HR</span><span class="feature-tag">老城核心</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=CornerStone+16+Phan+Chu+Trinh+Hoan+Kiem+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://phr.pasona.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:inquiry@pasona.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 10 Harvey Nash -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">10</div>
+            <div class="company-name"><h2>Harvey Nash Vietnam</h2><div class="eng-name">Harvey Nash Group · 英国（全球科技猎头领导品牌）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">6F, HITC Building, 239 Xuan Thuy Road, <strong>Cau Giay District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 7300 3388</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info@harveynash.vn">info@harveynash.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.harveynash.vn" target="_blank">harveynash.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">IT 猎头</span><span class="feature-tag">近河内国家大学</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=HITC+239+Xuan+Thuy+Cau+Giay+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.harveynash.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info@harveynash.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 11 HR1Vietnam -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">11</div>
+            <div class="company-name"><h2>HR1Vietnam Holdings</h2><div class="eng-name">越南本土顶级猎头 · 近200名顾问</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">5A Floor, 71-73 Hoang Cau, <strong>O Cho Dua Ward, Dong Da</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 28 3925 2566</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact@hr1vietnam.com">contact@hr1vietnam.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://hr1vietnam.com" target="_blank">hr1vietnam.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">Executive Search</span><span class="feature-tag">全链路</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=71+Hoang+Cau+Dong+Da+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://hr1vietnam.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact@hr1vietnam.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 12 First Alliances -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">12</div>
+            <div class="company-name"><h2>First Alliances</h2><div class="eng-name">PERSOL 亚太体系 · 越南最大HR公司之一</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">10F, Lotte Center, 54 Lieu Giai, <strong>Ba Dinh District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3538 1996</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:hn@fa.net.vn">hn@fa.net.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.fa.net.vn" target="_blank">fa.net.vn</a></div></div></div>
+            </div>
+            <div class="multiple-offices">💡 <strong>与 PERSOLKELLY 同驻 Lotte Center 10F</strong></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Lotte+Center+54+Lieu+Giai+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.fa.net.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:hn@fa.net.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 13 Navigos Search -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">13</div>
+            <div class="company-name"><h2>Navigos Search / VietnamWorks</h2><div class="eng-name">Navigos Group · 2003 · 旗下 Navigos Search + VietnamWorks + Primus</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">7F, V-Building, 125-127 Ba Trieu, <strong>Hai Ba Trung District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">024 3974 3033</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact@navigossearch.com">contact@navigossearch.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://navigossearch.com" target="_blank">navigossearch.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">越南最大在线招聘平台</span><span class="feature-tag">20+ 年经验</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=V-Building+125+Ba+Trieu+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://navigossearch.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact@navigossearch.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 14 HRchannels -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">14</div>
+            <div class="company-name"><h2>HRchannels Group</h2><div class="eng-name">2008年成立 · 河内本地猎头 + APAC</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">12A Floor, MD Complex, 28 Nguyen Co Thach, <strong>My Dinh, Nam Tu Liem</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3755 8453（Hotline 08 3636 1080）</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:sales@hrchannels.com">sales@hrchannels.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://hrchannels.com" target="_blank">hrchannels.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">猎头</span><span class="feature-tag">talentbold.com 平台</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=MD+Complex+28+Nguyen+Co+Thach+Nam+Tu+Liem+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://hrchannels.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:sales@hrchannels.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 15 CareerLink -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">15</div>
+            <div class="company-name"><h2>CareerLink Vietnam</h2><div class="eng-name">越南本土在线招聘平台 + 猎头</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">Rm 307, DMC Tower, 535 Kim Ma, <strong>Giang Vo Ward, Ba Dinh</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">024 3519 0410</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact@careerlink.vn">contact@careerlink.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.careerlink.vn" target="_blank">careerlink.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">全越岗位发布</span><span class="feature-tag">与Faro相邻</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=DMC+Tower+535+Kim+Ma+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.careerlink.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact@careerlink.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 16 TopCV -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">16</div>
+            <div class="company-name"><h2>TopCV Vietnam 🌟</h2><div class="eng-name">2015年成立 · 越南最大 AI 简历平台 · 总部在河内</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内总部</div><div class="info-value">3-4F, FS GoldSeason, 47 Nguyen Tuan, <strong>Thanh Xuan Trung, Thanh Xuan</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">(024) 6680 5588</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:hotro@topcv.vn">hotro@topcv.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.topcv.vn" target="_blank">topcv.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">日本Mynavi战略入股</span><span class="feature-tag">AI简历</span><span class="feature-tag">重中之重</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=GoldSeason+47+Nguyen+Tuan+Thanh+Xuan+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.topcv.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:hotro@topcv.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 17 NIC Global -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">17</div>
+            <div class="company-name"><h2>NIC Global Sourcing</h2><div class="eng-name">2002年成立 · 越南最早HR服务商之一</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">No. 3A Thi Sach, <strong>Pham Dinh Ho Ward, Hai Ba Trung</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话 / 传真</div><div class="info-value">+84 24 3971 2763 / Fax: +84 24 3978 4080</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info@nicvn.com">info@nicvn.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://nicvn.com" target="_blank">nicvn.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">EOR</span><span class="feature-tag">招聘外包</span><span class="feature-tag">薪资服务</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=3A+Thi+Sach+Hai+Ba+Trung+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://nicvn.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info@nicvn.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 18 ICONIC -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">18</div>
+            <div class="company-name"><h2>ICONIC Group</h2><div class="eng-name">ICONIC Inc. · 日本（越日马三国运营）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">4F, Viet Tower, 1 Thai Ha, <strong>Dong Da District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">(84) 24 3248 4446</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:contact@iconicjob.vn">contact@iconicjob.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://iconic-intl.com" target="_blank">iconic-intl.com</a></div></div></div>
+            </div>
+            <div class="multiple-offices">💡 <strong>与 HR2B 同驻 Viet Tower 4F</strong></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Viet+Tower+1+Thai+Ha+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://iconic-intl.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:contact@iconicjob.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 19 Vietnam Manpower -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">19</div>
+            <div class="company-name"><h2>Vietnam Manpower (Vina Manpower)</h2><div class="eng-name">2004年河内成立 · 劳务派遣+本土招聘</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">D1004, HanCorp Plaza, 72D Tran Dang Ninh, <strong>Cau Giay District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 9696 51975</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:brian@vnmanpower.com">brian@vnmanpower.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://vinamanpower.com" target="_blank">vinamanpower.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">建筑/油气/物流/酒店</span><span class="feature-tag">国际劳工输送</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=HanCorp+Plaza+72+Tran+Dang+Ninh+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://vinamanpower.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:brian@vnmanpower.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 20 EV Search -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">20</div>
+            <div class="company-name"><h2>EV Search (Employment Vietnam)</h2><div class="eng-name">2007年成立 · APAC客户</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">7F, CDC Building, 25 Le Dai Hanh, <strong>Hai Ba Trung District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3222 2268</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info@ev-search.com">info@ev-search.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://ev-search.com" target="_blank">ev-search.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">Executive Search</span><span class="feature-tag">RPO</span><span class="feature-tag">合同工</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=CDC+25+Le+Dai+Hanh+Hai+Ba+Trung+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://ev-search.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info@ev-search.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 21 TalentsAll -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">21</div>
+            <div class="company-name"><h2>TalentsAll Global</h2><div class="eng-name">越南本土高端 Executive Search</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">102 Ngo Quyen, <strong>Quang Trung Ward, Hoan Kiem</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 7305 8688（Hotline +84 944 211 808）</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:trang@talentsall.com.vn">trang@talentsall.com.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://talentsall.com.vn" target="_blank">talentsall.com.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">高端职位</span><span class="feature-tag">老城核心</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=102+Ngo+Quyen+Hoan+Kiem+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://talentsall.com.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:trang@talentsall.com.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 22 Hitsuji -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">22</div>
+            <div class="company-name"><h2>Hitsuji Consulting Vietnam</h2><div class="eng-name">100% 日本出资 · 2021年越南注册</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">5F, Vuon Xuan Building, Nguyen Chi Thanh, <strong>Lang Ha Ward, Dong Da</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 7778 8968</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:katherine@hitsuji-vn.com">katherine@hitsuji-vn.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://hitsuji-vn.com" target="_blank">hitsuji-vn.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">日系企业中高端</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Vuon+Xuan+Nguyen+Chi+Thanh+Dong+Da+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://hitsuji-vn.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:katherine@hitsuji-vn.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 23 Dezan Shira -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">23</div>
+            <div class="company-name"><h2>Dezan Shira &amp; Associates</h2><div class="eng-name">泛亚专业服务集团 · 2010年设河内办</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">9F, Epic Tower, 19 Duy Tan, <strong>Cau Giay Ward</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3942 0476</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:hanoi@dezshira.com">hanoi@dezshira.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://www.dezshira.com" target="_blank">dezshira.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">税务合规</span><span class="feature-tag">HR/薪资外包</span><span class="feature-tag">EOR</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Epic+Tower+19+Duy+Tan+Cau+Giay+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://www.dezshira.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:hanoi@dezshira.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 24 1Office -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">24</div>
+            <div class="company-name"><h2>1Office</h2><div class="eng-name">2016年河内成立 · SaaS + 招聘</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内总部</div><div class="info-value">3F, G2 Tower, Five Star Building, 2 Kim Giang, <strong>Thanh Xuan District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 1900 3313</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:hr@1Office.vn">hr@1Office.vn</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://1office.vn" target="_blank">1office.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">企业管理平台</span><span class="feature-tag">HR一体化</span><span class="feature-tag">RPO</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Five+Star+Building+2+Kim+Giang+Thanh+Xuan+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://1office.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:hr@1Office.vn">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 25 Pasona Tech -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">25</div>
+            <div class="company-name"><h2>Pasona Tech Vietnam</h2><div class="eng-name">Pasona Group 技术招聘分支 · 2004进入越南</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">Unit 904, 9F, Pacific Place, 83B Ly Thuong Kiet, <strong>Hoan Kiem District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3822 1666</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:narumi-inagaki@vn.pasonatech.co.jp">narumi-inagaki@vn.pasonatech.co.jp</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://pasona.vn" target="_blank">pasona.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">IT 招聘</span><span class="feature-tag">BPO</span><span class="feature-tag">2014年河内开分部</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Pacific+Place+83B+Ly+Thuong+Kiet+Hoan+Kiem+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://pasona.vn" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:narumi-inagaki@vn.pasonatech.co.jp">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 26 Jellyfish HR -->
+        <div class="company-card">
+          <div class="card-header international">
+            <div class="company-num">26</div>
+            <div class="company-name"><h2>Jellyfish HR Vietnam</h2><div class="eng-name">Jellyfish Group · 日本（100% 日资）</div></div>
+            <span class="company-badge badge-intl">国际连锁</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">13F, CMC Tower, 11 Duy Tan, <strong>Dich Vong Hau Ward, Cau Giay</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3795 7118</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value"><a href="mailto:info@jellyfishhr.com">info@jellyfishhr.com</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://jellyfishhr.com" target="_blank">jellyfishhr.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">在越日企中高管招聘</span><span class="feature-tag">与 Dezan Shira 步行3分钟</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=CMC+Tower+11+Duy+Tan+Cau+Giay+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://jellyfishhr.com" target="_blank">🌐 官网</a>
+            <a class="btn btn-email" href="mailto:info@jellyfishhr.com">✉️ 发邮件</a>
+          </div>
+        </div>
+
+        <!-- 27 Vieclam24h -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">27</div>
+            <div class="company-name"><h2>Vieclam24h（河内分部）</h2><div class="eng-name">越南第二大在线招聘平台</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内分部</div><div class="info-value">12A, Center Building, 1 Nguyen Huy Tuong, <strong>Thanh Xuan District</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">(024) 7308 2424 / 7309 2424</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value">通过官网联系表单</div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://vieclam24h.vn" target="_blank">vieclam24h.vn</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">在线平台</span><span class="feature-tag">⚠️ 部分条目</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=Center+Building+1+Nguyen+Huy+Tuong+Thanh+Xuan+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://vieclam24h.vn" target="_blank">🌐 官网</a>
+          </div>
+        </div>
+
+        <!-- 28 Recruit in Vietnam -->
+        <div class="company-card">
+          <div class="card-header local">
+            <div class="company-num">28</div>
+            <div class="company-name"><h2>Recruit in Vietnam</h2><div class="eng-name">2013年成立 · 日系背景</div></div>
+            <span class="company-badge badge-local">越南本土</span>
+          </div>
+          <div class="card-body">
+            <div class="info-grid">
+              <div class="info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">河内地址</div><div class="info-value">2 Le Quy Don, <strong>Hai Ba Trung Ward</strong></div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">+84 24 3938 8455</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div class="info-content"><div class="info-label">邮箱</div><div class="info-value">通过官网联系页</div></div></div>
+              <div class="info-item"><div class="info-icon">🌐</div><div class="info-content"><div class="info-label">官网</div><div class="info-value"><a href="https://recruitinvietnam.com" target="_blank">recruitinvietnam.com</a></div></div></div>
+            </div>
+            <div><span class="feature-tag">在越日企中高端</span><span class="feature-tag">⚠️ 部分条目</span></div>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&query=2+Le+Quy+Don+Hai+Ba+Trung+Hanoi" target="_blank">🗺️ Google 地图</a>
+            <a class="btn btn-web" href="https://recruitinvietnam.com" target="_blank">🌐 官网</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 调研行程建议 ==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      调研行程建议（10天）
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+      <div class="schedule-card">
+        <div class="day-item"><div class="day-badge">Day<span>1</span></div><div class="day-content"><h4>Prime Center 同楼双击（53 Quang Trung, Ba Dinh）</h4><p>① JAC Recruitment 15F + ② Adecco Vietnam 7F — 一栋楼一天搞定</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>2</span></div><div class="day-content"><h4>Lotte Center 同楼双击（54 Lieu Giai, Ba Dinh）</h4><p>④ PERSOLKELLY 10F + ⑫ First Alliances 10F — 同楼同层</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>3</span></div><div class="day-content"><h4>Viet Tower 同楼双击（1 Thai Ha, Dong Da）</h4><p>⑦ HR2B 4F + ⑱ ICONIC Group 4F</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>4</span></div><div class="day-content"><h4>Dong Da 其他（Cat Linh + Hoang Cau）</h4><p>③ ManpowerGroup + ⑤ Talentnet（Cat Linh相邻）、⑪ HR1Vietnam（Hoang Cau）、㉒ Hitsuji Consulting（Nguyen Chi Thanh）</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>5</span></div><div class="day-content"><h4>Hoan Kiem 老城核心（4家）</h4><p>⑨ Pasona HR + ㉕ Pasona Tech（Pasona双品牌）、㉑ TalentsAll、㉘ Recruit in Vietnam</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>6</span></div><div class="day-content"><h4>Hai Ba Trung 金融商务（3家）</h4><p>⑬ Navigos Search / VietnamWorks ← 越南最大在线招聘平台、⑰ NIC Global、⑳ EV Search</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>7</span></div><div class="day-content"><h4>Cau Giay IT 走廊（同大道多家）</h4><p>Duy Tan 大道：㉓ Dezan Shira（Epic Tower）+ ㉖ Jellyfish HR（CMC Tower）步行3分钟 ｜ ⑩ Harvey Nash（Xuan Thuy）｜ ⑥ Reeracoen ｜ ⑲ Vietnam Manpower</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>8</span></div><div class="day-content"><h4>Thanh Xuan + 城西（4家）</h4><p>⑯ TopCV 总部 ← 越南最大AI简历 ｜ ㉔ 1Office ｜ ㉗ Vieclam24h 河内分部 ｜ ⑭ HRchannels（Nam Tu Liem）</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>9</span></div><div class="day-content"><h4>Ba Dinh 外围 + 过渡</h4><p>⑧ Faro Vietnam + ⑮ CareerLink（同在 521/535 Kim Ma）— 相邻可连访</p></div></div>
+        <div class="day-item"><div class="day-badge">Day<span>10</span></div><div class="day-content"><h4>行业协会 + 北部制造业走访</h4><p>越南中国商会河内办 · JETRO · 越韩商会；北宁省（三星/Foxconn供应链）、海阳省、北江省外迁产业集聚区 — 懂中文越南员工的最大需求地</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 拜访问卷模板 ==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      拜访问卷模板
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+      <div class="schedule-card">
+        <h4 style="font-size:14px; color:#3498db; margin-bottom:10px;">A. 了解现有能力</h4>
+        <div class="question-list">
+          <div class="question-item">贵公司目前是否有专门针对中文（普通话/广东话）的人才数据库？</div>
+          <div class="question-item">目前服务中的中资企业客户有多少家？主要来自哪些行业？（特别关注北宁、海阳、北江、太原等北部制造业）</div>
+          <div class="question-item">过去1年内，帮中资企业招聘了多少懂中文的越南本地员工？</div>
+          <div class="question-item">贵公司顾问中有没有懂中文的？</div>
+        </div>
+        <h4 style="font-size:14px; color:#3498db; margin:16px 0 10px;">B. 了解北部市场</h4>
+        <div class="question-list">
+          <div class="question-item">在河内+北部经济区，懂普通话的越南求职者大概有多少？主要集中在哪些行业？</div>
+          <div class="question-item">招聘"懂普通话的越南本地人"最大的难点是什么？</div>
+          <div class="question-item">这类候选人的薪资期望区间是多少？（按级别：文员 / 主管 / 经理）</div>
+          <div class="question-item">河内与胡志明市相比，中文人才的供给与需求差异在哪里？</div>
+        </div>
+        <h4 style="font-size:14px; color:#3498db; margin:16px 0 10px;">C. 了解合作意向</h4>
+        <div class="question-list">
+          <div class="question-item">是否有意向以合作/渠道分成模式配合我们服务中资企业？</div>
+          <div class="question-item">贵公司通常的招聘服务费结构是怎样的（年薪百分比？固定费用？）</div>
+          <div class="question-item">是否愿意共享部分候选人数据库，或互相推荐客户？</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 数据可靠性 ==================== -->
+  <div class="collapsible-section">
+    <div class="section-title collapsible">
+      数据可靠性声明
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="section-content">
+      <div class="schedule-card">
+        <p style="font-size:13px; line-height:1.8;">
+          <strong>核实方式：</strong>各公司官方网站 WebFetch + 公开登记信息交叉验证<br>
+          <strong>核实时间：</strong>2026年4月13日<br>
+          <strong>严格条目：</strong>26 家（01–26）五项字段全部直接核实<br>
+          <strong>部分条目：</strong>2 家（27 Vieclam24h、28 Recruit in Vietnam）地址+电话+官网已核实，邮箱为官网联系表单，已明确标注<br>
+          <strong>未收录：</strong>Robert Walters、Michael Page、CGP Vietnam、LHH Vietnam、RGF HR Agent、Monroe Consulting、Horton International、Keller Executive Search 等因官网未公示河内地址或疑似虚拟办公室，按规则排除<br>
+          <strong>使用建议：</strong>抵达河内前建议电话确认最新地址
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  河内 HR 招聘公司调研报告 · 2026年4月13日 · 业务：帮中资企业招聘懂中文越南本地员工<br>
+  数据来源：各公司官方网站 · 所有信息仅供商业调研参考
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map').setView([21.028, 105.830], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
+  }).addTo(map);
+
+  function makePin(fillColor) {
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="24" height="36">'
+      + '<path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 24 12 24S24 21 24 12C24 5.37 18.63 0 12 0z"'
+      + ' fill="' + fillColor + '" stroke="rgba(0,0,0,0.25)" stroke-width="0.8"/>'
+      + '<circle cx="12" cy="12" r="5" fill="white"/>'
+      + '</svg>';
+    return L.divIcon({ className: '', html: svg, iconSize: [24, 36], iconAnchor: [12, 36], popupAnchor: [0, -36] });
+  }
+  var INTL = '#3498db', LOCAL = '#e74c3c';
+
+  var companies = [
+    { lat: 21.0225, lng: 105.8425, icon: makePin(INTL), popup: '<b>①② Prime Center — JAC+Adecco 同楼</b><br>🏢 53 Quang Trung, <b>Ba Dinh</b><br>① JAC Recruitment 15F · +84 24 3633 2115<br>② Adecco Vietnam 7F · +84 24 3218 1190<br><em>💡 一栋楼双击</em>' },
+    { lat: 21.0323, lng: 105.8131, icon: makePin(INTL), popup: '<b>④⑫ Lotte Center — PERSOLKELLY+First Alliances 同楼</b><br>🏢 54 Lieu Giai, <b>Ba Dinh</b><br>④ PERSOLKELLY 10F · +84 24 3538 1996<br>⑫ First Alliances 10F · hn@fa.net.vn<br><em>💡 一栋楼同层双击</em>' },
+    { lat: 21.0275, lng: 105.8285, icon: makePin(INTL), popup: '<b>③ ManpowerGroup Vietnam</b><br>🏢 4F Thaisquare Caliria, 11A Cat Linh, <b>Dong Da</b><br>📞 +84 24 3974 4574<br>✉️ inquiry@manpower.com.vn<br><em>白领+蓝领全覆盖</em>' },
+    { lat: 21.0270, lng: 105.8290, icon: makePin(LOCAL), popup: '<b>⑤ Talentnet Vietnam 🌟</b><br>🏢 Horison Tower, 40 Cat Linh, <b>Dong Da</b><br>📞 +84 24 3936 7618<br>✉️ contact-hn@talentnetgroup.com<br><em>越南本土最大HR咨询</em>' },
+    { lat: 21.0078, lng: 105.7965, icon: makePin(INTL), popup: '<b>⑥ Reeracoen Vietnam</b><br>🏢 5F Eurowindow, 27 Tran Duy Hung, <b>Cau Giay</b><br>📞 024 6653 4328<br>✉️ info@reeracoen.com.vn<br><em>日资企业双语招聘</em>' },
+    { lat: 21.0110, lng: 105.8225, icon: makePin(LOCAL), popup: '<b>⑦⑱ Viet Tower — HR2B+ICONIC 同楼</b><br>🏢 1 Thai Ha, <b>Dong Da</b><br>⑦ HR2B 4F · +84 24 3736 6843<br>⑱ ICONIC Group 4F · +84 24 3248 4446<br><em>💡 一栋楼双击</em>' },
+    { lat: 21.0330, lng: 105.8095, icon: makePin(INTL), popup: '<b>⑧ Faro Vietnam</b><br>🏢 701A, Handi Resco, 521 Kim Ma, <b>Ba Dinh</b><br>📞 +84 24 3974 3091<br>✉️ service@farovietnam.com.vn<br><em>17年河内经验</em>' },
+    { lat: 21.0250, lng: 105.8570, icon: makePin(INTL), popup: '<b>⑨ Pasona HR Vietnam</b><br>🏢 6F CornerStone, 16 Phan Chu Trinh, <b>Hoan Kiem</b><br>📞 +84 24 3822 1666<br>✉️ inquiry@pasona.vn<br><em>日系综合HR</em>' },
+    { lat: 21.0365, lng: 105.7820, icon: makePin(INTL), popup: '<b>⑩ Harvey Nash Vietnam</b><br>🏢 6F HITC, 239 Xuan Thuy, <b>Cau Giay</b><br>📞 +84 24 7300 3388<br>✉️ info@harveynash.vn<br><em>IT猎头</em>' },
+    { lat: 21.0190, lng: 105.8260, icon: makePin(LOCAL), popup: '<b>⑪ HR1Vietnam Holdings</b><br>🏢 5A, 71-73 Hoang Cau, <b>Dong Da</b><br>📞 +84 28 3925 2566<br>✉️ contact@hr1vietnam.com<br><em>近200名顾问</em>' },
+    { lat: 21.0085, lng: 105.8505, icon: makePin(LOCAL), popup: '<b>⑬ Navigos Search / VietnamWorks</b><br>🏢 7F V-Building, 125-127 Ba Trieu, <b>Hai Ba Trung</b><br>📞 024 3974 3033<br>✉️ contact@navigossearch.com<br><em>越南最大在线招聘平台</em>' },
+    { lat: 21.0330, lng: 105.7740, icon: makePin(LOCAL), popup: '<b>⑭ HRchannels Group</b><br>🏢 12A MD Complex, 28 Nguyen Co Thach, <b>Nam Tu Liem</b><br>📞 +84 24 3755 8453<br>✉️ sales@hrchannels.com<br><em>河内本地猎头</em>' },
+    { lat: 21.0332, lng: 105.8100, icon: makePin(LOCAL), popup: '<b>⑮ CareerLink Vietnam</b><br>🏢 Rm 307 DMC Tower, 535 Kim Ma, <b>Ba Dinh</b><br>📞 024 3519 0410<br>✉️ contact@careerlink.vn<br><em>在线招聘平台</em>' },
+    { lat: 21.0003, lng: 105.8050, icon: makePin(LOCAL), popup: '<b>⑯ TopCV Vietnam 🌟（总部）</b><br>🏢 3-4F GoldSeason, 47 Nguyen Tuan, <b>Thanh Xuan</b><br>📞 024 6680 5588<br>✉️ hotro@topcv.vn<br><em>越南最大AI简历平台</em>' },
+    { lat: 21.0150, lng: 105.8545, icon: makePin(LOCAL), popup: '<b>⑰ NIC Global Sourcing</b><br>🏢 3A Thi Sach, <b>Hai Ba Trung</b><br>📞 +84 24 3971 2763<br>✉️ info@nicvn.com<br><em>2002年成立</em>' },
+    { lat: 21.0368, lng: 105.7920, icon: makePin(LOCAL), popup: '<b>⑲ Vietnam Manpower (Vina Manpower)</b><br>🏢 D1004 HanCorp Plaza, 72D Tran Dang Ninh, <b>Cau Giay</b><br>📞 +84 9696 51975<br>✉️ brian@vnmanpower.com<br><em>劳务派遣+本土招聘</em>' },
+    { lat: 21.0080, lng: 105.8520, icon: makePin(LOCAL), popup: '<b>⑳ EV Search</b><br>🏢 7F CDC, 25 Le Dai Hanh, <b>Hai Ba Trung</b><br>📞 +84 24 3222 2268<br>✉️ info@ev-search.com<br><em>Executive Search + RPO</em>' },
+    { lat: 21.0240, lng: 105.8575, icon: makePin(LOCAL), popup: '<b>㉑ TalentsAll Global</b><br>🏢 102 Ngo Quyen, <b>Hoan Kiem</b><br>📞 +84 24 7305 8688<br>✉️ trang@talentsall.com.vn<br><em>高端执行搜寻</em>' },
+    { lat: 21.0180, lng: 105.8150, icon: makePin(INTL), popup: '<b>㉒ Hitsuji Consulting Vietnam</b><br>🏢 5F Vuon Xuan, Nguyen Chi Thanh, <b>Dong Da</b><br>📞 +84 24 7778 8968<br>✉️ katherine@hitsuji-vn.com<br><em>100% 日资</em>' },
+    { lat: 21.0290, lng: 105.7830, icon: makePin(INTL), popup: '<b>㉓㉖ Duy Tan 大道 — Dezan Shira + Jellyfish HR</b><br>🏢 Cau Giay<br>㉓ Dezan Shira 9F Epic Tower, 19 Duy Tan · hanoi@dezshira.com<br>㉖ Jellyfish HR 13F CMC Tower, 11 Duy Tan · info@jellyfishhr.com<br><em>💡 步行3分钟可连访</em>' },
+    { lat: 20.9945, lng: 105.8210, icon: makePin(LOCAL), popup: '<b>㉔ 1Office</b><br>🏢 3F G2 Tower, 2 Kim Giang, <b>Thanh Xuan</b><br>📞 +84 1900 3313<br>✉️ hr@1Office.vn<br><em>HR SaaS + 猎头</em>' },
+    { lat: 21.0230, lng: 105.8470, icon: makePin(INTL), popup: '<b>㉕ Pasona Tech Vietnam</b><br>🏢 Unit 904 Pacific Place, 83B Ly Thuong Kiet, <b>Hoan Kiem</b><br>📞 +84 24 3822 1666<br>✉️ narumi-inagaki@vn.pasonatech.co.jp<br><em>IT + BPO</em>' },
+    { lat: 20.9980, lng: 105.8100, icon: makePin(LOCAL), popup: '<b>㉗ Vieclam24h 河内分部</b><br>🏢 12A Center Building, 1 Nguyen Huy Tuong, <b>Thanh Xuan</b><br>📞 024 7308 2424<br><em>⚠️ 部分条目</em>' },
+    { lat: 21.0120, lng: 105.8525, icon: makePin(LOCAL), popup: '<b>㉘ Recruit in Vietnam</b><br>🏢 2 Le Quy Don, <b>Hai Ba Trung</b><br>📞 +84 24 3938 8455<br><em>日系背景 · ⚠️ 部分条目</em>' }
+  ];
+
+  companies.forEach(function(c) {
+    L.marker([c.lat, c.lng], { icon: c.icon }).addTo(map).bindPopup(c.popup, { maxWidth: 280 });
+  });
+
+  document.querySelectorAll('.section-title.collapsible').forEach(function(title) {
+    title.addEventListener('click', function() {
+      var content = this.nextElementSibling;
+      var arrow = this.querySelector('.toggle-arrow');
+      var isOpen = content.style.display !== 'none';
+      content.style.display = isOpen ? 'none' : 'block';
+      arrow.textContent = isOpen ? '▶' : '▼';
+      if (!isOpen && content.querySelector('#map')) {
+        setTimeout(function() { map.invalidateSize(); }, 10);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
