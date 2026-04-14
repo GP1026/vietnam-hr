@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>胡志明市中资企业招聘中文岗位调研</title>
+  <title>越南中资企业中文岗位调研（HCM + 河内）</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; background: #f5f5f5; color: #333; }
@@ -98,6 +98,19 @@
     }
     .conclusion-list li strong { color: #c0392b; }
 
+    /* 城市筛选器 */
+    .city-filter {
+      display: flex; gap: 8px; padding: 14px 16px; background: #fff;
+      border-bottom: 1px solid #ecf0f1; flex-wrap: wrap;
+    }
+    .city-filter button {
+      padding: 7px 16px; border: 1px solid #bdc3c7; background: #fff;
+      color: #2c3e50; font-size: 13px; font-weight: bold; cursor: pointer;
+      border-radius: 20px; transition: all 0.15s;
+    }
+    .city-filter button:hover { border-color: #e74c3c; color: #c0392b; }
+    .city-filter button.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+
     /* 页脚 */
     .footer {
       background: #2c3e50; color: white; text-align: center;
@@ -114,10 +127,10 @@
 
 <!-- 顶部横幅 -->
 <div class="header">
-  <h1>🇻🇳 胡志明市中资企业招聘中文岗位调研</h1>
+  <h1>🇻🇳 越南中资企业中文岗位调研（HCM + 河内）</h1>
   <div class="subtitle">
-    第六轮调研（6 渠道全量）｜ 筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
-    地理范围：胡志明市（HCM）为主 ｜ 数据截止：2026-04-07 ｜ 数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网
+    第七轮调研（6 渠道 + 河内扩展）｜ 筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）<br>
+    地理范围：胡志明市 + 河内 ｜ 数据截止：2026-04-14 ｜ 数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官方招聘页
   </div>
 </div>
 
@@ -135,6 +148,13 @@
   <div class="stat-item"><div class="stat-num" id="stat-companies">-</div><div class="stat-label">确认中资企业</div></div>
   <div class="stat-item"><div class="stat-num" id="stat-sections">-</div><div class="stat-label">行业分类</div></div>
   <div class="stat-item"><div class="stat-num" id="stat-channels">-</div><div class="stat-label">数据渠道</div></div>
+</div>
+
+<!-- 城市筛选 -->
+<div class="city-filter" id="city-filter">
+  <button data-city="all" class="active">全部 <span id="cnt-all">-</span></button>
+  <button data-city="HCM">胡志明 <span id="cnt-hcm">-</span></button>
+  <button data-city="河内">河内 <span id="cnt-hanoi">-</span></button>
 </div>
 
 <div class="container">
@@ -242,8 +262,8 @@
 
 <!-- 页脚 -->
 <div class="footer">
-  <div>数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网 ｜ 调研时间：2026-04-07</div>
-  <div style="margin-top:6px; opacity:0.7">岗位具有时效性，建议访问原帖前核实是否仍在招聘 ｜ 第六轮（6 渠道全量）</div>
+  <div>数据来源：TopCV / VietnamWorks / LinkedIn / Indeed / 企业官方招聘页 ｜ 调研时间：2026-04-14</div>
+  <div style="margin-top:6px; opacity:0.7">岗位具有时效性，建议访问原帖前核实是否仍在招聘 ｜ 第七轮（6 渠道 + 河内扩展）</div>
 </div>
 
 <script src="jobs_data.js"></script>
@@ -255,66 +275,107 @@
     'VW': 'vw', '官网': 'official'
   };
 
-  function getChannelBadge(ch) {
-    // 多渠道（含 + 号）
-    if (ch.indexOf('+') !== -1) {
-      return '<span class="channel-badge channel-multi">' + ch + '</span>';
-    }
-    var cls = channelMap[ch] || 'official';
-    return '<span class="channel-badge channel-' + cls + '">' + ch + '</span>';
+  function escHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // 渲染统计栏
-  var allJobs = [];
-  var companySet = {};
-  var channelSet = {};
+  function getChannelBadge(ch) {
+    if (!ch) return '';
+    if (ch.indexOf('+') !== -1) {
+      return '<span class="channel-badge channel-multi">' + escHtml(ch) + '</span>';
+    }
+    var cls = channelMap[ch] || 'official';
+    return '<span class="channel-badge channel-' + cls + '">' + escHtml(ch) + '</span>';
+  }
+
+  // 按城市分桶预计数
+  var cityCounts = { all: 0, HCM: 0, '河内': 0 };
   JOBS_DATA.sections.forEach(function(s) {
     s.jobs.forEach(function(j) {
-      allJobs.push(j);
-      companySet[j.company] = 1;
-      // 解析渠道
-      j.channel.split('+').forEach(function(c) { channelSet[c.trim()] = 1; });
+      cityCounts.all += 1;
+      if (j.city && cityCounts[j.city] != null) cityCounts[j.city] += 1;
     });
   });
-  document.getElementById('stat-total').textContent = allJobs.length;
-  document.getElementById('stat-companies').textContent = '~' + Object.keys(companySet).length;
-  document.getElementById('stat-sections').textContent = JOBS_DATA.sections.length;
-  document.getElementById('stat-channels').textContent = Object.keys(channelSet).length;
+  document.getElementById('cnt-all').textContent = cityCounts.all;
+  document.getElementById('cnt-hcm').textContent = cityCounts.HCM;
+  document.getElementById('cnt-hanoi').textContent = cityCounts['河内'];
 
-  // 渲染岗位 section
-  var container = document.getElementById('job-sections');
-  JOBS_DATA.sections.forEach(function(section, si) {
-    var html = '<div class="collapsible-section">';
-    html += '<div class="section-title collapsible" style="' + (si === 0 ? 'margin-top:20px' : '') + '">';
-    html += (si + 1) + '. ' + section.title + '（' + section.jobs.length + ' 个岗位）';
-    html += '<span class="toggle-arrow">▼</span></div>';
-    html += '<div class="section-content"><div class="table-wrap"><table>';
-    html += '<thead><tr><th style="width:30px">#</th><th>职位</th><th>公司</th><th>地点</th><th>来源</th><th>原帖</th></tr></thead>';
-    html += '<tbody>';
-    section.jobs.forEach(function(job, ji) {
-      html += '<tr>';
-      html += '<td class="num-cell">' + (ji + 1) + '</td>';
-      html += '<td>' + job.title + '</td>';
-      html += '<td>' + job.company + '</td>';
-      html += '<td>' + job.location + '</td>';
-      html += '<td>' + getChannelBadge(job.channel) + '</td>';
-      html += '<td><a href="' + job.url + '" target="_blank">查看 →</a></td>';
-      html += '</tr>';
+  function render(cityFilter) {
+    // 筛选
+    var filteredSections = JOBS_DATA.sections.map(function(s) {
+      var jobs = (cityFilter === 'all') ? s.jobs : s.jobs.filter(function(j) { return j.city === cityFilter; });
+      return { id: s.id, title: s.title, jobs: jobs };
     });
-    html += '</tbody></table></div></div></div>';
-    container.innerHTML += html;
+
+    // 统计
+    var total = 0;
+    var companySet = {};
+    var channelSet = {};
+    var nonEmptySections = 0;
+    filteredSections.forEach(function(s) {
+      if (s.jobs.length > 0) nonEmptySections += 1;
+      s.jobs.forEach(function(j) {
+        total += 1;
+        companySet[j.company] = 1;
+        if (j.channel) j.channel.split('+').forEach(function(c) { channelSet[c.trim()] = 1; });
+      });
+    });
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-companies').textContent = '~' + Object.keys(companySet).length;
+    document.getElementById('stat-sections').textContent = nonEmptySections;
+    document.getElementById('stat-channels').textContent = Object.keys(channelSet).length;
+
+    // 渲染
+    var container = document.getElementById('job-sections');
+    var html = '';
+    var secIdx = 0;
+    filteredSections.forEach(function(section) {
+      if (section.jobs.length === 0) return;
+      secIdx += 1;
+      html += '<div class="collapsible-section">';
+      html += '<div class="section-title collapsible" style="' + (secIdx === 1 ? 'margin-top:20px' : '') + '">';
+      html += secIdx + '. ' + escHtml(section.title) + '（' + section.jobs.length + ' 个岗位）';
+      html += '<span class="toggle-arrow">▼</span></div>';
+      html += '<div class="section-content"><div class="table-wrap"><table>';
+      html += '<thead><tr><th style="width:30px">#</th><th>职位</th><th>公司</th><th>地点</th><th>来源</th><th>原帖</th></tr></thead>';
+      html += '<tbody>';
+      section.jobs.forEach(function(job, ji) {
+        html += '<tr>';
+        html += '<td class="num-cell">' + (ji + 1) + '</td>';
+        html += '<td>' + escHtml(job.title) + '</td>';
+        html += '<td>' + escHtml(job.company) + '</td>';
+        html += '<td>' + escHtml(job.location) + '</td>';
+        html += '<td>' + getChannelBadge(job.channel) + '</td>';
+        html += '<td><a href="' + escHtml(job.url) + '" target="_blank">查看 →</a></td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table></div></div></div>';
+    });
+    container.innerHTML = html;
+
+    // 绑定折叠
+    document.querySelectorAll('#job-sections .section-title.collapsible').forEach(function(title) {
+      title.addEventListener('click', function() {
+        var content = this.nextElementSibling;
+        var arrow = this.querySelector('.toggle-arrow');
+        var isOpen = content.style.display !== 'none';
+        content.style.display = isOpen ? 'none' : 'block';
+        arrow.textContent = isOpen ? '▶' : '▼';
+      });
+    });
+  }
+
+  // 城市筛选按钮
+  document.querySelectorAll('#city-filter button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#city-filter button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      render(btn.getAttribute('data-city'));
+    });
   });
 
-  // 折叠/展开功能
-  document.querySelectorAll('.section-title.collapsible').forEach(function(title) {
-    title.addEventListener('click', function() {
-      var content = this.nextElementSibling;
-      var arrow = this.querySelector('.toggle-arrow');
-      var isOpen = content.style.display !== 'none';
-      content.style.display = isOpen ? 'none' : 'block';
-      arrow.textContent = isOpen ? '▶' : '▼';
-    });
-  });
+  render('all');
 })();
 </script>
 

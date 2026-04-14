@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>越南中文人才获客系统</title>
+  <title>越南中文求职线索（HCM + 河内）</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; background: #f5f5f5; color: #333; }
@@ -221,6 +221,19 @@
     .funnel-num { font-size: 22px; font-weight: bold; color: #e74c3c; min-width: 70px; text-align: right; }
     .funnel-label { color: #555; }
 
+    /* 城市筛选器 */
+    .city-filter {
+      display: flex; gap: 8px; padding: 14px 16px; background: #fff;
+      border-bottom: 1px solid #ecf0f1; flex-wrap: wrap;
+    }
+    .city-filter button {
+      padding: 7px 16px; border: 1px solid #bdc3c7; background: #fff;
+      color: #2c3e50; font-size: 13px; font-weight: bold; cursor: pointer;
+      border-radius: 20px; transition: all 0.15s;
+    }
+    .city-filter button:hover { border-color: #e74c3c; color: #c0392b; }
+    .city-filter button.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+
     /* 页脚 */
     .footer {
       background: #2c3e50; color: white; text-align: center;
@@ -238,9 +251,9 @@
 
 <!-- 顶部横幅 -->
 <div class="header">
-  <h1>越南中文人才获客系统</h1>
+  <h1>越南中文求职线索（HCM + 河内）</h1>
   <div class="subtitle">
-    Vietnamese Chinese-Speaking Talent Acquisition | 数据更新时间：2026年4月11日
+    Vietnamese Chinese-Speaking Talent Leads | 数据更新时间：2026年4月14日
   </div>
 </div>
 
@@ -259,6 +272,13 @@
   <div class="stat-item"><div class="stat-num" id="stat-groups">-</div><div class="stat-label">来源群组</div></div>
   <div class="stat-item"><div class="stat-num" id="stat-legacy">-</div><div class="stat-label">其他渠道线索</div></div>
   <div class="stat-item"><div class="stat-num" id="stat-scraped">-</div><div class="stat-label">抓取帖子总数</div></div>
+</div>
+
+<!-- 城市筛选 -->
+<div class="city-filter" id="city-filter">
+  <button data-city="all" class="active">全部 <span id="cnt-all">-</span></button>
+  <button data-city="胡志明市">胡志明 <span id="cnt-hcm">-</span></button>
+  <button data-city="河内市">河内 <span id="cnt-hanoi">-</span></button>
 </div>
 
 <div class="container">
@@ -496,7 +516,7 @@
 
 <!-- 页脚 -->
 <div class="footer">
-  <div>数据来源：Facebook 群组自动抓取 + LinkedIn / Upwork / 电鸭 | 更新时间：2026年4月11日</div>
+  <div>数据来源：Facebook 群组自动抓取 + LinkedIn / Upwork / 电鸭 | 更新时间：2026年4月14日</div>
   <div style="margin-top:6px; opacity:0.7">线索数据具有时效性，建议联系前核实个人资料是否仍然有效</div>
 </div>
 
@@ -507,12 +527,17 @@
   var candidates = D.candidates;
   var legacy = D.legacyCandidates;
 
-  // === 统计栏 ===
-  var uniqueGroups = {};
-  candidates.forEach(function(c) { if (c.sourceGroup) uniqueGroups[c.sourceGroup] = 1; });
-  document.getElementById('stat-leads').textContent = candidates.length;
+  // === 按城市预计数 ===
+  var cityCounts = { all: candidates.length, '胡志明市': 0, '河内市': 0 };
+  candidates.forEach(function(c) {
+    if (cityCounts[c.city] != null) cityCounts[c.city] += 1;
+  });
+  document.getElementById('cnt-all').textContent = cityCounts.all;
+  document.getElementById('cnt-hcm').textContent = cityCounts['胡志明市'];
+  document.getElementById('cnt-hanoi').textContent = cityCounts['河内市'];
+
+  // === 静态统计（不随筛选变化）===
   document.getElementById('stat-phone').textContent = D.meta.withPhone;
-  document.getElementById('stat-groups').textContent = Object.keys(uniqueGroups).length;
   document.getElementById('stat-legacy').textContent = legacy.length;
   document.getElementById('stat-scraped').textContent = D.meta.totalPostsScraped.toLocaleString();
 
@@ -535,75 +560,108 @@
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // === 1. Facebook 求职者一览（默认展开）===
-  var html = '<div class="collapsible-section">';
-  html += '<div class="section-title collapsible" style="margin-top:20px;">';
-  html += 'Facebook 求职者一览（' + candidates.length + ' 条）';
-  html += '<span class="toggle-arrow">▼</span></div>';
-  html += '<div class="section-content">';
-  html += '<div class="table-wrap"><table>';
-  html += '<thead><tr><th style="width:30px">#</th><th>姓名</th><th>中文能力</th><th>期望岗位</th><th>城市</th><th>来源群组</th><th>日期</th><th>联系</th></tr></thead>';
-  html += '<tbody>';
-  candidates.forEach(function(c) {
-    var phoneIcon = c.phone ? '📞' : '';
-    var dateStr = (c.postDate && c.postDate !== '未知') ? c.postDate : '<span style="color:#bdc3c7">--</span>';
-    html += '<tr>';
-    html += '<td class="num-cell">' + c.id + '</td>';
-    html += '<td>' + escHtml(c.name) + '</td>';
-    html += '<td>' + getLangBadge(c.chineseLevel) + '</td>';
-    html += '<td>' + escHtml(c.targetRole || '--') + '</td>';
-    html += '<td>' + escHtml(c.city || '--') + '</td>';
-    html += '<td style="font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escHtml(c.sourceGroup || '--') + '</td>';
-    html += '<td style="white-space:nowrap">' + dateStr + '</td>';
-    html += '<td style="text-align:center">' + phoneIcon + '</td>';
-    html += '</tr>';
-  });
-  html += '</tbody></table></div></div></div>';
-  document.getElementById('fb-summary-section').innerHTML = html;
+  // === 渲染 FB 一览 + 详情（可按城市筛选）===
+  function renderFB(cityFilter) {
+    var list = (cityFilter === 'all') ? candidates : candidates.filter(function(c) { return c.city === cityFilter; });
 
-  // === 2. Facebook 求职者详情（默认折叠）===
-  html = '<div class="collapsible-section">';
-  html += '<div class="section-title collapsible">';
-  html += 'Facebook 求职者详情';
-  html += '<span class="toggle-arrow">▶</span></div>';
-  html += '<div class="section-content" style="display:none">';
-  candidates.forEach(function(c) {
-    html += '<div class="job-card">';
-    html += '<div class="job-card-header">';
-    html += '<div class="job-num">' + c.id + '</div>';
-    html += '<div class="job-title-block">';
-    html += '<h3>' + escHtml(c.name) + '</h3>';
-    html += '<div class="company-line">' + escHtml(c.sourceGroup || '') + '</div>';
-    html += '</div>';
-    html += getLangBadge(c.chineseLevel);
-    html += '</div>';
-    html += '<div class="job-card-body">';
-    html += '<div class="job-info-grid">';
-    html += '<div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">城市</div><div class="info-value">' + escHtml(c.city || '--') + '</div></div></div>';
-    html += '<div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">中文能力</div><div class="info-value">' + escHtml(c.chineseLevel || '未知') + '</div></div></div>';
-    html += '<div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">' + escHtml(c.targetRole || '未指定') + '</div></div></div>';
-    if (c.phone) {
-      html += '<div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">' + escHtml(c.phone) + '</div></div></div>';
-    }
-    if (c.postDate && c.postDate !== '未知') {
-      html += '<div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发帖日期</div><div class="info-value">' + escHtml(c.postDate) + '</div></div></div>';
-    }
-    html += '</div>';
-    if (c.excerpt) {
-      html += '<div class="lead-quote">' + escHtml(c.excerpt) + '</div>';
-    }
-    html += '</div>';
-    html += '<div class="job-card-footer">';
-    if (c.postUrl) {
-      html += '<a class="btn btn-primary" href="' + escHtml(c.postUrl) + '" target="_blank">🔗 查看原帖</a>';
-    }
-    if (c.profileUrl) {
-      html += '<a class="btn btn-secondary" href="' + escHtml(c.profileUrl) + '" target="_blank">👤 社交主页</a>';
-    }
+    // 动态统计
+    var uniqueGroups = {};
+    list.forEach(function(c) { if (c.sourceGroup) uniqueGroups[c.sourceGroup] = 1; });
+    document.getElementById('stat-leads').textContent = list.length;
+    document.getElementById('stat-groups').textContent = Object.keys(uniqueGroups).length;
+
+    // 一览表
+    var html = '<div class="collapsible-section">';
+    html += '<div class="section-title collapsible" style="margin-top:20px;">';
+    html += 'Facebook 求职者一览（' + list.length + ' 条）';
+    html += '<span class="toggle-arrow">▼</span></div>';
+    html += '<div class="section-content">';
+    html += '<div class="table-wrap"><table>';
+    html += '<thead><tr><th style="width:30px">#</th><th>姓名</th><th>中文能力</th><th>期望岗位</th><th>城市</th><th>来源群组</th><th>日期</th><th>联系</th></tr></thead>';
+    html += '<tbody>';
+    list.forEach(function(c) {
+      var phoneIcon = c.phone ? '📞' : '';
+      var dateStr = (c.postDate && c.postDate !== '未知') ? c.postDate : '<span style="color:#bdc3c7">--</span>';
+      html += '<tr>';
+      html += '<td class="num-cell">' + c.id + '</td>';
+      html += '<td>' + escHtml(c.name) + '</td>';
+      html += '<td>' + getLangBadge(c.chineseLevel) + '</td>';
+      html += '<td>' + escHtml(c.targetRole || '--') + '</td>';
+      html += '<td>' + escHtml(c.city || '--') + '</td>';
+      html += '<td style="font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escHtml(c.sourceGroup || '--') + '</td>';
+      html += '<td style="white-space:nowrap">' + dateStr + '</td>';
+      html += '<td style="text-align:center">' + phoneIcon + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div></div></div>';
+    document.getElementById('fb-summary-section').innerHTML = html;
+
+    // 详情卡片
+    html = '<div class="collapsible-section">';
+    html += '<div class="section-title collapsible">';
+    html += 'Facebook 求职者详情';
+    html += '<span class="toggle-arrow">▶</span></div>';
+    html += '<div class="section-content" style="display:none">';
+    list.forEach(function(c) {
+      html += '<div class="job-card">';
+      html += '<div class="job-card-header">';
+      html += '<div class="job-num">' + c.id + '</div>';
+      html += '<div class="job-title-block">';
+      html += '<h3>' + escHtml(c.name) + '</h3>';
+      html += '<div class="company-line">' + escHtml(c.sourceGroup || '') + '</div>';
+      html += '</div>';
+      html += getLangBadge(c.chineseLevel);
+      html += '</div>';
+      html += '<div class="job-card-body">';
+      html += '<div class="job-info-grid">';
+      html += '<div class="job-info-item"><div class="info-icon">📍</div><div class="info-content"><div class="info-label">城市</div><div class="info-value">' + escHtml(c.city || '--') + '</div></div></div>';
+      html += '<div class="job-info-item"><div class="info-icon">🗣️</div><div class="info-content"><div class="info-label">中文能力</div><div class="info-value">' + escHtml(c.chineseLevel || '未知') + '</div></div></div>';
+      html += '<div class="job-info-item"><div class="info-icon">💼</div><div class="info-content"><div class="info-label">期望岗位</div><div class="info-value">' + escHtml(c.targetRole || '未指定') + '</div></div></div>';
+      if (c.phone) {
+        html += '<div class="job-info-item"><div class="info-icon">📞</div><div class="info-content"><div class="info-label">电话</div><div class="info-value">' + escHtml(c.phone) + '</div></div></div>';
+      }
+      if (c.postDate && c.postDate !== '未知') {
+        html += '<div class="job-info-item"><div class="info-icon">📅</div><div class="info-content"><div class="info-label">发帖日期</div><div class="info-value">' + escHtml(c.postDate) + '</div></div></div>';
+      }
+      html += '</div>';
+      if (c.excerpt) {
+        html += '<div class="lead-quote">' + escHtml(c.excerpt) + '</div>';
+      }
+      html += '</div>';
+      html += '<div class="job-card-footer">';
+      if (c.postUrl) {
+        html += '<a class="btn btn-primary" href="' + escHtml(c.postUrl) + '" target="_blank">🔗 查看原帖</a>';
+      }
+      if (c.profileUrl) {
+        html += '<a class="btn btn-secondary" href="' + escHtml(c.profileUrl) + '" target="_blank">👤 社交主页</a>';
+      }
+      html += '</div></div>';
+    });
     html += '</div></div>';
+    document.getElementById('fb-detail-section').innerHTML = html;
+
+    // 重新绑定 FB section 的折叠
+    document.querySelectorAll('#fb-summary-section .section-title.collapsible, #fb-detail-section .section-title.collapsible').forEach(function(title) {
+      title.addEventListener('click', function() {
+        var content = this.nextElementSibling;
+        var arrow = this.querySelector('.toggle-arrow');
+        var isOpen = content.style.display !== 'none';
+        content.style.display = isOpen ? 'none' : 'block';
+        arrow.textContent = isOpen ? '▶' : '▼';
+      });
+    });
+  }
+
+  // 城市筛选按钮
+  document.querySelectorAll('#city-filter button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#city-filter button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderFB(btn.getAttribute('data-city'));
+    });
   });
-  html += '</div></div>';
-  document.getElementById('fb-detail-section').innerHTML = html;
+
+  renderFB('all');
 
   // === 3. 其他渠道线索（默认折叠）===
   var channelBadgeMap = {
@@ -680,8 +738,10 @@
   html += '</div></div>';
   document.getElementById('scrape-stats-section').innerHTML = html;
 
-  // === 折叠/展开 ===
+  // === 折叠/展开（FB 区块的绑定在 renderFB 内处理，这里只绑其余区块）===
   document.querySelectorAll('.section-title.collapsible').forEach(function(title) {
+    // Skip FB sections — they are re-bound each time renderFB() runs
+    if (title.closest('#fb-summary-section') || title.closest('#fb-detail-section')) return;
     title.addEventListener('click', function() {
       var content = this.nextElementSibling;
       var arrow = this.querySelector('.toggle-arrow');

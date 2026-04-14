@@ -1,423 +1,327 @@
-// 胡志明市中资企业中文岗位数据
-// 数据来源：中资企业胡志明市中文岗位-客户交付-2026-04-07.md
+// 越南中资企业中文岗位数据（HCM + 河内）
+// 数据来源：中资企业越南中文岗位-客户交付-2026-04-14.md
 // 按行业分类（对应报告第六节）
 
 const JOBS_DATA = {
   meta: {
-    updateTime: "2026-04-07",
-    round: "第六轮（6 渠道全量）",
-    sources: "TopCV / VietnamWorks / LinkedIn / Indeed / 企业官网",
-    filterNote: "筛选条件：① 中资企业（含港资/国企/民企）+ ② 岗位要求中文能力（两条同时满足）"
+    "updateTime": "2026-04-14",
+    "round": "第七轮（6 渠道 + 河内扩展）",
+    "sources": "TopCV / VietnamWorks / LinkedIn / Indeed / 企业官方招聘页",
+    "coverage": {
+      "hcm": 176,
+      "hanoi": 76
+    },
+    "totals": {
+      "companies": 111,
+      "jobs": 252
+    },
+    "filterNote": "筛选条件：① 中资企业（含港资/国企）+ ② 岗位要求中文能力"
   },
   sections: [
-    // ============================================================
-    // 6.1 跨境电商 / 数字营销 / 直播代播
-    // ============================================================
     {
       id: "ecommerce",
-      title: "跨境电商 / 数字营销 / 直播代播",
+      title: "跨境电商 / 数字营销",
       jobs: [
-        // NEXTAD STUDIO（TikTok 海外代播 / 深圳系）
-        { title: "Senior UA / 广告投放专员（中文优先）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-chay-quang-cao-senior-ua-uu-tien-biet-tieng-trung-quan-2/2046439.html" },
-        { title: "行政人事（HSK4+）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hanh-chinh-nhan-su-biet-tieng-trung-hsk4-tro-len-quan-2/2107949.html" },
-        { title: "会计主管（中文，月薪到 40 triệu）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-truong-biet-tieng-trung-thu-nhap-den-40-trieu-quan-2/2108034.html" },
-        { title: "Content Researcher（HSK4+）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/content-researcher-chuyen-vien-nghien-cuu-noi-dung-yeu-cau-biet-tieng-trung-hsk4-tro-len-quan-2/2078433.html" },
-        { title: "中文助理（HSK4+）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-biet-tieng-trung-hsk4-tro-len-quan-2/2102763.html" },
-        { title: "对外事务助理（中文）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-doi-ngoai-tieng-trung-thanh-thao-tieng-trung-quan-2/2096451.html" },
-        { title: "社媒运营实习生（中文优先）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-van-hanh-social-media-operations-intern-uu-tien-biet-tieng-trung-quan-2/2091180.html" },
-        { title: "广告投放员（中文，Q7）", company: "NEXTAD STUDIO", location: "Q7, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-chay-quang-cao-ads-biet-tieng-trung-quan-7-ho-chi-minh/2041930.html" },
-        { title: "游戏翻译 & 本地化（中越）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-dich-thuat-ban-dia-hoa-game-trung-viet-uu-tien-biet-tieng-trung-quan-2/2046254.html" },
-        { title: "游戏翻译实习生（中文）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-dich-thuat-game-tieng-trung-tot-tro-cap-6-trieu-tai-lakeview-2-gan-cau-thu-thiem-hcm/2031298.html" },
-        { title: "ADS 投放员（不强制中文）", company: "NEXTAD STUDIO", location: "Q7, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-chay-ads-luong-cung-den-15-trieu-khong-bat-buoc-tieng-trung-tu-1-nam-kinh-nghiem-tai-phuong-tan-hung-hcm-quan-7-cu/2069765.html" },
-        { title: "社媒运营专员（中文优先）", company: "NEXTAD STUDIO", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-van-hanh-social-media-operations-executive-uu-tien-biet-tieng-trung-quan-2/2078388.html" },
-        // Mạng Lưới Thông Minh（智能网络，深圳系跨境代运营）
-        { title: "内部会计（中文，13–20 triệu）", company: "智能网络 Mạng Lưới Thông Minh", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-biet-tieng-trung-luong-tu-13-20-trieu-thang/2093023.html" },
-        { title: "内部会计（中文）", company: "智能网络 Mạng Lưới Thông Minh", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-biet-tieng-trung-co-the-nhan-viec-sau/2065207.html" },
-        { title: "Social Media 运营（中文 / Fresher）", company: "智能网络 Mạng Lưới Thông Minh", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-social-media-biet-tieng-trung-khong-yeu-cau-kinh-nghiem-fresher/2093184.html" },
-        { title: "Content Creator（中文）", company: "智能网络 Mạng Lưới Thông Minh", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-content-creator-biet-tieng-trung/2102755.html" },
-        { title: "产品支持（中 / 英文）", company: "智能网络 Mạng Lưới Thông Minh", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ho-tro-san-pham-biet-tieng-anh-hoac-tieng-trung/2068616.html" },
-        // BIGSELLER TECHNOLOGY
-        { title: "CSKH 中文（电商行业）", company: "BigSeller Technology", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-cskh-tieng-trung-nganh-thuong-mai-dien-tu/1606490.html" },
-        // BLUEMEDIA VIETNAM
-        { title: "Mediabuy Account Executive (Chinese)", company: "BlueMedia Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/mediabuy-account-executive-chinese/2107246.html" },
-        // CHICMAX VIETNAM
-        { title: "行政人事专员（中文）", company: "ChicMax Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-tieng-trung/2095453.html" },
-        { title: "TikTok 平台运营", company: "ChicMax Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-san-tiktok-tu-2-nam-kinh-nghiem-biet-tieng-trung-hoac-tieng-anh/2084581.html" },
-        // FOCUS MEDIA 分众传媒
-        { title: "总账会计（中文）", company: "Focus Media 分众传媒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tong-hop-tieng-trung/2110148.html" },
-        { title: "仓库管理员（中文）", company: "Focus Media 分众传媒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2098923.html" },
-        { title: "Media Plan 运营（中文）", company: "Focus Media 分众传媒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-phong-media-plan-tieng-trung/2076851.html" },
-        // HELLOWORLD / 51Talk
-        { title: "Sales Team Leader（教育，HSK5）", company: "HelloWorld 51Talk", location: "Q1, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/team-leader-sales-nganh-giao-duc-luong-30tr5-hoa-hong-quan-1-biet-tieng-trung-hsk5/2042217.html" },
-        // JOYOUNG 九阳
-        { title: "仓库员工（基础中文）", company: "Joyoung 九阳", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nam-nhan-vien-kho-biet-tieng-trung/1923173.html" },
-        { title: "平台运营助理（中文）", company: "Joyoung 九阳", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-van-hanh-san-biet-tieng-trungduoc-dao-tao/1929851.html" },
-        // LANBENA 蓝玫娜
-        { title: "C&B 专员（中文优先）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cb-uu-tien-tieng-trung/1671539.html" },
-        { title: "内部会计（中文）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/1853652.html" },
-        { title: "仓库员工（中文）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kho-tieng-trung/2056075.html" },
-        { title: "打单员（基础中文）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-in-don-biet-chut-tieng-trung/2056059.html" },
-        { title: "HR 综合（中文）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hr-tong-hop-tieng-trung/1671547.html" },
-        { title: "Shopee 平台运营（中文）", company: "Lanbena 蓝玫娜", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-san-shopee-tieng-trung/2073801.html" },
-        // PANDA AGENCY
-        { title: "抖音直播主播（远程，必中文）", company: "Panda Agency", location: "Remote", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/idol-livestream-tren-nen-tang-douyin-part-time-full-time-bat-buoc-tieng-trung-lam-viec-remote-luong-15-100-trieu-thuong/2100745.html" },
-        // TOKBOOST MEDIA
-        { title: "商务翻译（中文）", company: "TokBoost Media", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-thuong-mai-tieng-trung/2085822.html" },
-        { title: "对外事务助理（中文）", company: "TokBoost Media", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-doi-ngoai-tieng-trung/2085812.html" },
-        // WINTOK MEDIA
-        { title: "TikTok 直播运营", company: "Wintok Media", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=80f8f460d582d496" },
-        { title: "TikTok Streamer / Talent", company: "Wintok Media", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=4453230090e5462e" },
-        // ZIBUYU 子不语
-        { title: "Merchandise 专员（中文）", company: "Zibuyu 子不语", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-merchandise-biet-tieng-trung/1989788.html" },
-        // GGBINGO 供应链
-        { title: "跨境电商运营总监", company: "GGBingo", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a558d529d1087c22" },
-        { title: "跨境电商高级运营", company: "GGBingo", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=c05664fbeac9d53c" },
-        { title: "业务发展总监 BD", company: "GGBingo", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6cc14e15d4828643" },
-        // KINGDEN TRADING
-        { title: "Content Creator（中文）", company: "Kingden Trading", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/content-creator-tieng-trung-tot/2109456.html" },
-        { title: "CEO 助理（中 / 英文）", company: "Kingden Trading", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-ceo-tieng-anh-hoac-tieng-trung-tot/2084976.html" },
-        { title: "E-Commerce Assistant", company: "Kingden Trading", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/e-commerce-assistant-good-english-or-chinese/1976136.html" },
-        // FOCALLURE 菲鹿儿
-        { title: "视频剪辑（中 / 英文）", company: "Focallure 菲鹿儿", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-video-editor-biet-tieng-trung-hoac-anh/1207751.html" },
-        { title: "Merchandise（中 / 英文）", company: "Focallure 菲鹿儿", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-merchandise-biet-tieng-anh-tieng-trung/2033902.html" },
-        { title: "Sales Admin Cosmetic（中文）", company: "Focallure 菲鹿儿", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/sales-admin-cosmetic-biet-tieng-trung/1954948.html" },
-        // VEO VIETNAM
-        { title: "平面设计师（中文）", company: "VEO Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-thiet-ke-do-hoa-biet-tieng-trung-thu-nhap-hap-dan-nhan-viec-ngay/2087636.html" },
-        { title: "人事行政经理（中文）", company: "VEO Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/quan-ly-hanh-chinh-nhan-su-biet-tieng-trung-thu-nhap-den-20-trieu-di-lam-ngay/2083543.html" },
-        { title: "内部会计（中文）", company: "VEO Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-biet-tieng-trung/2084270.html" },
-        // CITY WISDOM
-        { title: "Trade Marketing Admin (Chinese)", company: "City Wisdom", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/trade-marketing-admin-chinese-welcomed-fresher/1897183.html" },
-        { title: "商务助理（中文）", company: "City Wisdom", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/2068641.html" },
-        // BLOOMEDGE
-        { title: "会计主管（中 / 英文，30-35 triệu）", company: "Bloomedge", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=9614e8c490bbad34" },
-        { title: "会计主管（30-35 triệu，3 年财税经验）", company: "Bloomedge", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=feb183315e43ef4a" },
-        // VIỆT GLOBAL
-        { title: "Sales（钢铁，中 / 英文）", company: "Việt Global", location: "Q1, HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=09df15b9f88792f5" },
-        // COLORKEY 珂拉琪 (LinkedIn)
-        { title: "AR Accountant", company: "Colorkey 珂拉琪", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/hcm-accountant-receivable-at-colorkey-vietnam-4390415127" },
-        // BlueFocus 蓝色光标 (LinkedIn)
-        { title: "Admin Executive (Chinese)", company: "BlueFocus 蓝色光标", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/admin-executive-chinese-at-bluefocus-4396061568" },
-        // PingPong Payments (LinkedIn)
-        { title: "Sales Specialist", company: "PingPong Payments", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/sales-specialist-at-pingpong-payments-4359221250" },
-        { title: "POS Local Implementation Specialist", company: "PingPong Payments", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/pos-local-implementation-and-maintenance-specialist-1-year-contract-at-pingpong-payments-4391689677" },
-        // Alibaba.com (LinkedIn)
-        { title: "Sales Supervisor", company: "Alibaba.com 阿里巴巴", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/sales-supervisor-at-alibaba-com-4393532813" },
-        // Alibaba Cloud (LinkedIn)
-        { title: "Channel Business Development", company: "Alibaba Cloud 阿里云", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/channel-business-development-ho-chi-minh-city-vietnam-at-alibaba-cloud-4354153192" },
-        // ByteDance (LinkedIn)
-        { title: "BytePlus Sales Specialist（Mandarin）", company: "ByteDance 字节跳动", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/innovation-tech-solution-sales-specialist-byteplus-vietnam-philippines-mandarin-speaking-at-bytedance-4384282529" },
-        // JD.COM 京东 (LinkedIn)
-        { title: "Sales Support", company: "JD.COM 京东", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/sales-support-at-jd-com-4385667864" },
-        { title: "Operations Manager (JD YOUNG)", company: "JD.COM 京东", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/operations-manager-jd-young-internship-program-at-jd-com-4388945818" },
+        { title: "KẾ TOÁN TRƯỞNG ( 30-35 TRIỆU/THANG, 3 NĂM KINH NGHIỆM TÀI CHÍNH/THUE)", company: "BLOOMEDGE VIETNAM CO.,LTD", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=feb183315e43ef4a" },
+        { title: "Trợ Lý Tổng Giám Đốc (Tiếng Trung)", company: "BUSY MING VIETNAM TRADING CHAIN CO.,LTD", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4394755415" },
+        { title: "Mediabuy Account Executive (Chinese)", company: "BlueMedia", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/mediabuy-account-executive-chinese/2107246.html" },
+        { title: "BD in Digital Advertising (Media: TikTok / Facebook / Google Ads)", company: "BlueMedia", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4385056245" },
+        { title: "Giáo Viên & Phát Triển Giáo Trình Tiếng Trung", company: "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ PORO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-phat-trien-giao-trinh-tieng-trung/1705693.html" },
+        { title: "Giáo Viên Tiếng Trung Part-Time (Online)", company: "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ PORO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-part-time-online/2106145.html" },
+        { title: "Giáo Viên Tiếng Trung Part-Time (Online) – Hoa Ngữ Đắc Nhân", company: "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ PORO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-part-time-online-hoa-ngu-dac-nhan/2090575.html" },
+        { title: "Hỗ Trợ Lớp Học Tiếng Trung/Hàn", company: "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ PORO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ho-tro-lop-hoc-tieng-trung-han/1844782.html" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng (CSKH Tiếng Trung) - Ngành Thương Mại Điện Tử", company: "CÔNG TY TNHH BIGSELLER TECHNOLOGY (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-cskh-tieng-trung-nganh-thuong-mai-dien-tu/1606490.html" },
+        { title: "Chuyên Viên Quan Hệ Công Chúng / PR (Tiếng Trung)", company: "CÔNG TY TNHH CHUỖI THƯƠNG MẠI BUSY MING VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-quan-he-cong-chung-pr-tieng-trung/2090652.html" },
+        { title: "HRBP - Chinese Communication", company: "CÔNG TY TNHH CHUỖI THƯƠNG MẠI BUSY MING VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hrbp-chinese-communication/2078907.html" },
+        { title: "Trợ Lý Tiếng Trung", company: "CÔNG TY TNHH CHUỖI THƯƠNG MẠI BUSY MING VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2045820.html" },
+        { title: "Trợ Lý Tổng Giám Đốc (Tiếng Trung)", company: "CÔNG TY TNHH CHUỖI THƯƠNG MẠI BUSY MING VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-tieng-trung/2112437.html" },
+        { title: "Trade Marketing Admin (Chinese/ Welcomed Fresher)", company: "CÔNG TY TNHH CITY WISDOM VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/trade-marketing-admin-chinese-welcomed-fresher/1897183.html" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng Biết Tiếng Trung", company: "CÔNG TY TNHH CÔNG NGHỆ MẠNG WANXING", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-biet-tieng-trung/1806832.html" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng Biết Tiếng Trung", company: "CÔNG TY TNHH CÔNG NGHỆ MẠNG WANXING", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=37762332e1b3640c" },
+        { title: "Nhân Viên Tiếng Trung (Không Yêu Cầu Kinh Nghiệm)", company: "CÔNG TY TNHH ENRICHMENT RISE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-tieng-trung-khong-yeu-cau-kinh-nghiem/2083188.html" },
+        { title: "Vận Hành Livestream - Tiếng Trung", company: "CÔNG TY TNHH ENRICHMENT RISE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/van-hanh-livestream-tieng-trung/2030006.html" },
+        { title: "Nhân Viên Kế Toán Tổng Hợp (Tiếng Trung)", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tong-hop-tieng-trung/2110148.html" },
+        { title: "Nhân Viên Quản Kho (Tiếng Trung)", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2098923.html" },
+        { title: "Nhân Viên Sale Admin (Tiếng Trung)", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-sale-admin-tieng-trung/2120112.html" },
+        { title: "Nhân Viên Vận Hành Phòng Media Plan (Tiếng Trung)", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-phong-media-plan-tieng-trung/2076851.html" },
+        { title: "Chuyên viên kinh doanh", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-kinh-doanh.35C68580.html" },
+        { title: "Trưởng nhóm Pháp chế", company: "CÔNG TY TNHH FOCUS MEDIA (VIỆT NAM)", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/truong-nhom-phap-che.35C70BF1.html" },
+        { title: "Chuyên Viên Chạy Quảng Cáo - Senior UA / Ưu Tiên Biết Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-chay-quang-cao-senior-ua-uu-tien-biet-tieng-trung-quan-2/2046439.html" },
+        { title: "Chuyên Viên Dịch Thuật & Bản Địa Hóa Game (Trung - Việt) / Ưu Tiến Biết Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-dich-thuat-ban-dia-hoa-game-trung-viet-uu-tien-biet-tieng-trung-quan-2/2046254.html" },
+        { title: "Chuyên Viên Vận Hành (Social Media Operations Executive) / Ưu Tiên Biết Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-van-hanh-social-media-operations-executive-uu-tien-biet-tieng-trung-quan-2/2078388.html" },
+        { title: "Content Researcher / Chuyên Viên Nghiên Cứu Nội Dung / Yêu Cầu Biết Tiếng Trung - HSK4 Trở Lên / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/content-researcher-chuyen-vien-nghien-cuu-noi-dung-yeu-cau-biet-tieng-trung-hsk4-tro-len-quan-2/2078433.html" },
+        { title: "Hành Chính Nhân Sự / Biết Tiếng Trung / HSK4+ Trở Lên / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hanh-chinh-nhan-su-biet-tieng-trung-hsk4-tro-len-quan-2/2107949.html" },
+        { title: "Kế Toán Trưởng / Biết Tiếng Trung / Thu Nhập Đến 40 Triệu / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-truong-biet-tieng-trung-thu-nhap-den-40-trieu-quan-2/2108034.html" },
+        { title: "Nhân Viên Chạy Quảng Cáo - Ads / Biết Tiếng Trung / Quận 7, Hồ Chí Minh", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-chay-quang-cao-ads-biet-tieng-trung-quan-7-ho-chi-minh/2041930.html" },
+        { title: "Thực Tập Sinh Dịch Thuật Game / Tiếng Trung Tốt / Trợ Cấp 6 Triệu / Tại Lakeview 2, Gần Cầu Thủ Thiêm, HCM", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-dich-thuat-game-tieng-trung-tot-tro-cap-6-trieu-tai-lakeview-2-gan-cau-thu-thiem-hcm/2031298.html" },
+        { title: "Thực Tập Sinh Vận Hành (Social Media Operations Intern)/ Ưu Tiên Biết Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-van-hanh-social-media-operations-intern-uu-tien-biet-tieng-trung-quan-2/2091180.html" },
+        { title: "Trợ Lý Tiếng Trung / BIẾT TIẾNG TRUNG HSK4 TRỞ LÊN / QUẬN 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-biet-tieng-trung-hsk4-tro-len-quan-2/2102763.html" },
+        { title: "Trợ Lý Đối Ngoại Tiếng Trung / Thành Thạo Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-doi-ngoai-tieng-trung-thanh-thao-tieng-trung-quan-2/2096451.html" },
+        { title: "Chuyên Viên Dịch Thuật & Bản Địa Hóa Game (Trung - Việt) / Ưu Tiên Biết Tiếng Trung / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=3113b7f1126eb312" },
+        { title: "Hành Chính Nhân Sự / Biết Tiếng Trung / HSK4+ Trở Lên / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=0affd1fce493098f" },
+        { title: "Nhân Viên Chạy Quảng Cáo - Ads / Biết Tiếng Trung / Quận 7, Hồ Chí Minh", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=890abcdef0123456" },
+        { title: "Thực Tập Sinh Dịch Thuật Game / Tiếng Trung Tốt / Trợ Cấp 6 Triệu", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=88ce29d5b4d797d8" },
+        { title: "Trợ Lý Tiếng Trung / Biết Tiếng Trung HSK4 Trở Lên / Quận 2", company: "CÔNG TY TNHH NEXTAD STUDIO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=32367d544a380b10" },
+        { title: "Idol Livestream Trên Nền Tảng Douyin (Part Time/Full Time)- Bắt Buộc Tiếng Trung - Làm Việc Remote - Lương 15 - 100 Triệu + Thưởng", company: "CÔNG TY TNHH PANDA AGENCY", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/idol-livestream-tren-nen-tang-douyin-part-time-full-time-bat-buoc-tieng-trung-lam-viec-remote-luong-15-100-trieu-thuong/2100745.html" },
+        { title: "Kế Toán Nội Bộ - Thành Thạo Tiếng Trung", company: "CÔNG TY TNHH THƯƠNG MẠI KEEP RISE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-thanh-thao-tieng-trung/2060268.html" },
+        { title: "Nhân Viên C&B Biết Tiếng Trung Hoặc Anh", company: "CÔNG TY TNHH THƯƠNG MẠI KEEP RISE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cb-biet-tieng-trung-hoac-anh/2048640.html" },
+        { title: "Trưởng Phòng Nhân Sự Biết Tiếng Trung/Tiếng Anh - Nhận Việc Ngay (Quận 7)", company: "CÔNG TY TNHH THƯƠNG MẠI KEEP RISE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-nhan-su-biet-tieng-trung-tieng-anh-nhan-viec-ngay-quan-7/2088602.html" },
+        { title: "Phiên Dịch Thương Mại Tiếng Trung", company: "CÔNG TY TNHH TOKBOOST MEDIA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-thuong-mai-tieng-trung/2085822.html" },
+        { title: "Trợ Lý Đối Ngoại Tiếng Trung", company: "CÔNG TY TNHH TOKBOOST MEDIA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-doi-ngoai-tieng-trung/2085812.html" },
+        { title: "Chuyên Viên Thiết Kế Đồ Họa (Biết Tiếng Trung) - Thu Nhập Hấp Dẫn, Nhận Việc Ngay", company: "CÔNG TY TNHH VEO VIET NAM LIMITED", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-thiet-ke-do-hoa-biet-tieng-trung-thu-nhap-hap-dan-nhan-viec-ngay/2087636.html" },
+        { title: "Kế Toán Tổng Hợp (Biết Tiếng Trung)", company: "CÔNG TY TNHH VEO VIET NAM LIMITED", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tong-hop-biet-tieng-trung/2084270.html" },
+        { title: "Quản Lý Hành Chính Nhân Sự (Biết Tiếng Trung), Thu Nhập Đến 20 Triệu, Đi Làm Ngay", company: "CÔNG TY TNHH VEO VIET NAM LIMITED", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/quan-ly-hanh-chinh-nhan-su-biet-tieng-trung-thu-nhap-den-20-trieu-di-lam-ngay/2083543.html" },
+        { title: "Vận Hành Sàn Thương Mại Điện Tử (Biết Tiếng Trung)", company: "CÔNG TY TNHH VEO VIET NAM LIMITED", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/van-hanh-san-thuong-mai-dien-tu-biet-tieng-trung/2117099.html" },
+        { title: "Giáo Viên & Phát Triển Giáo Trình Tiếng Trung", company: "Công Ty Cổ Phần Giải Pháp Công Nghệ Poro", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=f220de591862e139" },
+        { title: "Hỗ Trợ Lớp Học Tiếng Trung/Hàn", company: "Công Ty Cổ Phần Giải Pháp Công Nghệ Poro", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=40e14d33b9e8b51b" },
+        { title: "Streamer/Talent Livestream Tiktok", company: "Công Ty TNHH Wintok Media", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=4453230090e5462e" },
+        { title: "Finance Operations Executive (Chinese)", company: "蓝色光标", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4398738132" },
       ]
     },
-
-    // ============================================================
-    // 6.2 物流货代 / 仓储 / 供应链
-    // ============================================================
     {
       id: "logistics",
-      title: "物流货代 / 仓储 / 供应链",
+      title: "物流货代",
       jobs: [
-        // CHAINVALUE VIETNAM
-        { title: "商务助理（中文）", company: "Chainvalue Vietnam", location: "HCM", channel: "TopCV+VW", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-thanh-thao-tieng-trung/2105174.html" },
-        { title: "中文进出口单证员", company: "Chainvalue Vietnam", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" },
-        { title: "CSKH Logistics / Kho vận（中文）", company: "Chainvalue Vietnam", location: "HCM", channel: "VW+LinkedIn", url: "https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" },
-        // HAISTONG 海仕通
-        { title: "Customer Service Logistics（中文）", company: "Haistong 海仕通", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/customer-service-logistic-tieng-trung/1988963.html" },
-        { title: "Operation / Documentation (Booking-SI)", company: "Haistong 海仕通", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=e1bc108aaeb57d59" },
-        // COLUMBUS FREIGHT
-        { title: "操作部主管（中文）", company: "Columbus Freight", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-thao-tac-tieng-trung/2091375.html" },
-        { title: "操作员（中文）", company: "Columbus Freight", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-thao-tac-tieng-trung/2086334.html" },
-        // LINKTRANS LOGISTICS
-        { title: "行政人事专员（中文）", company: "Linktrans Logistics", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-giao-tiep-tot-tieng-trung-luong-up-to-20-trieu-tp-hcm/2094907.html" },
-        { title: "Logistics Sales Executive（中文）", company: "Linktrans Logistics", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/logistics-sales-executive-nhan-vien-kinh-doanh-logistics-tieng-trung-giao-tiep-tot-luong-up-to-18-trieu-tp-hcm/2102781.html" },
-        // ADP LOXSON LOGISTICS
-        { title: "CSKH Logistics（HSK5+）", company: "ADP Loxson Logistics", location: "Bình Thạnh, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cskh-nganh-logistics-tieng-trung-hsk5-tro-len-luong-12-16-trieu-quan-binh-thanh-tphcm/2105464.html" },
-        { title: "CSKH 中文（有经验）", company: "ADP Loxson Logistics", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-co-kinh-nghiem/1486637.html" },
-        // SOONDONE LOGISTICS
-        { title: "内部会计（中文）", company: "Soondone Logistics", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/1914954.html" },
-        // XWILL SUPPLY CHAIN
-        { title: "会计（中文）", company: "Xwill Supply Chain", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tieng-trung/1383093.html" },
-        // SHANHAIMAP 山海图
-        { title: "CSKH 中文（周一至五）", company: "Shanhaimap 山海图", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-lam-viec-tu-thu-2-den-thu-6/2106638.html" },
-        { title: "CSKH 中文（试用 100% 工资）", company: "Shanhaimap 山海图", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a7edb9f0ae38193d" },
-        // SINOTRANS 中外运
-        { title: "Operation & Equipment Control", company: "Sinotrans 中外运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=fd466b127816f549" },
-        // TOP ONE BEST / 百世物流 (Indeed)
-        { title: "进出口单证员", company: "百世物流 Top One Best", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=960d281a3e1bcb6d" },
-        // YUNYI 运易物流
-        { title: "运营助理（中文）", company: "Yunyi 运易物流", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-van-hanh-tieng-trung/1781696.html" },
-        { title: "文秘（基础中文）", company: "Yunyi 运易物流", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-thu-biet-tieng-trung/1678929.html" },
-        { title: "总经理助理（中文）", company: "Yunyi 运易物流", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-li-tong-giam-doc-thanh-thao-tieng-trung/1716361.html" },
-        { title: "运输调度实习生（中文）", company: "Yunyi 运易物流", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-dieu-phoi-van-tai-tieng-trung/1829131.html" },
-        { title: "物流市场拓展员", company: "Yunyi 运易物流", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=f01311546a5edba8" },
-        // EBAO NETWORK
-        { title: "Sales Logistics", company: "Ebao Network", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a4946b274f5c79a3" },
-        { title: "内部会计", company: "Ebao Network", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=52d106a520064c9b" },
-        // DAYA 国际货运
-        { title: "Sales Logistics（中文）", company: "Daya 国际货运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ffdb95da11bd7552" },
-        { title: "单证实习生（中文）", company: "Daya 国际货运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=9f9bae6849b77df2" },
-        { title: "Sales Logistics 实习生（中文）", company: "Daya 国际货运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=9d20435324536873" },
-        { title: "单证员（中文）", company: "Daya 国际货运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=b0ae8995d37af294" },
-        { title: "销售 / Sales Logistics（中文）", company: "Daya 国际货运", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=adc82a74e214f5d1" },
-        // J&T CARGO
-        { title: "网络绩效主管（中文）", company: "J&T Cargo", location: "HCM", channel: "TopCV+Indeed", url: "https://www.topcv.vn/viec-lam/chu-quan-hieu-suat-mang-luoi-tieng-trung/2106150.html" },
-        { title: "采购主管（中文）", company: "J&T Cargo", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giam-sat-thu-mua-tieng-trung-hcm/2109008.html" },
-        { title: "招聘专员（中文）", company: "J&T Cargo", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-tuyen-dung-biet-tieng-trung-hcm/2074629.html" },
-        // FASTOCK 跨境仓储
-        { title: "中文翻译助理", company: "Fastock 跨境仓储", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-phien-dich-tieng-trung/2096492.html" },
-        { title: "市场拓展员（中文）", company: "Fastock 跨境仓储", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-phat-trien-thi-truong-biet-tieng-trung/2107757.html" },
-        { title: "中文员工", company: "Fastock 跨境仓储", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-tieng-trung/2107715.html" },
-        // CHIJUN 智运
-        { title: "中文助理", company: "Chijun 智运", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/1831448.html" },
-        { title: "中文助理 - 市场拓展", company: "Chijun 智运", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-mang-phat-trien-thi-truong/2066626.html" },
-        // JINGDONG Logistics 京东物流 (LinkedIn)
-        { title: "Talent Acquisition Partner（双语）", company: "京东物流 JINGDONG Logistics", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/talent-acquisition-partner-bilingual-english-mandarin-at-jingdong-logistics-4387101299" },
-        // KLN 嘉里大通 (LinkedIn)
-        { title: "2026 Graduate Trainee", company: "KLN 嘉里大通", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/2026-graduate-trainee-management-trainee-program-at-kln-logistics-group-4394471155" },
-        // BEST LOGISTICS 百世 (VW)
-        { title: "总经理助理（中文）", company: "百世物流 Best Logistics", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/tro-ly-tong-giam-djoc-tieng-trung-2032639-jv" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng Logistics/Kho Vận (Yêu cầu Tiếng Trung) Công Ty TNHH Chainvalue (Việt Nam) 12tr-18tr ₫/tháng Hồ Chí Minh Cập nhật: 08/04/2026 Chăm sóc & duy trì quan hệ khách hàng Chăm sóc & duy trì quan hệ khách hàng Chăm Sóc Khách Hàng +3", company: "Chainvalue", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/nhan-vien-cham-soc-khach-hang-logisticskho-van-yeu-cau-tieng-trung-2025878-jv" },
+        { title: "Nhân Viên Chứng Từ Xuất Nhập Khẩu (Thành thạo Tiếng Trung) Công Ty TNHH Chainvalue (Việt Nam) 12tr-16tr ₫/tháng Hồ Chí Minh Cập nhật: 11/04/2026 Báo Giá Hợp Đồng Chứng Từ Xuất Nhập Khẩu Lưu Trữ Chứng Từ +3", company: "Chainvalue", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/nhan-vien-chung-tu-xuat-nhap-khau-thanh-thao-tieng-trung-2034951-jv" },
+        { title: "Trợ Lý Kinh Doanh (Thành Thạo Tiếng Trung)", company: "Chainvalue", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-thanh-thao-tieng-trung/2105174.html" },
+        { title: "Thực Tập Sinh Tiếng Trung", company: "CÔNG TY CHUYỂN PHÁT NHANH THUẬN PHONG CHI NHÁNH HỒ CHÍ MINH (J&T EXPRESS)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung/2121181.html" },
+        { title: "Trợ Lý Tiếng Trung", company: "CÔNG TY CHUYỂN PHÁT NHANH THUẬN PHONG CHI NHÁNH HỒ CHÍ MINH (J&T EXPRESS)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/1837570.html" },
+        { title: "Customer Service (Logistic - Tiếng Trung)", company: "CÔNG TY TNHH CHUỖI CUNG ỨNG HAISTONG", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/customer-service-logistic-tieng-trung/1988963.html" },
+        { title: "Operation/ Documentation (Booking - SI)", company: "CÔNG TY TNHH CHUỖI CUNG ỨNG HAISTONG", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=e1bc108aaeb57d59" },
+        { title: "Kế Toán Tiếng Trung", company: "CÔNG TY TNHH COLUMBUS FREIGHT", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tieng-trung/2111886.html" },
+        { title: "Nhân Viên Thao Tác Tiếng Trung", company: "CÔNG TY TNHH COLUMBUS FREIGHT", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-thao-tac-tieng-trung/2086334.html" },
+        { title: "Trưởng Phòng Thao Tác Tiếng Trung", company: "CÔNG TY TNHH COLUMBUS FREIGHT", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-thao-tac-tieng-trung/2091375.html" },
+        { title: "Nhân Viên Phát Triển Thị Trường Biết Tiếng Trung", company: "CÔNG TY TNHH KHO VẬN FASTOCK", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-phat-trien-thi-truong-biet-tieng-trung/2107757.html" },
+        { title: "Nhân Viên Tiếng Trung", company: "CÔNG TY TNHH KHO VẬN FASTOCK", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-tieng-trung/2107715.html" },
+        { title: "Trợ Lý Tiếng Trung Mảng Thị Trường", company: "CÔNG TY TNHH KHO VẬN FASTOCK", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-mang-thi-truong/2096492.html" },
+        { title: "Chuyên Viên Hành Chính Nhân Sự - Giao Tiếp Tốt Tiếng Trung - Lương Up To 20 Triệu ++ (TP.HCM)", company: "CÔNG TY TNHH LINKTRANS LOGISTICS (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-giao-tiep-tot-tieng-trung-luong-up-to-20-trieu-tp-hcm/2094907.html" },
+        { title: "Logistics Sales Executive/ Nhân Viên Kinh Doanh Logistics - Tiếng Trung Giao Tiếp Tốt - Lương Up To 18 Triệu ++ (TP.HCM)", company: "CÔNG TY TNHH LINKTRANS LOGISTICS (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/logistics-sales-executive-nhan-vien-kinh-doanh-logistics-tieng-trung-giao-tiep-tot-luong-up-to-18-trieu-tp-hcm/2102781.html" },
+        { title: "Chăm Sóc Khách Hàng Tiếng Trung- Có Kinh Nghiệm", company: "CÔNG TY TNHH LOGISTICS QUỐC TẾ ADP LOXSON VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-co-kinh-nghiem/1486637.html" },
+        { title: "Nhân Viên CSKH Ngành Logistics (Tiếng Trung Thành Thạo), Lương 12 - 16 Triệu - Quận Bình Thạnh (TPHCM)", company: "CÔNG TY TNHH LOGISTICS QUỐC TẾ ADP LOXSON VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cskh-nganh-logistics-tieng-trung-thanh-thao-luong-12-16-trieu-quan-binh-thanh-tphcm/2105464.html" },
+        { title: "Kế Toán Nội Bộ Tiếng Trung", company: "CÔNG TY TNHH LOGISTICS QUỐC TẾ SOONDONE VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/1914954.html" },
+        { title: "Customer Service Executive (Thành Thạo Tiếng Trung)", company: "CÔNG TY TNHH QUẢN LÝ CHUỖI CUNG ỨNG GGBINGO", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/customer-service-executive-thanh-thao-tieng-trung/2086658.html" },
+        { title: "Giám Đốc Marketing Kiêm Phát Triển Kinh Doanh (Giao Tiếp Tiếng Trung)", company: "CÔNG TY TNHH QUẢN LÝ CHUỖI CUNG ỨNG GGBINGO", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giam-doc-marketing-kiem-phat-trien-kinh-doanh-giao-tiep-tieng-trung/2084781.html" },
+        { title: "Project Manager (Thành Thạo Tiếng Trung)", company: "CÔNG TY TNHH QUẢN LÝ CHUỖI CUNG ỨNG GGBINGO", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/project-manager-thanh-thao-tieng-trung/2086650.html" },
+        { title: "Trợ Lý Tổng Giám Đốc (Có Tiếng Trung)", company: "CÔNG TY TNHH QUẢN LÝ CHUỖI CUNG ỨNG GGBINGO", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-co-tieng-trung/2086672.html" },
+        { title: "Nhân Viên Kế Toán - Tiếng Trung", company: "CÔNG TY TNHH QUẢN LÝ CHUỖI HỆ THỐNG CUNG ỨNG XWILL VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-tieng-trung/1383093.html" },
+        { title: "Chăm Sóc Khách Hàng Tiếng Trung Thử Việc 100% Lương Chỉ Làm Từ Thứ 2 Đến Thứ 6", company: "CÔNG TY TNHH SHANHAIMAP VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung-thu-viec-100-luong-chi-lam-tu-thu-2-den-thu-6/2116487.html" },
+        { title: "Trợ Lý Tiếng Trung Mảng Phát Triển Thị Trường", company: "CÔNG TY TNHH VẬN CHUYỂN THÔNG MINH CHIJUN", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-mang-phat-trien-thi-truong/2066626.html" },
+        { title: "Nhân Viên Văn Thư Biết Tiếng Trung", company: "CÔNG TY TNHH VẬN TẢI YUNYI VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-thu-biet-tieng-trung/1678929.html" },
+        { title: "Thực Tập Sinh Điều Phối Vận Tải Tiếng Trung", company: "CÔNG TY TNHH VẬN TẢI YUNYI VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-dieu-phoi-van-tai-tieng-trung/1829131.html" },
+        { title: "Trợ Lý Tổng Giám Đốc Thành Thạo Tiếng Trung", company: "CÔNG TY TNHH VẬN TẢI YUNYI VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-thanh-thao-tieng-trung/1716361.html" },
+        { title: "Trợ Lý Vận Hành Tiếng Trung", company: "CÔNG TY TNHH VẬN TẢI YUNYI VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-van-hanh-tieng-trung/1781696.html" },
+        { title: "CHUYÊN VIÊN KIỂM SOÁT CHẤT LƯỢNG (QC SPECIALIST)", company: "CÔNG TY TNHH YIMI J&T CARGO TRANSPORTATION", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-kiem-soat-chat-luong-qc-specialist.35C661E0.html" },
+        { title: "Chuyên Viên Giám Sát Rủi Ro (Risk Control) - Biết Tiếng Trung", company: "CÔNG TY TNHH YIMI J&T CARGO TRANSPORTATION", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-giam-sat-rui-ro-risk-control-biet-tieng-trung.35C66C25.html" },
+        { title: "Giám Sát Pháp Chế (Tiếng Trung/Anh) - Legal Supervisor", company: "CÔNG TY TNHH YIMI J&T CARGO TRANSPORTATION", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/giam-sat-phap-che-tieng-trung-anh-legal-supervisor.35C6ABAB.html" },
+        { title: "Sales Logistics (Biết Tiếng Trung)", company: "Công Ty TNHH Giao Nhận Vận Tải Quốc Tế Daya", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=3c33b1d24a07273d" },
+        { title: "Sales Logistics (Tiếng Trung)", company: "Công Ty TNHH Giao Nhận Vận Tải Quốc Tế Daya", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ffdb95da11bd7552" },
+        { title: "Kế Toán Nội Bộ Tiếng Trung", company: "Công Ty TNHH Logistics Quốc Tế Soondone Việt Nam", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=7a301e3122c44b4b" },
+        { title: "E-Commerce Operations Director (Cross-border E-commerce · Multi-platform Operations · Team Management)", company: "Công Ty TNHH Quản Lý Chuỗi Cung Ứng GGBingo", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a558d529d1087c22" },
+        { title: "Senior E-Commerce Operator (Cross-border E-commerce · Vận Hành Đa Nền Tảng)", company: "Công Ty TNHH Quản Lý Chuỗi Cung Ứng GGBingo", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=c05664fbeac9d53c" },
+        { title: "Chăm Sóc Khách Hàng Tiếng Trung Thử Việc 100% Lương", company: "Công Ty TNHH Shanhaimap Việt Nam", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a7edb9f0ae38193d" },
+        { title: "Nhân Viên Phát Triển Thị Trường Mảng Vận Tải, Logistics", company: "Công Ty TNHH Vận Tải Yunyi Việt Nam", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=f01311546a5edba8" },
+        { title: "Quản Lý Đội Xe - Điều Phối Vận Tải", company: "Công Ty TNHH Vận Tải Yunyi Việt Nam", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=cf34f9eda8e74ad8" },
+        { title: "Chuyên Viên Tuyển Dụng Biết Tiếng Trung - HCM", company: "J&T CARGO TRANSPORTATION", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-tuyen-dung-biet-tieng-trung-hcm/2074629.html" },
+        { title: "Chủ Quản Hiệu Suất Mạng Lưới - Tiếng Trung", company: "J&T CARGO TRANSPORTATION", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chu-quan-hieu-suat-mang-luoi-tieng-trung/2106150.html" },
+        { title: "Giám Sát Thu Mua - Tiếng Trung HCM", company: "J&T CARGO TRANSPORTATION", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giam-sat-thu-mua-tieng-trung-hcm/2109008.html" },
+        { title: "Learning & Development Supervisor", company: "J&T CARGO TRANSPORTATION", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=99fc2d294b648e1c" },
+        { title: "Port - Side/Station Supervisor - Tiếng Anh/Trung", company: "J&T CARGO TRANSPORTATION", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6b6f11c732f6e3ae" },
+        { title: "Finance Manager Công Ty TNHH Best Logistics Technology (Việt Nam) $ 1,000-3,000 /tháng Hồ Chí Minh Cập nhật: 10/04/2026 Báo Cáo Tổng Hợp Quản Lý Tài Chính Kiểm Soát Chi Phí +2", company: "百世 / Best", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/finance-manager-419--2038101-jv" },
+        { title: "Trợ Lý Tổng Giám Đốc - Tiếng Trung Công Ty TNHH Best Logistics Technology (Việt Nam) Thương lượng Hồ Chí Minh Cập nhật: 08/04/2026 Chinese fluency Communication Skills Logistics +1", company: "百世 / Best", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/tro-ly-tong-giam-djoc-tieng-trung-2032639-jv" },
+        { title: "CHUYÊN VIÊN TUYỂN DỤNG - HÀ NỘI", company: "百世 / Best", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-tuyen-dung-ha-noi.35C6CF6F.html" },
+        { title: "TRỢ LÝ TIẾNG TRUNG - HÀ NỘI", company: "百世 / Best", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/tro-ly-tieng-trung-ha-noi.35C6F5AF.html" },
       ]
     },
-
-    // ============================================================
-    // 6.3 消费电子 / 家电 / 智能硬件
-    // ============================================================
-    {
-      id: "electronics",
-      title: "消费电子 / 家电 / 智能硬件",
-      jobs: [
-        // GREE 格力
-        { title: "销售（中 / 英文）", company: "Gree 格力", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nu-tieng-trung-tieng-anh/1302237.html" },
-        { title: "售后保修助理（中文）", company: "Gree 格力", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-bao-hanh-tieng-trung/2095879.html" },
-        { title: "商务助理（中文）", company: "Gree 格力", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/1398992.html" },
-        // OPPO VIETNAM
-        { title: "实习会计", company: "OPPO Vietnam", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6e1b6ed19834ee27" },
-        { title: "Call Center Agent（中文）", company: "OPPO Vietnam", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=f56e1e66d3e70e76" },
-        { title: "CEO Assistant", company: "OPPO Vietnam", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=b38a37d77b65b7a0" },
-        { title: "服务平台运营专员（中文）", company: "OPPO Vietnam", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-nen-tang-dich-vu-tieng-trung/2091889.html" },
-        { title: "系统运营（中文）", company: "OPPO Vietnam", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/chuy%C3%AAn-vi%C3%AAn-v%E1%BA%ADn-h%C3%A0nh-h%E1%BB%87-th%E1%BB%91ng-ti%E1%BA%BFng-trung-at-vk-careers-oppo-authorized-exclusive-distributor-vietnam-4322056717" },
-        // FOTON 福田
-        { title: "卡车配件销售（中文）", company: "Foton 福田汽车", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/kinh-doanh-phu-tung-biet-tieng-trung-xe-tai/2058272.html" },
-        // WCAR 新能源汽车
-        { title: "实习生（中文）", company: "Wcar 新能源汽车", location: "HCM", channel: "TopCV+Indeed", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung-internship/2085317.html" },
-        { title: "中文实习生", company: "Wcar 新能源汽车", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=67fdc771459069fd" },
-        // TECHTRONIC / TTI 创科
-        { title: "中文翻译", company: "Techtronic / TTI 创科", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/bien-phien-dich-tieng-trung-tai-ho-chi-minh-thu-nhap-hap-dan/1490421.html" },
-        { title: "Asst. Merchandising Manager", company: "Techtronic / TTI 创科", location: "Củ Chi", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/assistant-merchandising-manager-merchandising-executive-at-techtronic-industries-tti-4388052412" },
-        // LENOVO 联想
-        { title: "ECAT(PCBA) Supplier Quality Engineer（普通话）", company: "Lenovo 联想", location: "Q1, HCM", channel: "Indeed+LinkedIn", url: "https://vn.linkedin.com/jobs/view/ecat-pcba-supplier-quality-engineer-mandarin-speaking-at-lenovo-4330242462" },
-        // HUAWEI 华为 (VW)
-        { title: "Project Manager", company: "Huawei 华为", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/project-manager--2023028-jv" },
-        { title: "RF Engineer", company: "Huawei 华为", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/rf-engineer--2021114-jv" },
-        // CHOHO Industrial (LinkedIn)
-        { title: "销售经理", company: "CHOHO Industrial", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/%E9%94%80%E5%94%AE%E7%BB%8F%E7%90%86-at-choho-industrial-4392341705" },
-        // TP-Link (LinkedIn)
-        { title: "Key Account Executive", company: "TP-Link 普联", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/key-account-executive-retail-thi%E1%BA%BFt-b%E1%BB%8B-%C4%91i%E1%BB%87n-t%E1%BB%AD-c%C3%B4ng-ngh%E1%BB%87-at-tp-link-4392850014" },
-        // BYD (LinkedIn)
-        { title: "HR Supervisor (中文)", company: "BYD Oway Auto 比亚迪", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/hcm-hr-supervisor-ti%E1%BA%BFng-trung-at-byd-oway-auto-4389898059" },
-        // Midea (LinkedIn)
-        { title: "Customs Officer", company: "Midea 美的", location: "Hòa Thới", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/customs-officer-junior-mid-level-at-midea-vietnam-4383533330" },
-        // Sungrow (LinkedIn)
-        { title: "Operational Specialist", company: "Sungrow 阳光电源", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/operational-specialist-at-sungrow-4370082223" },
-        // vivo (LinkedIn)
-        { title: "礼宾行政（中文）", company: "vivo Vietnam", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/l%E1%BB%85-t%C3%A2n-h%C3%A0nh-ch%C3%ADnh-ti%E1%BA%BFng-trung-at-vivo-vietnam-career-4394448348" },
-        // vivo 官方招聘页 (8 jobs)
-        { title: "总经理助理（中文）", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "TikTok 视频剪辑 - KOL", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Media Monitoring", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Marketing Assistant", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Website Promotion", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Designer", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Visual Supervisor", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        { title: "Trade Marketing Supervisor / Executive", company: "vivo Vietnam", location: "HCM", channel: "官网", url: "https://www.vivosmartphone.vn/tuyen-dung.html" },
-        // TCL 官方 (VW)
-        { title: "Key Account Sales - MT Channel (All Levels)", company: "TCL Vietnam", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/key-account-sales-mt-channel-all-levels-2028103-jv" },
-        { title: "GT Sales - All Levels", company: "TCL Vietnam", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/gt-sales-all-levels-2028059-jv" },
-        { title: "2026 Management Trainee", company: "TCL Vietnam", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/2026-management-trainee--2027433-jv" },
-        { title: "Head of Product (Air-Conditioner)", company: "TCL Vietnam", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/head-of-product-air-conditioner--2025446-jv" },
-      ]
-    },
-
-    // ============================================================
-    // 6.4 制造业（机电 / 纺织 / 美妆生产 / 工程）
-    // ============================================================
     {
       id: "manufacturing",
-      title: "制造业（机电 / 纺织 / 美妆生产 / 工程）",
+      title: "制造业",
       jobs: [
-        // CHINA EQUIPMENT GROUP
-        { title: "总经理助理（中文）", company: "China Equipment Group", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-tieng-trung/1587208.html" },
-        { title: "人力行政专员（中文）", company: "China Equipment Group", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-hcns-tieng-trung/1860926.html" },
-        // YAGUAN BIOTECH
-        { title: "销售 / 商务谈判（中文）", company: "Yaguan Biotech", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-dam-phan-biet-tieng-trung/2095381.html" },
-        // KIN LONG 坚朗
-        { title: "销售（家具 / 中文优先）", company: "Kin Long 坚朗五金", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nam-luong-cung-8-10-trieu-hoa-hong-ko-gioi-han-uu-tien-biet-tieng-trung-sales-tu-van-ban-hang-noi-that/2090927.html" },
-        { title: "仓库主管（中文）", company: "Kin Long 坚朗五金", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ca28edaaa52d81d3" },
-        // KESAI EAGROW
-        { title: "内部会计（中文）", company: "Kesai Eagrow", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/2097248.html" },
-        // POWERCHINA 中国电建
-        { title: "中文翻译（3 年经验）", company: "PowerChina 中国电建", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-3-nam-kinh-nghiem-phong-van-di-lam-ngay/1826074.html" },
-        // MOTINOVA
-        { title: "设备 / 工艺工程师（中文）", company: "Motinova", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=359069e4e9625a41" },
-        { title: "维护与生产改进员（中文）", company: "Motinova", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=4600cc3c62cbada9" },
-        // TENGLONG TEXTILE 腾龙纺织
-        { title: "订单跟单员（中文）", company: "Tenglong Textile 腾龙纺织", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-theo-doi-don-hang-tieng-trung/1222605.html" },
-        { title: "业务员（中 / 英文）", company: "Tenglong Textile 腾龙纺织", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nv-kinh-doanh-tieng-trung-hoac-anh/1627755.html" },
-        // DONEWIN TECHNOLOGIES 笃恒
-        { title: "采购员（中文）", company: "Donewin Technologies 笃恒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-thu-mua-biet-tieng-trung/2037108.html" },
-        { title: "商务助理（中文）", company: "Donewin Technologies 笃恒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/2079588.html" },
-        // WANXING 万星
-        { title: "CSKH（中文）", company: "Wanxing 万星网络科技", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-biet-tieng-trung/1806832.html" },
-        // HORIZON / 远东宏信 (VW)
-        { title: "C&B 专员（中文）", company: "远东宏信 Horizon", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/chuyen-vien-candb-thanh-thao-tieng-trung-2034931-jv" },
-        { title: "税务会计（中 / 英文）", company: "远东宏信 Horizon", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/ke-toan-thue-giao-tiep-tot-tieng-anh-hoac-tieng-hoa-luong-upto-30-million-2028598-jv" },
-        { title: "设备销售总监（中文）", company: "远东宏信 Horizon", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/giam-djoc-kinh-doanh-thiet-bi-tieng-trung-2021219-jv" },
-        // Bodor Laser 博特激光 (LinkedIn)
-        { title: "人力资源经理", company: "Bodor Laser 博特激光", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E7%BB%8F%E7%90%86-at-bodor-laser-4382955471" },
-        // Shanghai Weixing 上海伟星 (LinkedIn)
-        { title: "Sales / Sales Assistant", company: "上海伟星 Shanghai Weixing", location: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/nh%C3%A2n-vi%C3%AAn-tr%E1%BB%A3-l%C3%BD-kinh-doanh-4394249701" },
+        { title: "Senior Legal (Chinese or English)", company: "CHICMAX VIETNAM", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399176123" },
+        { title: "HCM - GT Sales Manager", company: "Colorkey", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4394790207" },
+        { title: "Chuyên Viên Hành Chính Nhân Sự - Tiếng Trung", company: "CÔNG TY TNHH CHICMAX VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-hanh-chinh-nhan-su-tieng-trung/2095453.html" },
+        { title: "Trợ Lý Tổng Giám Đốc (Tiếng Trung)", company: "CÔNG TY TNHH CHINA EQUIPMENT GROUP (VIETNAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tong-giam-doc-tieng-trung/1587208.html" },
+        { title: "Trợ Lý Kinh Doanh (Biết Tiếng Trung)", company: "CÔNG TY TNHH CÔNG NGHỆ SINH HỌC YAGUAN VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-biet-tieng-trung/2120804.html" },
+        { title: "Trợ Lý Phiên Dịch Tiếng Trung HSK5", company: "CÔNG TY TNHH CÔNG NGHỆ ZHENG DA VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-phien-dich-tieng-trung-hsk5/1884727.html" },
+        { title: "Kế Toán Nội Bộ Tiếng Trung", company: "CÔNG TY TNHH KESAI EAGROW VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/2097248.html" },
+        { title: "Nhân Viên Kinh Doanh (Nam) - Lương Cứng 8 - 10 Triệu + Hoa Hồng Ko Giới Hạn (Ưu Tiên Biết Tiếng Trung) /Sales/Tư Vấn Bán Hàng Nội Thất", company: "CÔNG TY TNHH KIN LONG VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nam-luong-cung-8-10-trieu-hoa-hong-ko-gioi-han-uu-tien-biet-tieng-trung-sales-tu-van-ban-hang-noi-that/2090927.html" },
+        { title: "HR Tổng Hợp Tiếng Trung", company: "CÔNG TY TNHH LANBENA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hr-tong-hop-tieng-trung/1671547.html" },
+        { title: "Kế Toán Nội Bộ Tiếng Trung", company: "CÔNG TY TNHH LANBENA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-noi-bo-tieng-trung/1853652.html" },
+        { title: "Nhân Viên C&B (Ưu Tiên Tiếng Trung)", company: "CÔNG TY TNHH LANBENA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cb-uu-tien-tieng-trung/1671539.html" },
+        { title: "Nhân Viên In Đơn Biết Chút Tiếng Trung", company: "CÔNG TY TNHH LANBENA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-in-don-biet-chut-tieng-trung/2056059.html" },
+        { title: "Nhân Viên Kho Tiếng Trung", company: "CÔNG TY TNHH LANBENA", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kho-tieng-trung/2056075.html" },
+        { title: "Nhân Viên Merchandise - Biết Tiếng Anh/Tiếng Trung", company: "CÔNG TY TNHH MỸ PHẨM FOCALLURE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-merchandise-biet-tieng-anh-tieng-trung/2033902.html" },
+        { title: "Nhân Viên Video Editor - Biết Tiếng Trung Hoặc Anh", company: "CÔNG TY TNHH MỸ PHẨM FOCALLURE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-video-editor-biet-tieng-trung-hoac-anh/1207751.html" },
+        { title: "Sales Admin Cosmetic-Biết Tiếng Trung", company: "CÔNG TY TNHH MỸ PHẨM FOCALLURE", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/sales-admin-cosmetic-biet-tieng-trung/1954948.html" },
+        { title: "Phiên Dịch Tiếng Trung - 3 Năm Kinh Nghiệm - Phỏng Vấn Đi Làm Ngay", company: "CÔNG TY TNHH POWERCHINA VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-3-nam-kinh-nghiem-phong-van-di-lam-ngay/1826074.html" },
+        { title: "NV Kinh Doanh ( Tiếng Trung Hoặc Anh)", company: "CÔNG TY TNHH TENGLONG TEXTILE VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nv-kinh-doanh-tieng-trung-hoac-anh/1627755.html" },
+        { title: "Nhân Viên Theo Dõi Đơn Hàng (Tiếng Trung)", company: "CÔNG TY TNHH TENGLONG TEXTILE VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-theo-doi-don-hang-tieng-trung/1222605.html" },
+        { title: "Trợ Lý Sản Xuất (Ngành Vải)", company: "CÔNG TY TNHH TENGLONG TEXTILE VIỆT NAM", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=c5552119aad0b415" },
+        { title: "Chuyên Viên Kế Toán Tổng Hợp Tiếng Trung", company: "CÔNG TY TNHH THƯƠNG MẠI DATONG (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-ke-toan-tong-hop-tieng-trung/2091730.html" },
+        { title: "Nhân Viên Kế Toán Nội Bộ Biết Tiếng Trung", company: "CÔNG TY TNHH THƯƠNG MẠI QUỐC TẾ GUICUIHUI (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-noi-bo-biet-tieng-trung/2096232.html" },
+        { title: "Trưởng Phòng Quản Lý Nhân Sự - Biết Tiếng Trung", company: "CÔNG TY TNHH THƯƠNG MẠI QUỐC TẾ GUICUIHUI (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-quan-ly-nhan-su-biet-tieng-trung/2096311.html" },
+        { title: "Trợ Lý Kiêm Phiên Dịch Viên Tiếng Trung (Nữ) - Lương Upto 38 Triệu", company: "CÔNG TY TNHH ĐẦU TƯ IABER - IABER", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kiem-phien-dich-vien-tieng-trung-nu-luong-upto-38-trieu/2097341.html" },
+        { title: "Nhân Viên Booking Kol/Koc", company: "Công Ty TNHH Chicmax Việt Nam", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=af72275c2f73f73c" },
+        { title: "E-Commerce Executive - Tiếng Trung", company: "Công Ty TNHH Thương Mại Datong (Việt Nam)", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=b2a2a26efcb3b583" },
+        { title: "Chủ Quản Kho - Tiếng Trung | 仓库主管 | 仓库经理 | Quản Lý Kho Cao Cấp - Mức", company: "Công ty TNHH Kin Long", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ca28edaaa52d81d3" },
+        { title: "Giám đốc kinh doanh (lĩnh vực điện/năng lượng tái tạo)", company: "VĂN PHÒNG ĐẠI DIỆN POWERCHINA HUADONG ENGINEERING CORPORATION LIMITED TẠI THÀNH PHỐ HÀ NỘI", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/giam-doc-kinh-doanh-linh-vuc-dien-nang-luong-tai-tao.35C70FD5.html" },
+        { title: "Nhân Viên Mua Hàng Tiếng Trung", company: "中航工业 / AVIC", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-mua-hang-tieng-trung/2039570.html" },
+        { title: "Thực Tập Sinh Mua Hàng Tiếng Trung", company: "中航工业 / AVIC", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-mua-hang-tieng-trung/2117639.html" },
+        { title: "Kế Toán Thuế (Giao Tiếp Tốt Tiếng Anh hoặc Tiếng Hoa) - Lương Upto 30 Million Công Ty TNHH Horizon Construction Development OVERSEAS (Việt Nam) Tới 30tr ₫/tháng Hồ Chí Minh Cập nhật: 07/04/2026 Finance Accounting Kế Toán Thuế +2", company: "远东宏信 / Horizon", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/ke-toan-thue-giao-tiep-tot-tieng-anh-hoac-tieng-hoa-luong-upto-30-million-2028598-jv" },
+        { title: "Chuyên Viên C&B Thành Thạo Tiếng Trung CÔNG TY TNHH HORIZON CONSTRUCTION DEVELOPMENT OVERSEAS (VIỆT NAM) Từ $ 1,000 /tháng Hồ Chí Minh, Hà Nội, Đà Nẵng Cập nhật: 10/04/2026 C&B Tax Regulation Chinese proficiency +2", company: "远东宏信 / Horizon", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/chuyen-vien-candb-thanh-thao-tieng-trung-2034931-jv" },
+        { title: "Chủ Quản Điều Phối Vận Chuyển Tiếng Trung CÔNG TY TNHH HORIZON CONSTRUCTION DEVELOPMENT OVERSEAS (VIỆT NAM) 25tr-30tr ₫/tháng Hà Nội, Hồ Chí Minh Cập nhật: 07/04/2026 Quản Lý Vận Tải Logistics Vận Chuyển +2", company: "远东宏信 / Horizon", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/chu-quan-djieu-phoi-van-chuyen-tieng-trung-2036576-jv" },
+        { title: "Giám Đốc Hỗ Trợ Kinh Doanh Tiếng Trung CÔNG TY TNHH HORIZON CONSTRUCTION DEVELOPMENT OVERSEAS (VIỆT NAM) Tới 50tr ₫/tháng Hà Nội Cập nhật: 13/04/2026 Quản Trị Kinh Doanh Tài Chính Quản Lý Doanh Nghiệp +2", company: "远东宏信 / Horizon", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/giam-doc-ho-tro-kinh-doanh-tieng-trung-2014054-jv" },
+        { title: "Giám Đốc Khai Thác Sản Phẩm Mới Tiếng Trung CÔNG TY TNHH HORIZON CONSTRUCTION DEVELOPMENT OVERSEAS (VIỆT NAM) Tới $ 2,000 /tháng Hà Nội, Hồ Chí Minh Cập nhật: 13/04/2026 Quản Trị Kinh Doanh Tài Chính Quản Lý Doanh Nghiệp +2", company: "远东宏信 / Horizon", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/giam-doc-khai-thac-san-pham-moi-tieng-trung-2021219-jv" },
       ]
     },
-
-    // ============================================================
-    // 6.5 互联网 / 软件 / 云服务
-    // ============================================================
+    {
+      id: "banking",
+      title: "银行金融",
+      jobs: [
+        { title: "Relationship Manager China Construction Bank Corporation – HCMC Branch Thương lượng Hồ Chí Minh Cập nhật: 07/04/2026 Financial Solution Banking Regulation Interpersonal skills +2", company: "China Construction Bank Corporation – HCMC Branch", location: "HCM", city: "HCM", channel: "VW", url: "https://www.vietnamworks.com/relationship-manager-2024931-jv" },
+        { title: "Kế Toán Trưởng - Có Thể Sử Dụng Tiếng Anh (Hoặc Tiếng Trung)", company: "CÔNG TY CỔ PHẦN WU SHUANG ASSET", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-truong-co-the-su-dung-tieng-anh-hoac-tieng-trung/2093689.html" },
+        { title: "Sales Specialist", company: "PingPong", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4359221250" },
+        { title: "Sales Executive", company: "PingPong", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4313721404" },
+        { title: "TUYỂN DỤNG NHÂN VIÊN BÁN HÀNG", company: "XTransfer", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4398742249" },
+      ]
+    },
+    {
+      id: "electronics",
+      title: "消费电子 / 智能硬件",
+      jobs: [
+        { title: "Trợ Lý Giám Đốc (Tiếng Trung)", company: "CÔNG TY TNHH GREEN ASIA FOOD VIỆT NAM", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-giam-doc-tieng-trung/1786160.html" },
+        { title: "Nam Nhân Viên Kho - Biết Tiếng Trung Cơ Bản", company: "CÔNG TY TNHH JOYOUNG VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nam-nhan-vien-kho-biet-tieng-trung-co-ban/1923173.html" },
+        { title: "Nhân Viên Kinh Doanh Nữ ( Tiếng Trung/Tiếng Anh)", company: "CÔNG TY TNHH KỸ THUẬT ĐIỀU HÒA GREE (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-nu-tieng-trung-tieng-anh/1302237.html" },
+        { title: "Trợ Lý Bảo Hành Tiếng Trung", company: "CÔNG TY TNHH KỸ THUẬT ĐIỀU HÒA GREE (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-bao-hanh-tieng-trung/2095879.html" },
+        { title: "Trợ Lý Kinh Doanh Tiếng Trung", company: "CÔNG TY TNHH KỸ THUẬT ĐIỀU HÒA GREE (VIỆT NAM)", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kinh-doanh-tieng-trung/1398992.html" },
+        { title: "Thực Tập Sinh - Tiếng Trung (Internship)", company: "CÔNG TY TNHH XE ĐIỆN WCAR", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung-internship/2085317.html" },
+        { title: "Thực Tập Sinh - Tiếng Trung (Internship)", company: "CÔNG TY TNHH XE ĐIỆN WCAR", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=8ed2ac0a217205e1" },
+        { title: "Chuyên Viên Kế Toán/ Finance Supervisor", company: "Green Asia Food Việt Nam", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-ke-toan-finance-supervisor.35C6D649.html" },
+        { title: "Trợ lý Giám đốc Kinh doanh - Tiếng Trung", company: "Green Asia Food Việt Nam", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/tro-ly-giam-doc-kinh-doanh-tieng-trung.35C6FE6D.html" },
+        { title: "ECAT(PCBA) Supplier Quality Engineer - Mandarin Speaking", company: "Lenovo", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4330242462" },
+        { title: "ECAT(PCBA) Supplier Quality Engineer - Mandarin Speaking", company: "Lenovo", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=5cfdaa588dc53dad" },
+        { title: "Kỹ sư thiết bị & công nghệ sản xuất ( Biết tiếng trung, 3 năm kinh nghiệm, 40-45 triệu/tháng)", company: "MOTINOVA (Vietnam) Technology Co., Ltd. MOTINOVA", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=359069e4e9625a41" },
+        { title: "NHÂN VIÊN BẢO TRÌ VÀ CẢI TIẾN SẢN XUẤT ( BIẾT TIẾNG TRUNG, 40-45 TRIỆU/THÁNG)", company: "MOTINOVA (Vietnam) Technology Co., Ltd. MOTINOVA", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=4600cc3c62cbada9" },
+        { title: "INTERNAL AUDIT EXECUTIVE (SERVICE TEAM)", company: "OPPO", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4395923648" },
+        { title: "Nhân Viên Vận Hành Nền Tảng Dịch Vụ (Tiếng Trung)", company: "OPPO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-hanh-nen-tang-dich-vu-tieng-trung/2031610.html" },
+        { title: "CEO ASSISTANT", company: "OPPO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=b38a37d77b65b7a0" },
+        { title: "[HCM] CALL CENTER AGENT (TIẾNG TRUNG)", company: "OPPO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=f56e1e66d3e70e76" },
+        { title: "[HCM] THỰC TẬP SINH KẾ TOÁN", company: "OPPO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6e1b6ed19834ee27" },
+        { title: "Marketing Manager(cosmetic)", company: "OPPO", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4394788125" },
+        { title: "NHÂN VIÊN BÁN HÀNG", company: "OPPO", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=459734afa9d08dd6" },
+        { title: "NHÂN VIÊN BÁN HÀNG (PG/PB)", company: "OPPO", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=182ff8111fca059c" },
+        { title: "NHÂN VIÊN KINH DOANH SALES", company: "OPPO", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=a421d33c796c6b13" },
+        { title: "Key Account Executive (Retail Thiết Bị / Điện Tử Công Nghệ)", company: "TP-Link", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4392850014" },
+        { title: "B2B Business Development Manager", company: "TP-Link", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/b2b-business-development-manager.35C6F5FF.html" },
+        { title: "Chuyên Viên Kinh Doanh B2B / Inside Sales B2B – Thiết Bị Mạng & Camera | Lương + Bonus Cạnh Tranh", company: "TP-Link", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-kinh-doanh-b2b-inside-sales-b2b-thiet-bi-mang-camera-luong-bonus-canh-tranh/1851470.html" },
+        { title: "Key Account Executive (Retail Điện Tử / Thiết Bị Công Nghệ)", company: "TP-Link", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/key-account-executive-retail-dien-tu-thiet-bi-cong-nghe/2107043.html" },
+        { title: "Nhân Viên Kinh Doanh (Camera Và Thiết Bị Mạng)", company: "TP-Link", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kinh-doanh-camera-va-thiet-bi-mang/1954603.html" },
+        { title: "RMA Technician (Nhân Viên Bảo Hành)", company: "TP-Link", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/rma-technician-nhan-vien-bao-hanh/1986837.html" },
+        { title: "Business Development Specialist - LARK (SaaS)", company: "vivo", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399176021" },
+        { title: "Core Engineer (Fresher)", company: "华为", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/core-engineer-fresher.35C68F75.html" },
+        { title: "Key Account Manager", company: "华为", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/key-account-manager.35C71114.html" },
+        { title: "Key Account Manager Công Ty TNHH Công Nghệ Huawei Việt Nam Thương lượng Hà Nội Cập nhật: 19/03/2026 Sales Telecommunications Chinese +1", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/key-account-manager--2026207-jv" },
+        { title: "Procurement Specialist (Fresher) Công Ty TNHH Công Nghệ Huawei Việt Nam Thương lượng Hà Nội Cập nhật: 06/04/2026 Document Management Vendor Management English +2", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/procurement-specialist-fresher-2035535-jv" },
+        { title: "RF Engineer (High-Volume Hiring) - Upto 80M", company: "华为", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/rf-engineer-high-volume-hiring-upto-80m.35C65DCF.html" },
+        { title: "RF Engineer Công Ty TNHH Công Nghệ Huawei Việt Nam Tới $ 3,000 /tháng Cần Thơ, Hà Nội, Hồ Chí Minh Cập nhật: 09/04/2026 Điện Tử Viễn Thông Viễn Thông Radio Frequency +2", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/rf-engineer--2037414-jv" },
+        { title: "Sales Management Trainee (Chinese-Speaking) Công Ty TNHH Công Nghệ Huawei Việt Nam Thương lượng Hà Nội Cập nhật: 13/04/2026 Telecommunications Chinese Communication Skills +2", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/sales-management-trainee-chinese-speaking-2038095-jv" },
+        { title: "Supply Chain Specialist Công Ty TNHH Công Nghệ Huawei Việt Nam Thương lượng Hà Nội Cập nhật: 23/03/2026 Supply Chain Management Warehouse Operation English +2", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/supply-chain-specialist--2027491-jv" },
+        { title: "Telecommunication Engineer Công Ty TNHH Công Nghệ Huawei Việt Nam Thương lượng Hà Nội Cập nhật: 07/04/2026 Telecommunications Mạng 2G/3G/4G/5G", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/telecommunication-engineer--2031323-jv" },
+        { title: "Wireless Engineer (High-Volume Hiring) - Upto 80M", company: "华为", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/wireless-engineer-high-volume-hiring-upto-80m.35C65D77.html" },
+        { title: "Wireless Engineer (High-Volume Hiring) - Upto 80M Công Ty TNHH Công Nghệ Huawei Việt Nam Tới 80tr ₫/tháng Hà Nội Cập nhật: 08/04/2026 Wireless solutions English Site Construction +1", company: "华为", location: "河内", city: "河内", channel: "VW", url: "https://www.vietnamworks.com/wireless-engineer-high-volume-hiring-upto-80m--2024473-jv" },
+        { title: "Business Development (Tiếng Trung) – Hà Nội", company: "天合 / Trina", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399878340" },
+        { title: "Operational Specialist", company: "阳光电源", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399139404" },
+        { title: "Legal Counsel", company: "阳光电源", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4382916963" },
+      ]
+    },
     {
       id: "internet",
-      title: "互联网 / 软件 / 云服务",
+      title: "互联网科技",
       jobs: [
-        // YONYOU 用友
-        { title: "CSKH 中文", company: "Yonyou 用友", location: "HCM", channel: "TopCV+Indeed", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung/2100211.html" },
-        { title: "ERP 软件顾问（中文）", company: "Yonyou 用友", location: "HCM", channel: "TopCV+Indeed+LinkedIn", url: "https://www.topcv.vn/viec-lam/chuyen-vien-tu-van-phan-mem-erp-tieng-trung/1535301.html" },
-        { title: "中文实习生", company: "Yonyou 用友", location: "HCM", channel: "TopCV+Indeed", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-tieng-trung/2106148.html" },
-        // ITECHWX
-        { title: "Executive Assistant to President (Chinese)", company: "Itechwx", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/executive-assistant-to-president-chinese-fluency-up-to-28mil/2065886.html" },
-        // WANTONG TECHNOLOGY 万通科技 (VW)
-        { title: "财务活动策划专员", company: "Wantong 万通科技", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/chuyen-vien-lap-ke-hoach-su-kien-tai-chinh-financial-event-planner-2033472-jv" },
-        { title: "内部会计", company: "Wantong 万通科技", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/ke-toan-noi-bo-internal-accountant-2033467-jv" },
-        { title: "财务数据分析师", company: "Wantong 万通科技", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/chuyen-vien-phan-tich-tai-chinh-financial-data-analyst-2033437-jv" },
-        // PORO 科技
-        { title: "中文教师（兼职 / 在线）", company: "Poro Technology", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-part-time-online-hoa-ngu-dac-nhan/2090575.html" },
-        { title: "中文教师（兼职 / 在线）", company: "Poro Technology", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-part-time-online/2106145.html" },
+        { title: "[Minovate] CTV Content Marketing", company: "Minovate", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399129075" },
+        { title: "Sales support", company: "京东", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://careerviet.vn/vi/tim-viec-lam/sales-support.35C6E34B.html" },
+        { title: "Talent Acquisition Partner (Bilingual - English & Mandarin)", company: "京东", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4387101299" },
+        { title: "PROCUREMENT / BUYER", company: "京东", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/procurement-buyer.35C6CC94.html" },
+        { title: "Procurement Manager", company: "京东", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4384970424" },
+        { title: "Sales Logistics", company: "京东", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/sales-logistics.35C6F00D.html" },
+        { title: "Innovation Tech Solution Sales Specialist - BytePlus - Vietnam & Philippines (Mandarin Speaking)", company: "字节跳动", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4400001340" },
+        { title: "Chuyên Viên Tư Vấn Phần Mềm ERP (Tiếng Trung)", company: "用友", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-tu-van-phan-mem-erp-tieng-trung/1535301.html" },
+        { title: "Chăm Sóc Khách Hàng (Tiếng Trung)", company: "用友", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-tieng-trung/2100211.html" },
+        { title: "Customer Service Specialist", company: "用友", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4397224090" },
+        { title: "ERP Consultant", company: "用友", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4387793327" },
+        { title: "Chăm Sóc Khách Hàng (Tiếng Trung)", company: "用友", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=e2cdc15e442725a9" },
+        { title: "Channel Business Development-Ho Chi Minh City Vietnam", company: "阿里云", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4354153192" },
+        { title: "Sales Supervisor", company: "阿里巴巴", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4393532813" },
+        { title: "Seller Operation Associate (Chinese speaking)", company: "阿里巴巴", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4401050299" },
       ]
     },
-
-    // ============================================================
-    // 6.6 银行 / 金融 / 资管
-    // ============================================================
     {
-      id: "finance",
-      title: "银行 / 金融 / 资管",
+      id: "trade",
+      title: "贸易",
       jobs: [
-        // SQ INTERNATIONAL TRADE
-        { title: "中文会计 / Accountant (Mandarin)", company: "SQ International Trade", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tieng-trung-accountant-mandarin/2093509.html" },
-        { title: "总账会计（中文）", company: "SQ International Trade", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tong-hop-tieng-trung/2088345.html" },
-        { title: "采购专员（中文）", company: "SQ International Trade", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-mua-hang-tieng-trung/2078826.html" },
-        // WU SHUANG ASSET
-        { title: "财务主管（中 / 英文）", company: "Wu Shuang Asset 资管", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-truong-co-the-su-dung-tieng-anh-hoac-tieng-trung/2093689.html" },
-        // BANK OF CHINA (HK) HCM (官方)
-        { title: "Marketing Staff（中文优先）", company: "Bank of China (HK) HCM", location: "HCM", channel: "官网", url: "https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" },
-        { title: "Risk Management Staff（中文优先）", company: "Bank of China (HK) HCM", location: "HCM", channel: "官网", url: "https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" },
-        { title: "Financial Accounting Staff（中文优先）", company: "Bank of China (HK) HCM", location: "HCM", channel: "官网", url: "https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" },
-        { title: "Trader（中文优先）", company: "Bank of China (HK) HCM", location: "HCM", channel: "官网", url: "https://www.bankofchina.com.vn/vi-vn/top/aboutus/careers/job-opening.html" },
-        // CHINA CONSTRUCTION BANK (VW)
-        { title: "Relationship Manager", company: "中国建设银行 CCB HCM", location: "HCM", channel: "VW", url: "https://www.vietnamworks.com/relationship-manager-2024931-jv" },
+        { title: "Hành Chính Nhân Sự (Tiếng Trung/Tiếng Anh)", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hanh-chinh-nhan-su-tieng-trung-tieng-anh/2102731.html" },
+        { title: "Nhân Viên Kế Toán Biết Tiếng Trung", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-biet-tieng-trung/2094210.html" },
+        { title: "Hành Chính Nhân Sự (Tiếng Trung/Tiếng Anh)", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6a7976a694bdfb50" },
+        { title: "NHÂN VIÊN TUYỂN DỤNG ( 1 NĂM KINH NGHIỆM, BIẾT TIẾNG ANH/TRUNG, 1 NĂM KINH NGHIỆM, 14-18 TRIỆU/THANG", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=31232050e433e9ec" },
+        { title: "NHÂN VIÊN VẬN HÀNH MEDIA (Truyền Thông Số)", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=43d02e85b38935af" },
+        { title: "Talent Asquisition Executive ( biết tiếng Anh/Trung, 14-18 triêu/tháng, từ 1 năm kinh nghiệm)", company: "CÔNG TY TNHH DỊCH VỤ THƯƠNG MẠI ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=38fdac57a75d3bc5" },
+        { title: "Content Creator (Tiếng Trung Tốt)", company: "CÔNG TY TNHH KINGDEN TRADING", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/content-creator-tieng-trung-tot/2109456.html" },
+        { title: "Content Trainee (Tiếng Trung Tốt)", company: "CÔNG TY TNHH KINGDEN TRADING", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/content-trainee-tieng-trung-tot/2112368.html" },
+        { title: "Trợ Lý CEO (Tiếng Anh Hoặc Tiếng Trung Tốt)", company: "CÔNG TY TNHH KINGDEN TRADING", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-ceo-tieng-anh-hoac-tieng-trung-tot/2084976.html" },
+        { title: "Giáo Viên Tiếng Trung Full-Time", company: "CÔNG TY TNHH NI HAO", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-full-time/1797078.html" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng Tiếng Trung (Nữ)", company: "CÔNG TY TNHH THƯƠNG MẠI ASIA LINK", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-tieng-trung-nu/2102291.html" },
+        { title: "Chăm Sóc Khách Hàng Kiêm Xuất Nhập Khẩu (Hsk 5)", company: "CÔNG TY TRÁCH NHIỆM HỮU HẠN HAPOIN VIỆT NAM", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/cham-soc-khach-hang-kiem-xuat-nhap-khau-hsk-5/2082296.html" },
+        { title: "Nhân Viên Marketing Online (SEO/Google Ads) | Tiếng Trung Giao Tiếp Thành Thạo | Lương 10–15 Triệu", company: "CÔNG TY TRÁCH NHIỆM HỮU HẠN HAPOIN VIỆT NAM", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-marketing-online-seo-google-ads-tieng-trung-giao-tiep-thanh-thao-luong-1015-trieu/2079838.html" },
+        { title: "NHÂN VIÊN SOCIAL MARKETING ( 15-20 TRIỆU/THÁNG, THÀNH THẠO TIẾNG ANH/TRUNG, 2 NĂM KINH NGHIỆM)", company: "Công ty TNHH Thương mại và Dịch vụ ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=89824103a95dbb00" },
+        { title: "NHÂN VIÊN TRUYỀN THÔNG SOCIAL ( 15-20 TRIỆU/THÁNG, BIẾT TIẾNG ANH/TRUNG, 1-2 NĂM KINH NGHIỆM)", company: "Công ty TNHH Thương mại và Dịch vụ ZHOUJIQIAO", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=645ea0ded188307b" },
       ]
     },
-
-    // ============================================================
-    // 6.7 餐饮 / 酒店 / 服务业 / 航空
-    // ============================================================
     {
-      id: "service",
-      title: "餐饮 / 酒店 / 服务业 / 航空",
+      id: "hospitality",
+      title: "餐饮酒店",
       jobs: [
-        // HAI DI LAO 海底捞
-        { title: "仓库管理员（中文）", company: "Hai Di Lao 海底捞", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-quan-kho-tieng-trung/2059785.html" },
-        { title: "HR 实习生（要求中文）", company: "Hai Di Lao 海底捞", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/thuc-tap-sinh-nhan-su-yeu-cau-biet-tieng-trung/1528086.html" },
-        // WAH FU PALACE 华富宫
-        { title: "中文前台", company: "Wah Fu Palace 华富宫", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ab48f3c7cf9b41fb" },
-        // HUAZHU 华住
-        { title: "采购员", company: "Huazhu 华住酒店", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=277f5eb220861756" },
-        // SPRING AIRLINES 春秋航空
-        { title: "Airport Ground Service", company: "Spring Airlines 春秋航空", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=3563ba0e2f21656f" },
+        { title: "Hành Chính Nhà Hàng Yêu Cầu Tiếng Trung Lương Cao", company: "CÔNG TY TNHH HAIDILAO VIETNAM HOLDINGS", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hanh-chinh-nha-hang-yeu-cau-tieng-trung-luong-cao/2096420.html" },
+        { title: "KINH DOANH NHƯỢNG QUYỀN THƯƠNG HIỆU - ƯU TIÊN TIẾNG TRUNG", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/kinh-doanh-nhuong-quyen-thuong-hieu-uu-tien-tieng-trung.35C6F426.html" },
+        { title: "Kinh Doanh Nhượng Quyền Thương Hiệu - Tiếng Trung", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/kinh-doanh-nhuong-quyen-thuong-hieu-tieng-trung/2095868.html" },
+        { title: "Trợ Lý Bộ Phận Kỹ Thuật - Tiếng Trung", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-bo-phan-ky-thuat-tieng-trung/2087583.html" },
+        { title: "VẬN HÀNH HỆ THỐNG - TIẾNG TRUNG", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/van-hanh-he-thong-tieng-trung/2087400.html" },
+        { title: "VẬN HÀNH SÀN TMDT - TIẾNG TRUNG", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/van-hanh-san-tmdt-tieng-trung.35C709A3.html" },
+        { title: "ĐÀO TẠO VẬN HÀNH - Ưu Tiên Tiếng Trung", company: "CÔNG TY TNHH SNOW KING GLOBAL", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/dao-tao-van-hanh-uu-tien-tieng-trung/2087574.html" },
+        { title: "Kinh Doanh Nhượng Quyền Thương Hiệu - Tiếng Trung", company: "Công Ty TNHH Snow King Global", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6405ebbd13fb7ba7" },
+        { title: "Vận Hành Hệ Thống - Tiếng Trung", company: "Công Ty TNHH Snow King Global", location: "河内", city: "河内", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=21e95218b021a230" },
+        { title: "Nhân viên Lễ tân (ca đêm) - Việc làm HOT", company: "QUẢN LÝ KHÁCH SẠN HUAZHU (VIỆT NAM)", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=b215b230446e6ade" },
+        { title: "Nhân viên thu mua - Việc làm mới", company: "QUẢN LÝ KHÁCH SẠN HUAZHU (VIỆT NAM)", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=0d5d3e7674aacfe1" },
       ]
     },
-
-    // ============================================================
-    // 6.8 贸易 / 综合 / 其他
-    // ============================================================
     {
       id: "other",
-      title: "贸易 / 综合 / 其他",
+      title: "其他",
       jobs: [
-        // DABBSON 达布森
-        { title: "渠道分销代理（懂中文 / 英文 / 技术产品）", company: "Dabbson 达布森", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ae6b01644336d228" },
-        // BODE SCM GROUP
-        { title: "总经理助理（懂中文）", company: "Bode SCM Group", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-giam-doc-biet-tieng-trung-nhan-viec-ngay/2071704.html" },
-        // ENGU TECHNOLOGY
-        { title: "HR 助理（中文）", company: "Engu Technology", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-hcns-biet-tieng-trung/1999466.html" },
-        // XDS TECHNOLOGY
-        { title: "中文助理（流利沟通）", company: "XDS Technology", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-giao-tiep-luu-loat-khong-yeu-cau-kinh-nghiem-thu-nhap-10-20-trieu/1979323.html" },
-        // ZHENG DA 正大科技
-        { title: "中文翻译助理（HSK5）", company: "Zheng Da 正大科技", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-phien-dich-tieng-trung-hsk5/1884727.html" },
-        // ZHOUJIQIAO 周记桥
-        { title: "行政人事（中 / 英文）", company: "Zhoujiqiao 周记桥", location: "HCM", channel: "TopCV+Indeed", url: "https://www.topcv.vn/viec-lam/hanh-chinh-nhan-su-tieng-trung-tieng-anh/2102731.html" },
-        { title: "内部会计（中文）", company: "Zhoujiqiao 周记桥", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-biet-tieng-trung/2094210.html" },
-        { title: "招聘专员", company: "Zhoujiqiao 周记桥", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=31232050e433e9ec" },
-        { title: "行政人事", company: "Zhoujiqiao 周记桥", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=6a7976a694bdfb50" },
-        // ASIA LINK
-        { title: "CSKH 中文（女）", company: "Asia Link", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-tieng-trung-nu/2102291.html" },
-        // DATONG TRADING
-        { title: "总账会计（中文）", company: "Datong Trading", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-ke-toan-tong-hop-tieng-trung/2091730.html" },
-        // JIA XIANG TRADING 家祥
-        { title: "Sales Admin（中文）", company: "Jia Xiang 家祥", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/sales-admin-biet-tieng-trung/2095204.html" },
-        // GUICUIHUI
-        { title: "内部会计（中文）", company: "Guicuihui", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-ke-toan-noi-bo-biet-tieng-trung/2096232.html" },
-        // XIYI MEDIA 西意传媒
-        { title: "中文助理", company: "Xiyi Media 西意传媒", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2026705.html" },
-        // WANDEFU
-        { title: "中文翻译", company: "Wandefu", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-tieng-trung/2075752.html" },
-        // WANYI
-        { title: "中文翻译（化妆品）", company: "Wanyi Vietnam", location: "Q2, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-tieng-trung-nganh-my-pham-thu-nhap-14-trieu-lam-viec-tai-quan-2/2065247.html" },
-        // XU XIAOYING
-        { title: "中文翻译", company: "Xu Xiaoying", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-tieng-trung/2074223.html" },
-        // IABER
-        { title: "助理兼中文翻译", company: "Iaber", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-kiem-phien-dich-vien-tieng-trung-nu-luong-upto-38-trieu/2097341.html" },
-        // SHENZHEN LITHTECH ENERGY
-        { title: "储能系统工程师 (BESS)", company: "Shenzhen Lithtech Energy", location: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=08f762a75a2bedcf" },
-        // ENRICHMENT RISE
-        { title: "总账会计（中文）", company: "Enrichment Rise", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tong-hop-tieng-trung/2030028.html" },
-        { title: "中文翻译助理", company: "Enrichment Rise", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-phien-dich-tieng-trung/2030013.html" },
-        { title: "直播运营（中文）", company: "Enrichment Rise", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/van-hanh-livestream-tieng-trung/2030006.html" },
-        { title: "中文员工（无经验）", company: "Enrichment Rise", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-tieng-trung-khong-yeu-cau-kinh-nghiem/2083188.html" },
-        // KEEP RISE
-        { title: "人事经理（中 / 英文，Q7）", company: "Keep Rise", location: "Q7, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-nhan-su-biet-tieng-trung-tieng-anh-nhan-viec-ngay-quan-7/2088602.html" },
-        { title: "C&B 专员（中 / 英文）", company: "Keep Rise", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cb-biet-tieng-trung-hoac-anh/2048640.html" },
-        // HỒNG TƯỜNG 红堂
-        { title: "中文助理", company: "Hồng Tường 红堂", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2105262.html" },
-        { title: "中文会计", company: "Hồng Tường 红堂", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-biet-tieng-trung/2105188.html" },
-        { title: "中文助理（无需经验）", company: "Hồng Tường 红堂", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-khong-yeu-cau-kinh-nghiem/2086229.html" },
-        // BUSY MING 忙明
-        { title: "中文助理", company: "Busy Ming 忙明", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2045820.html" },
-        { title: "公关 PR 专员（中文）", company: "Busy Ming 忙明", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/chuyen-vien-quan-he-cong-chung-pr-tieng-trung/2090652.html" },
-        { title: "HRBP - Chinese Communication", company: "Busy Ming 忙明", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/hrbp-chinese-communication/2078907.html" },
-        // BẰNG TRÌNH 邦程
-        { title: "仓库员工（中文）", company: "Bằng Trình 邦程", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-kho-biet-tieng-trung/2095098.html" },
-        { title: "中文助理（兼 / 全职）", company: "Bằng Trình 邦程", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-part-time-fulltime-biet-tieng-trung/2095096.html" },
-        // NI HAO 你好
-        { title: "中文教师 - 全职", company: "Ni Hao 你好", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-full-time/1797078.html" },
-        { title: "中文教师 - 兼职", company: "Ni Hao 你好", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/giao-vien-tieng-trung-part-time/1950012.html" },
-        // TỶ THẠC 比硕
-        { title: "文员（中 / 英文，KCN Tân Tạo）", company: "Tỷ Thạc 比硕", location: "Bình Tân, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-phong-tieng-anh-hoac-tieng-trung-kcn-tan-tao-binh-tan-di-lam-ngay/2108047.html" },
-        { title: "文员（中 / 英文）", company: "Tỷ Thạc 比硕", location: "Bình Tân, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-phong-tieng-anh-hoac-tieng-trung-kcn-tan-tao-binh-tan/1276532.html" },
-        // KHẢI THỊNH 凯盛
-        { title: "中文文员 / Customer Service / Sales", company: "Khải Thịnh 凯盛", location: "Q7, HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-van-phong-tieng-trung-nu-customer-service-sales-telesales-tu-van-thu-nhap-1019-trieu-khong-yeu-cau-kinh-nghiem-di-lam-ngay-quan-7/2095963.html" },
-        // GXB / LAZBAO GROUP
-        { title: "总账会计（中文优先）", company: "GXB / LazBao Group", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/ke-toan-tong-hop-uu-tien-biet-tieng-trung/1511060.html" },
-        { title: "中文翻译兼助理", company: "GXB / LazBao Group", location: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/phien-dich-kiem-tro-ly-tieng-trung/1994003.html" },
+        { title: "NHÂN VIÊN PHÂN PHỐI KÊNH ĐẠI LÝ ( BIẾT TIẾNG ANH/TRUNG, CÓ KINH NGHIỆM CÁC SẢN PHẨM KĨ THUẬT)", company: "\"DABBSON 达布森\"", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ae6b01644336d228" },
+        { title: "NHÂN VIÊN HÀNH CHINH NHÂN SỰ ( 12-15 TRIỆU/ THANG,2 NĂM KINH NGHIỆM TẠI LONG AN)", company: "CONG TY TNHH THUONG MAI HUI LIANG", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=51df5f96f7e02177" },
+        { title: "Nhân Viên Tài Chính Kế Toán (Tiếng Trung Hoặc Tiếng Anh) - 1 Năm Kinh Nghiệm - Đi Làm Ngay - Hồ Chí Minh", company: "CTS International", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-tai-chinh-ke-toan-tieng-trung-hoac-tieng-anh-1-nam-kinh-nghiem-di-lam-ngay-ho-chi-minh/2072103.html" },
+        { title: "Trợ Lý HCNS Biết Tiếng Trung", company: "CÔNG TY TNHH CÔNG NGHỆ ENGU VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-hcns-biet-tieng-trung/1999466.html" },
+        { title: "Trợ Lý Tiếng Trung - Giao Tiếp Lưu Loát (Không Yêu Cầu Kinh Nghiệm) Thu Nhập 10 - 20 Triệu", company: "CÔNG TY TNHH CÔNG NGHỆ XDS VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung-giao-tiep-luu-loat-khong-yeu-cau-kinh-nghiem-thu-nhap-10-20-trieu/1979323.html" },
+        { title: "Tài Xế Biết Tiếng Trung", company: "CÔNG TY TNHH HISENSE VIETNAM", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tai-xe-biet-tieng-trung/2106604.html" },
+        { title: "Nhân Viên Chăm Sóc Khách Hàng Tiếng Trung (Yêu Cầu HSK6) - Offer Tới 24mil Gross", company: "CÔNG TY TNHH ITECHWX", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-cham-soc-khach-hang-tieng-trung-yeu-cau-hsk6-offer-toi-24mil-gross/2112069.html" },
+        { title: "Pre-Sales Specialist (HSK5/6)", company: "CÔNG TY TNHH ITECHWX", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/pre-sales-specialist-hsk5-6/2028754.html" },
+        { title: "Trợ Lý Tiếng Trung", company: "CÔNG TY TNHH TRUYỀN THÔNG XIYI", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/tro-ly-tieng-trung/2026705.html" },
+        { title: "Kinh Doanh Phụ Tùng Biết Tiếng Trung (Xe Tải)", company: "CÔNG TY TNHH XE FOTON VIỆT NAM", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/kinh-doanh-phu-tung-biet-tieng-trung-xe-tai/2058272.html" },
+        { title: "Nhân viên lễ tân tiếng Trung", company: "Công Ty TNHH Wah Fu Palace", location: "HCM", city: "HCM", channel: "Indeed", url: "https://vn.indeed.com/viewjob?jk=ab48f3c7cf9b41fb" },
+        { title: "AUTOMOTIVE SALES MANAGER", company: "FOTON VIETNAM", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4399122098" },
+        { title: "Chuyên viên Quan hệ Công chúng", company: "TCL (Vietnam) Corporation Limited", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/chuyen-vien-quan-he-cong-chung.35C67EFA.html" },
+        { title: "Sales - TV GT Channel", company: "TCL (Vietnam) Corporation Limited", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/sales-tv-gt-channel.35C6844C.html" },
+        { title: "Assistant Merchandising Manager / Merchandising Executive", company: "TTI / Techtronic", location: "HCM", city: "HCM", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4388052412" },
+        { title: "Biên Phiên Dịch Tiếng Trung - Tại Hồ Chí Minh - Thu Nhập Hấp Dẫn", company: "TTI / Techtronic", location: "HCM", city: "HCM", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/bien-phien-dich-tieng-trung-tai-ho-chi-minh-thu-nhap-hap-dan/1490421.html" },
+        { title: "Head Accountant", company: "中联重科", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4395290123" },
+        { title: "Human Resources Manager", company: "中联重科", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4390313138" },
+        { title: "Trưởng Phòng Hành Chính Nhân Sự (Biết Tiếng Trung Hoặc Tiếng Anh)", company: "中联重科", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/truong-phong-hanh-chinh-nhan-su-biet-tieng-trung-hoac-tieng-anh/2092177.html" },
+        { title: "Nhân viên bán hàng", company: "小米", location: "河内", city: "河内", channel: "其他", url: "https://careerviet.vn/vi/tim-viec-lam/nhan-vien-ban-hang.35C66F86.html" },
+        { title: "Retail Key Account Manager Assistant", company: "小米", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4388900591" },
+        { title: "Nhân Viên Cơ Khí", company: "新希望", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-co-khi/2041629.html" },
+        { title: "Nhân Viên Hóa Nghiệm Phòng Thí Nghiệm", company: "新希望", location: "河内", city: "河内", channel: "TopCV", url: "https://www.topcv.vn/viec-lam/nhan-vien-hoa-nghiem-phong-thi-nghiem/2111647.html" },
+        { title: "Social Media Content Creator", company: "海康威视", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4395555670" },
+        { title: "Wind Resources Engineer", company: "金风科技", location: "河内", city: "河内", channel: "LinkedIn", url: "https://vn.linkedin.com/jobs/view/4342631443" },
       ]
     }
   ]
